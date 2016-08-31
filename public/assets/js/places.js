@@ -70,7 +70,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/api/leads/save',
+                url: '/service/leads/save',
                 data: place,
                 success: function (data) {
                     // success alert

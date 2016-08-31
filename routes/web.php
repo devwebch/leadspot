@@ -23,7 +23,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
     Route::get('view/{lead}', 'LeadController@viewLead');
 });
 
-Route::group(['prefix' => 'api', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
     Route::post('/leads/save', 'LeadServiceController@save');
 });
 

@@ -25,13 +25,15 @@ class LeadServiceController extends Controller
         $user   = $request->user();
 
         $lead = new Lead();
-        $lead->name     = $request->name;
-        $lead->url      = $request->website;
-        $lead->address  = $request->formatted_address;
-        $lead->status   = 0;
-        $lead->lat      = $request->lat;
-        $lead->lng      = $request->lng;
-        $lead->user_id  = $user->id;
+        $lead->name             = $request->name;
+        $lead->url              = $request->website;
+        $lead->address          = $request->formatted_address;
+        $lead->status           = 0;
+        $lead->phone_number     = '';
+        $lead->notes            = '';
+        $lead->lat              = $request->lat;
+        $lead->lng              = $request->lng;
+        $lead->user_id          = $user->id;
 
         // save the Model
         $lead->save();
