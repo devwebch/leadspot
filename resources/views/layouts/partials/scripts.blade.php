@@ -1,6 +1,7 @@
 <!-- BEGIN VENDOR JS -->
 <script src="{{asset('assets/plugins/pace/pace.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/plugins/jquery/jquery-1.11.1.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/app.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/plugins/modernizr.custom.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/plugins/bootstrapv3/js/bootstrap.min.js')}}" type="text/javascript"></script>

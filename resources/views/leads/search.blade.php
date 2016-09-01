@@ -154,24 +154,25 @@
                 <div class="panel-heading">
                     <div class="panel-title"><i class="pg-map"></i> Business details</div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction">
                         <h3>Hi there!</h3>
                         <p>Please search for a business and click analyze to get informations, lorem ipsum.</p>
                     </div>
                     <div class="wbf-business-details">
                         {{csrf_field()}}
-                        <div class="wbf-business-details__title hidden">
-                            <h3 class="title"></h3>
-                            <p class="address"></p>
-                            <p class="phone-number"></p>
-                            <p><a href="#" class="website hidden" target="_blank">http://www.example.com</a></p>
+
+                        <div class="wbf-business-details__title">
+                            <h3>@{{ details.name }}</h3>
+                            <p v-if="details.formatted_address">@{{ details.formatted_address }}</p>
+                            <p v-if="details.formatted_phone_number">@{{ details.formatted_phone_number }}</p>
+                            <p v-if="details.website"><a href="@{{ details.website }}" class="website" target="_blank">@{{ details.website }}</a></p>
                             <hr>
                         </div>
-                        <div class="wbf-business-details__no-website hidden">
+                        <div class="wbf-business-details__no-website" v-if="!details.website && details.name">
                             <div class="alert alert-info"><p>It looks like this business have no website.</p></div>
                         </div>
-                        <div class="wbf-business-details__pagespeed hidden">
+                        <div class="wbf-business-details__pagespeed" v-if="details.score_speed && details.score_usability">
                             <h4>Pagespeed scores</h4>
                             <table class="table table-condensed">
                                 <thead>
@@ -181,18 +182,18 @@
                                 </tr>
                                 </thead>
                                 <tr>
-                                    <td><span class="score-speed label label-info">0</span><span> / 100</span></td>
-                                    <td><span class="score-usability label label-info">0</span><span> / 100</span></td>
+                                    <td><span class="label label-info">@{{ details.score_speed }}</span><span> / 100</span></td>
+                                    <td><span class="label label-info">@{{ details.score_usability }}</span><span> / 100</span></td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="wbf-business-details__preview hidden m-b-20">
+                        <div class="wbf-business-details__preview m-b-20" v-if="details.score_screenshot">
                             <h4>Mobile preview</h4>
                             <div style="text-align: center;">
-                                <img class="image" src="" alt="">
+                                <img class="image" v-bind:src="details.score_screenshot" alt="">
                             </div>
                         </div>
-                        <div class="wbf-business-details__indicators hidden">
+                        <div class="wbf-business-details__indicators">
                             <h4>Obsolescence indicators</h4>
                             <table class="table table-condensed">
                                 <thead>
@@ -206,45 +207,66 @@
                                         <strong>Responsive</strong>
                                         <p class="small" style="white-space: normal">Website is adapted for mobile devices</p>
                                     </td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.viewport==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--gzip">
                                     <td>
                                         <strong>GZIP</strong>
                                         <p class="small" style="white-space: normal"></p>
                                     </td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.gzip==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--minify-css">
                                     <td><strong>Minified CSS</strong></td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.minifyCss==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--minify-js">
                                     <td><strong>Minified JS</strong></td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.minifyJs==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--minify-html">
                                     <td><strong>Minified HTML</strong></td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.minifyHTML==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--optimized-images">
                                     <td>
                                         <strong>Optimized images</strong>
                                         <p class="small" style="white-space: normal">Images sizes are optimized</p>
                                     </td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.optimizeImages==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
                                 <tr class="indicator--font-size">
                                     <td>
                                         <strong>Adapted font size</strong>
                                         <p class="small" style="white-space: normal">Font size is optimized for readability</p>
                                     </td>
-                                    <td class="indicator"></td>
+                                    <td>
+                                        <span class="label label-success" v-if="details.indicators.fontSize==0">Yes</span>
+                                        <span class="label label-danger" v-else>No</span>
+                                    </td>
                                 </tr>
 
                             </table>
                         </div>
-                        <div class="wbf-business-details__add-to-list hidden">
+                        <div class="wbf-business-details__add-to-list" v-show="isLoaded">
                             <button class="btn btn-complete btn-lg btn-block btn-add-to-list">Save this lead</button>
                         </div>
                     </div>

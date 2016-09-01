@@ -2,6 +2,37 @@
  * Created by srapin on 30.07.16.
  */
 
+var loaded                          = false;
+var place = {};
+place.id                            = '';
+place.name                          = '';
+place.rating                        = '';
+place.website                       = '';
+place.google_page                   = '';
+place.opening_hours                 = '';
+place.formatted_address             = '';
+place.formatted_phone_number        = '';
+place.lat                           = '';
+place.lng                           = '';
+place.page_title                    = '';
+place.score_speed                   = '';
+place.score_usability               = '';
+place.score_screenshot              = '';
+
+place.stats                         = {};
+place.stats.total_request_bytes     = '';
+place.stats.num_js_ressources       = '';
+place.stats.num_css_ressources      = '';
+
+place.indicators                    = {};
+place.indicators.viewport           = '';
+place.indicators.gzip               = '';
+place.indicators.minifyCss          = '';
+place.indicators.minifyJs           = '';
+place.indicators.minifyHTML         = '';
+place.indicators.optimizeImages     = '';
+place.indicators.fontSize           = '';
+
 (function () {
     var API_KEY             = 'AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
     var API_PAGESPEED       = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed';
@@ -13,10 +44,15 @@
     var searchMarkers       = [];
     var overlays            = [];
     var infoWindow          = null;
-    var place               = {};
-    var indicators          = {};
-
     var request             = {};
+
+    new Vue({
+        el: '#analyze',
+        data: {
+            isLoaded: loaded,
+            details: place
+        }
+    });
 
     /**
      * Application bootstrap
@@ -236,15 +272,15 @@
      */
     function analyze(placeID)
     {
-        place = {};
+        //place = {};
 
-        $('.wbf-business-details').addClass('hidden');
         $('.wbf-business-details-progress').removeClass('hidden');
         $('.wbf-business-details-introduction').addClass('hidden');
 
         // Get Places details
         service.getDetails({placeId: placeID}, function (placeResult, placesServiceStatus) {
             if (placesServiceStatus == google.maps.places.PlacesServiceStatus.OK) {
+                loaded                              = true;
 
                 place.id                            = placeResult.place_id;
                 place.name                          = placeResult.name;
@@ -260,19 +296,6 @@
                 var place_website_encoded   = encodeURI(place.website);
 
                 var API_URL = API_PAGESPEED + '?url=' + place_website_encoded + '&screenshot=true&strategy=mobile&key=' + API_KEY;
-
-                // hide results sections
-                $('.wbf-business-details-progress').removeClass('hidden');
-                $('.wbf-business-details').addClass('hidden');
-                $('.wbf-business-details__title').addClass('hidden');
-                $('.wbf-business-details__pagespeed').addClass('hidden');
-                $('.wbf-business-details__preview').addClass('hidden');
-                $('.wbf-business-details__indicators').addClass('hidden');
-                $('.wbf-business-details__title').addClass('hidden');
-                $('.wbf-business-details__no-website').addClass('hidden');
-
-                // show the details panel
-                $('.wbf-business-details').removeClass('hidden');
 
                 if (place.website) {
                     place.score_speed           = '';
@@ -293,27 +316,10 @@
 
                         place.score_screenshot = place.score_screenshot.replace(/_/g, '/');
                         place.score_screenshot = place.score_screenshot.replace(/-/g, '+');
+                        place.score_screenshot = 'data:image/jpeg;base64,' + place.score_screenshot;
 
                         analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
 
-                    }).complete(function () {
-                        // hide progress indicator
-                        $('.wbf-business-details-progress').addClass('hidden');
-
-                        // details: pagespeed
-                        if (place.score_speed && place.score_usability) {
-                            $('.wbf-business-details__pagespeed').removeClass('hidden');
-                            $('.wbf-business-details__pagespeed .score-speed').html(place.score_speed);
-                            $('.wbf-business-details__pagespeed .score-usability').html(place.score_usability);
-                        }
-
-                        // details: preview
-                        if (place.score_screenshot) {
-                            $('.wbf-business-details__preview').removeClass('hidden');
-                            $('.wbf-business-details__preview .image').attr('src', 'data:image/jpeg;base64,' + place.score_screenshot);
-                        }
-
-                        $('.wbf-business-details__add-to-list').removeClass('hidden');
                     });
                 } else {
                     // show the no website indicator
@@ -329,21 +335,6 @@
             } else {
                 console.log('No PageSpeed informations available.');
             }
-
-            // details: title
-            if (place.name) {
-                $('.wbf-business-details__title').removeClass('hidden');
-                $('.wbf-business-details__title .title').html(place.name);
-                $('.wbf-business-details__title .address').html(place.formatted_address);
-                $('.wbf-business-details__title .phone-number').html(place.formatted_phone_number);
-                $('.wbf-business-details__title .website').html(place.website);
-                $('.wbf-business-details__title .website').attr('href', place.website);
-            }
-
-            if (place.website) {
-                $('.wbf-business-details__title .website').removeClass('hidden');
-            }
-
         });
     }
 
@@ -352,37 +343,14 @@
      */
     function analyzeObsolescenceIndicators(results)
     {
-        indicators.viewport           = results.ConfigureViewport.ruleImpact;
-        indicators.gzip               = results.EnableGzipCompression.ruleImpact;
-        indicators.minifyCss          = results.MinifyCss.ruleImpact;
-        indicators.minifyJs           = results.MinifyJavaScript.ruleImpact;
-        indicators.minifyHTML         = results.MinifyHTML.ruleImpact;
-        indicators.optimizeImages     = results.OptimizeImages.ruleImpact;
-        indicators.fontSize           = results.UseLegibleFontSizes.ruleImpact;
-
-        var indicatorViewport         = $('.indicator--responsive .indicator');
-        var indicatorGzip             = $('.indicator--gzip .indicator');
-        var indicatorMinifyCss        = $('.indicator--minify-css .indicator');
-        var indicatorMinifyJs         = $('.indicator--minify-js .indicator');
-        var indicatorMinifyHTML       = $('.indicator--minify-html .indicator');
-        var indicatorOptimizeImages   = $('.indicator--optimized-images .indicator');
-        var indicatorFontSize         = $('.indicator--font-size .indicator');
-
-        console.log(indicators);
-
-        var labels = {
-          positive: '<span class="label label-success indicator">Yes</span>',
-          negative: '<span class="label label-danger indicator">No</span>'
-        };
-
-        $('.wbf-business-details__indicators').removeClass('hidden');
-        if (indicators.viewport > 0) { indicatorViewport.html(labels.negative); } else { indicatorViewport.html(labels.positive); }
-        if (indicators.gzip > 0) { indicatorGzip.html(labels.negative); } else { indicatorGzip.html(labels.positive); }
-        if (indicators.minifyCss > 0) { indicatorMinifyCss.html(labels.negative); } else { indicatorMinifyCss.html(labels.positive); }
-        if (indicators.minifyJs > 0) { indicatorMinifyJs.html(labels.negative); } else { indicatorMinifyJs.html(labels.positive); }
-        if (indicators.minifyHTML > 0) { indicatorMinifyHTML.html(labels.negative); } else { indicatorMinifyHTML.html(labels.positive); }
-        if (indicators.optimizeImages > 0) { indicatorOptimizeImages.html(labels.negative); } else { indicatorOptimizeImages.html(labels.positive); }
-        if (indicators.fontSize > 0) { indicatorFontSize.html(labels.negative); } else { indicatorFontSize.html(labels.positive); }
+        place.indicators                    = {};
+        place.indicators.viewport           = results.ConfigureViewport.ruleImpact;
+        place.indicators.gzip               = results.EnableGzipCompression.ruleImpact;
+        place.indicators.minifyCss          = results.MinifyCss.ruleImpact;
+        place.indicators.minifyJs           = results.MinifyJavaScript.ruleImpact;
+        place.indicators.minifyHTML         = results.MinifyHTML.ruleImpact;
+        place.indicators.optimizeImages     = results.OptimizeImages.ruleImpact;
+        place.indicators.fontSize           = results.UseLegibleFontSizes.ruleImpact;
     }
 
     /**
