@@ -2,7 +2,10 @@
  * Created by srapin on 30.07.16.
  */
 
-var loaded                          = false;
+var appstate                        = {};
+appstate.loading                    = false;
+appstate.loaded                     = false;
+
 var place = {};
 place.id                            = '';
 place.name                          = '';
@@ -33,6 +36,11 @@ place.indicators.minifyHTML         = '';
 place.indicators.optimizeImages     = '';
 place.indicators.fontSize           = '';
 
+var analyzeModuleData   = {
+    status: appstate,
+    details: place
+};
+
 (function () {
     var API_KEY             = 'AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
     var API_PAGESPEED       = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed';
@@ -47,10 +55,9 @@ place.indicators.fontSize           = '';
     var request             = {};
 
     new Vue({
-        el: '#analyze',
-        data: {
-            isLoaded: loaded,
-            details: place
+        el: 'body',
+        data: analyzeModuleData,
+        created: function () {
         }
     });
 
@@ -272,16 +279,12 @@ place.indicators.fontSize           = '';
      */
     function analyze(placeID)
     {
-        //place = {};
-
-        $('.wbf-business-details-progress').removeClass('hidden');
-        $('.wbf-business-details-introduction').addClass('hidden');
+        appstate.loading    = true;
+        appstate.loaded     = false;
 
         // Get Places details
         service.getDetails({placeId: placeID}, function (placeResult, placesServiceStatus) {
             if (placesServiceStatus == google.maps.places.PlacesServiceStatus.OK) {
-                loaded                              = true;
-
                 place.id                            = placeResult.place_id;
                 place.name                          = placeResult.name;
                 place.rating                        = placeResult.rating;
@@ -292,6 +295,15 @@ place.indicators.fontSize           = '';
                 place.formatted_phone_number        = placeResult.formatted_phone_number;
                 place.lat                           = placeResult.geometry.location.lat;
                 place.lng                           = placeResult.geometry.location.lng;
+
+                place.page_title                    = '';
+                place.score_speed                   = '';
+                place.score_usability               = '';
+                place.score_screenshot              = '';
+
+                place.stats.total_request_bytes     = '';
+                place.stats.num_js_ressources       = '';
+                place.stats.num_css_ressources      = '';
 
                 var place_website_encoded   = encodeURI(place.website);
 
@@ -304,6 +316,9 @@ place.indicators.fontSize           = '';
 
                     // Run PageSpeed analysis
                     $.getJSON(API_URL, function (data) {
+                        appstate.loaded           = true;
+                        appstate.loading          = false;
+
                         place.page_title          = data.title;
                         place.score_speed         = data.ruleGroups.SPEED.score;
                         place.score_usability     = data.ruleGroups.USABILITY.score;
@@ -322,18 +337,13 @@ place.indicators.fontSize           = '';
 
                     });
                 } else {
-                    // show the no website indicator
-                    $('.wbf-business-details__no-website').removeClass('hidden');
-
-                    // hide progress indicator
-                    $('.wbf-business-details-progress').addClass('hidden');
-
-                    // hide pagespeed results
-                    $('.wbf-business-details__pagespeed').addClass('hidden');
+                    appstate.loaded     = true;
+                    appstate.loading    = false;
                 }
 
             } else {
-                console.log('No PageSpeed informations available.');
+                appstate.loading = false;
+                console.log('No Places informations available.');
             }
         });
     }

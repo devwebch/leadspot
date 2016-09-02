@@ -155,24 +155,26 @@
                     <div class="panel-title"><i class="pg-map"></i> Business details</div>
                 </div>
                 <div class="panel-body" id="analyze">
-                    <div class="wbf-business-details-introduction">
+                    <div class="wbf-business-details-introduction" v-show="!details.name">
                         <h3>Hi there!</h3>
-                        <p>Please search for a business and click analyze to get informations, lorem ipsum.</p>
+                        <p>Please search for a business and click analyze to get informations about a place and perform a full website inspection.</p>
                     </div>
                     <div class="wbf-business-details">
                         {{csrf_field()}}
 
-                        <div class="wbf-business-details__title">
+                        <div class="wbf-business-details__title" v-show="status.loaded">
                             <h3>@{{ details.name }}</h3>
                             <p v-if="details.formatted_address">@{{ details.formatted_address }}</p>
                             <p v-if="details.formatted_phone_number">@{{ details.formatted_phone_number }}</p>
                             <p v-if="details.website"><a href="@{{ details.website }}" class="website" target="_blank">@{{ details.website }}</a></p>
                             <hr>
                         </div>
-                        <div class="wbf-business-details__no-website" v-if="!details.website && details.name">
+
+                        <div class="wbf-business-details__no-website" v-show="status.loaded && !details.website && details.name">
                             <div class="alert alert-info"><p>It looks like this business have no website.</p></div>
                         </div>
-                        <div class="wbf-business-details__pagespeed" v-if="details.score_speed && details.score_usability">
+
+                        <div class="wbf-business-details__pagespeed" v-show="status.loaded && details.website">
                             <h4>Pagespeed scores</h4>
                             <table class="table table-condensed">
                                 <thead>
@@ -187,13 +189,15 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="wbf-business-details__preview m-b-20" v-if="details.score_screenshot">
+
+                        <div class="wbf-business-details__preview m-b-20" v-if="status.loaded && details.score_screenshot">
                             <h4>Mobile preview</h4>
                             <div style="text-align: center;">
                                 <img class="image" v-bind:src="details.score_screenshot" alt="">
                             </div>
                         </div>
-                        <div class="wbf-business-details__indicators">
+
+                        <div class="wbf-business-details__indicators" v-show="status.loaded && details.website">
                             <h4>Obsolescence indicators</h4>
                             <table class="table table-condensed">
                                 <thead>
@@ -266,12 +270,13 @@
 
                             </table>
                         </div>
-                        <div class="wbf-business-details__add-to-list" v-show="isLoaded">
+
+                        <div class="wbf-business-details__add-to-list" v-show="status.loaded">
                             <button class="btn btn-complete btn-lg btn-block btn-add-to-list">Save this lead</button>
                         </div>
                     </div>
 
-                    <div class="wbf-business-details-progress hidden" style="text-align: center; padding: 40px 0;">
+                    <div class="wbf-business-details-progress" style="text-align: center; padding: 40px 0;" v-show="status.loading">
                         <div class="progress-circle-indeterminate"></div>
                         <p class="small hint-text">Loading</p>
                     </div>

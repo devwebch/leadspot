@@ -26,10 +26,10 @@ class LeadServiceController extends Controller
 
         $lead = new Lead();
         $lead->name             = $request->name;
-        $lead->url              = $request->website;
+        $lead->url              = $request->website ? $request->website : '';
         $lead->address          = $request->formatted_address;
         $lead->status           = 0;
-        $lead->phone_number     = '';
+        $lead->phone_number     = $request->formatted_phone_number;
         $lead->notes            = '';
         $lead->lat              = $request->lat;
         $lead->lng              = $request->lng;

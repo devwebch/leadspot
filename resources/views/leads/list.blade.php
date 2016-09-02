@@ -35,9 +35,6 @@
                 "iDisplayLength": 10,
                 "aoColumnDefs": [
                     { 'bSortable': false, 'aTargets': [ 3, 6 ] }
-                ],
-                "order": [
-                        [5, 'asc']
                 ]
             };
 
@@ -89,7 +86,7 @@
                         <td>{{$lead->address}}</td>
                         <td>
                             @if($lead->url)
-                                <a href="{{$lead->url}}" target="_blank">{{$lead->url}}</a>
+                                <a href="{{$lead->url}}" target="_blank">{{substr($lead->url, 0, 50)}}</a>
                             @else
                                 -
                             @endif
