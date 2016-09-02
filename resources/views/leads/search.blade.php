@@ -184,8 +184,8 @@
                                 </tr>
                                 </thead>
                                 <tr>
-                                    <td><span class="label label-info">@{{ details.score_speed }}</span><span> / 100</span></td>
-                                    <td><span class="label label-info">@{{ details.score_usability }}</span><span> / 100</span></td>
+                                    <td><span class="label label-info">@{{ details.stats.score_speed }}</span><span> / 100</span></td>
+                                    <td><span class="label label-info">@{{ details.stats.score_usability }}</span><span> / 100</span></td>
                                 </tr>
                             </table>
                         </div>

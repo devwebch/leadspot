@@ -58,6 +58,7 @@
             </div>
         </div>
         <div class="col-md-3">
+            <h4>News from LeadSpot</h4>
             <div class="panel no-border">
                 <div class="padding-15">
                     <div class="item-header clearfix">

@@ -70,22 +70,18 @@
                     <input type="hidden" id="location_lng" value="{{$lead->lng}}">
                     <h1>{{$lead->name}}</h1>
                     <h4>{{$lead->address}}</h4>
-
-                    @if($lead->url)
-                        <p><a href="{{$lead->url}}">{{$lead->url}}</a></p>
-                    @endif
-
-                    @if($lead->phone_number)
-                        <p>{{$lead->phone_number}}</p>
-                    @endif
-
-                    <div>
-                        <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span>
-                    </div>
-
                     <div id="map" style="height: 400px;" class="m-t-20"></div>
                 </div>
                 <div class="col-md-4">
+                    <h4>Details</h4>
+                    <p>Status: <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span></p>
+                    @if($lead->url)
+                        <p>Website: <a href="{{$lead->url}}">{{$lead->url}}</a></p>
+                    @endif
+                    @if($lead->phone_number)
+                        <p>Phone: {{$lead->phone_number}}</p>
+                    @endif
+                    <hr>
                     <h4>Notes</h4>
                     @if($lead->notes)
                         {{$lead->notes}}

@@ -22,7 +22,6 @@
             <li class="m-t-30">
                 <a href="/" class="detailed">
                     <span class="title">Dashboard</span>
-                    <span class="details">234 notifications</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-mail"></i></span>
             </li>

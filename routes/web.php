@@ -31,4 +31,6 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function(){
     Route::get('/', function (){ return view('auth.account.user'); });
 });
 
-Route::auth();
+Auth::routes();
+
+Route::get('/logout', 'Auth\LoginController@logout');

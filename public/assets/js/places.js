@@ -6,40 +6,21 @@ var appstate                        = {};
 appstate.loading                    = false;
 appstate.loaded                     = false;
 
-var place = {};
-place.id                            = '';
-place.name                          = '';
-place.rating                        = '';
-place.website                       = '';
-place.google_page                   = '';
-place.opening_hours                 = '';
-place.formatted_address             = '';
-place.formatted_phone_number        = '';
-place.lat                           = '';
-place.lng                           = '';
-place.page_title                    = '';
-place.score_speed                   = '';
-place.score_usability               = '';
-place.score_screenshot              = '';
-
+var place                           = {};
 place.stats                         = {};
-place.stats.total_request_bytes     = '';
-place.stats.num_js_ressources       = '';
-place.stats.num_css_ressources      = '';
-
 place.indicators                    = {};
-place.indicators.viewport           = '';
-place.indicators.gzip               = '';
-place.indicators.minifyCss          = '';
-place.indicators.minifyJs           = '';
-place.indicators.minifyHTML         = '';
-place.indicators.optimizeImages     = '';
-place.indicators.fontSize           = '';
 
 var analyzeModuleData   = {
     status: appstate,
     details: place
 };
+
+var analyzeModule = new Vue({
+    el: 'body',
+    data: analyzeModuleData,
+    created: function () {
+    }
+});
 
 (function () {
     var API_KEY             = 'AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
@@ -53,13 +34,6 @@ var analyzeModuleData   = {
     var overlays            = [];
     var infoWindow          = null;
     var request             = {};
-
-    new Vue({
-        el: 'body',
-        data: analyzeModuleData,
-        created: function () {
-        }
-    });
 
     /**
      * Application bootstrap
@@ -285,58 +259,51 @@ var analyzeModuleData   = {
         // Get Places details
         service.getDetails({placeId: placeID}, function (placeResult, placesServiceStatus) {
             if (placesServiceStatus == google.maps.places.PlacesServiceStatus.OK) {
-                place.id                            = placeResult.place_id;
-                place.name                          = placeResult.name;
-                place.rating                        = placeResult.rating;
-                place.website                       = placeResult.website;
-                place.google_page                   = placeResult.url;
-                place.opening_hours                 = placeResult.opening_hours;
-                place.formatted_address             = placeResult.formatted_address;
-                place.formatted_phone_number        = placeResult.formatted_phone_number;
-                place.lat                           = placeResult.geometry.location.lat;
-                place.lng                           = placeResult.geometry.location.lng;
 
-                place.page_title                    = '';
-                place.score_speed                   = '';
-                place.score_usability               = '';
-                place.score_screenshot              = '';
-
-                place.stats.total_request_bytes     = '';
-                place.stats.num_js_ressources       = '';
-                place.stats.num_css_ressources      = '';
+                Vue.set(analyzeModuleData.details, 'id', placeResult.place_id);
+                Vue.set(analyzeModuleData.details, 'name', placeResult.name);
+                Vue.set(analyzeModuleData.details, 'rating', placeResult.rating);
+                Vue.set(analyzeModuleData.details, 'website', placeResult.website);
+                Vue.set(analyzeModuleData.details, 'google_page', placeResult.url);
+                Vue.set(analyzeModuleData.details, 'opening_hours', placeResult.opening_hours);
+                Vue.set(analyzeModuleData.details, 'formatted_address', placeResult.formatted_address);
+                Vue.set(analyzeModuleData.details, 'formatted_phone_number', placeResult.formatted_phone_number);
+                Vue.set(analyzeModuleData.details, 'lat', placeResult.geometry.location.lat);
+                Vue.set(analyzeModuleData.details, 'lng', placeResult.geometry.location.lng);
 
                 var place_website_encoded   = encodeURI(place.website);
 
                 var API_URL = API_PAGESPEED + '?url=' + place_website_encoded + '&screenshot=true&strategy=mobile&key=' + API_KEY;
 
                 if (place.website) {
-                    place.score_speed           = '';
-                    place.score_usability       = '';
-                    var screenshot              = '';
 
                     // Run PageSpeed analysis
                     $.getJSON(API_URL, function (data) {
                         appstate.loaded           = true;
                         appstate.loading          = false;
 
-                        place.page_title          = data.title;
-                        place.score_speed         = data.ruleGroups.SPEED.score;
-                        place.score_usability     = data.ruleGroups.USABILITY.score;
-                        place.score_screenshot    = data.screenshot.data;
+                        Vue.set(analyzeModuleData.details, 'page_title', data.title);
+                        Vue.set(analyzeModuleData.details, 'score_screenshot', data.screenshot.data);
 
-                        place.stats                         = {};
-                        place.stats.total_request_bytes     = data.pageStats.totalRequestBytes;
-                        place.stats.num_js_ressources       = data.pageStats.numberJsResources;
-                        place.stats.num_css_ressources      = data.pageStats.numberCssResources;
+                        Vue.set(analyzeModuleData.details.stats, 'score_speed', data.ruleGroups.SPEED.score);
+                        Vue.set(analyzeModuleData.details.stats, 'score_usability', data.ruleGroups.USABILITY.score);
+                        Vue.set(analyzeModuleData.details.stats, 'total_request_bytes', data.pageStats.totalRequestBytes);
+                        Vue.set(analyzeModuleData.details.stats, 'num_js_ressources', data.pageStats.numberJsResources);
+                        Vue.set(analyzeModuleData.details.stats, 'num_css_ressources', data.pageStats.numberCssResources);
 
-                        place.score_screenshot = place.score_screenshot.replace(/_/g, '/');
-                        place.score_screenshot = place.score_screenshot.replace(/-/g, '+');
-                        place.score_screenshot = 'data:image/jpeg;base64,' + place.score_screenshot;
+                        analyzeModuleData.details.score_screenshot = analyzeModuleData.details.score_screenshot.replace(/_/g, '/');
+                        analyzeModuleData.details.score_screenshot = analyzeModuleData.details.score_screenshot.replace(/-/g, '+');
+                        analyzeModuleData.details.score_screenshot = 'data:image/jpeg;base64,' + analyzeModuleData.details.score_screenshot;
 
                         analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
 
                     });
                 } else {
+                    analyzeModuleData.details.indicators        = {};
+                    analyzeModuleData.details.stats             = {};
+                    analyzeModuleData.details.page_title        = '';
+                    analyzeModuleData.details.score_screenshot  = '';
+
                     appstate.loaded     = true;
                     appstate.loading    = false;
                 }
@@ -353,14 +320,14 @@ var analyzeModuleData   = {
      */
     function analyzeObsolescenceIndicators(results)
     {
-        place.indicators                    = {};
-        place.indicators.viewport           = results.ConfigureViewport.ruleImpact;
-        place.indicators.gzip               = results.EnableGzipCompression.ruleImpact;
-        place.indicators.minifyCss          = results.MinifyCss.ruleImpact;
-        place.indicators.minifyJs           = results.MinifyJavaScript.ruleImpact;
-        place.indicators.minifyHTML         = results.MinifyHTML.ruleImpact;
-        place.indicators.optimizeImages     = results.OptimizeImages.ruleImpact;
-        place.indicators.fontSize           = results.UseLegibleFontSizes.ruleImpact;
+        Vue.set(analyzeModuleData.details, 'indicators', {});
+        Vue.set(analyzeModuleData.details.indicators, 'viewport', results.ConfigureViewport.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'gzip', results.EnableGzipCompression.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'minifyCss', results.MinifyCss.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'minifyJs', results.MinifyJavaScript.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'minifyHTML', results.MinifyHTML.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'optimizeImages', results.OptimizeImages.ruleImpact);
+        Vue.set(analyzeModuleData.details.indicators, 'fontSize', results.UseLegibleFontSizes.ruleImpact);
     }
 
     /**
