@@ -150,7 +150,6 @@ class LeadController extends Controller
         $this->validate($request, [
             'leadName'      => 'required',
             'leadAddress'   => 'required',
-            'leadUrl'       => 'required|url',
         ]);
 
         // if it is an update, we retrieve the Lead object
