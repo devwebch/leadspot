@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Lead;
+use App\Mail\Welcome;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
 {
@@ -22,6 +24,8 @@ class Controller extends BaseController
     {
         // get the authenticated user
         $user   = $request->user();
+
+        //Mail::to('simon.rapin@gmail.com')->send(new Welcome());
 
         // retrieve lead status
         $status = config('constants.lead.status');
