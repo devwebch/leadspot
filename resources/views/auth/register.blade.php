@@ -66,6 +66,13 @@
         </div>
 
         <div class="form-group">
+            <div class="checkbox">
+                <input type="checkbox" value="agreed" name="terms_agree" id="terms_agree">
+                <label for="terms_agree">I have read and agree to the <a href="#">terms and conditions</a>.</label>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-btn fa-user"></i> Register
