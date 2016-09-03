@@ -30,14 +30,13 @@ if (Auth::check()) {
         <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="{{asset('assets/img/profiles/avatar.jpg')}}" alt=""
-                     data-src="{{asset('assets/img/profiles/avatar.jpg')}}"
-                     data-src-retina="{{asset('assets/img/profiles/avatar_small2x.jpg')}}" width="32" height="32">
+                <i class="fa fa-user" style="font-size: 20px;"></i>
             </span>
         </button>
         <ul class="dropdown-menu profile-dropdown" role="menu">
             <li><a href="/account"><i class="pg-settings_small"></i> My account</a></li>
             <li><a href="#"><i class="pg-italic"></i> Help</a></li>
+            <li><a href="/contact"><i class="pg-mail"></i> Contact</a></li>
             <li class="bg-master-lighter">
                 <a href="/logout" class="clearfix">
                     <span class="pull-left">Logout</span>

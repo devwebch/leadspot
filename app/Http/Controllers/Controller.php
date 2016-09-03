@@ -48,4 +48,20 @@ class Controller extends BaseController
             'status_classes'    => $status_classes
         ]);
     }
+
+    public function contact(Request $request)
+    {
+
+		$this->validate($request, [
+			'inputFirstName'        => 'required|max:255',
+			'inputLastName'         => 'required|max:255',
+			'inputEmail'            => 'required|email',
+			'inputMessage'          => 'required',
+		]);
+
+	    return view('contact');
+    }
+
+
+
 }

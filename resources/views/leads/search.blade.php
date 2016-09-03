@@ -13,6 +13,13 @@
 @endsection
 
 @section('scripts')
+    <script>
+        var constants = {
+            maps: {
+                icon: '{{config('constants.maps.icon_blue')}}'
+            }
+        };
+    </script>
     <script src="{{asset('assets/plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&libraries=places"></script>
     <script src="{{asset('assets/js/map-icons.js')}}"></script>
@@ -35,10 +42,13 @@
                             <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="Address..." style="width: 300px">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-default" id="wbfInputGeolocation"><i class="fa fa-crosshairs"></i></button>
+                            <button class="btn btn-default" id="wbfInputGeolocation" type="button"><i class="fa fa-crosshairs"></i></button>
                         </div>
                         <button type="submit" class="btn btn-warning">Search address</button>
                     </form>
+                    <div class="m-t-20" v-show="geolocating">
+                        <i class="fa fa-refresh fa-spin m-r-10"></i> Searching for your location...
+                    </div>
                 </div>
             </div>
             <div class="panel">
@@ -137,6 +147,12 @@
                                         <option value="300" selected>300m</option>
                                         <option value="400">400m</option>
                                         <option value="500">500m</option>
+                                        <option value="600">600m</option>
+                                        <option value="700">700m</option>
+                                        <option value="800">800m</option>
+                                        <option value="900">900m</option>
+                                        <option value="1000">1000m</option>
+                                        <option value="2000">2000m</option>
                                     </select>
                                 </div>
                             </div>
@@ -156,8 +172,10 @@
                 </div>
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
-                        <h3>Hi there!</h3>
-                        <p>Please search for a business and click analyze to get informations about a place and perform a full website inspection.</p>
+                        <h3>How do I start?</h3>
+                        <p><strong>Locate the area</strong> in which you would like to start search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.</p>
+                        <p>Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.</p>
+                        <p>By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.</p>
                     </div>
                     <div class="wbf-business-details">
                         {{csrf_field()}}

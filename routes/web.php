@@ -11,7 +11,11 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'Controller@home');
+Route::get('/contact', function () { return view('contact'); } );
+Route::post('/contact/send', 'Controller@contact');
 
 Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
     Route::get('list', 'LeadController@getLeads');
@@ -31,6 +35,5 @@ Route::group(['prefix' => 'account', 'middleware' => 'auth'], function(){
     Route::get('/', function (){ return view('auth.account.user'); });
 });
 
-Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');

@@ -1,76 +1,50 @@
-@extends('layouts.app')
+<?php
+/**
+ * Created by PhpStorm.
+ * User: SIMON
+ * Date: 10.08.2016
+ * Time: 15:17
+ */
 
-@section('title', 'Dashboard')
+$logged_in          = false;
+$user_first_name    = '';
+$user_last_name     = '';
 
-@section('breadcrumb')
-    <li><a href="/account" class="active">My account</a></li>
-@endsection
+if (Auth::check()) {
+    $logged_in  = true;
+    $user_first_name    = Auth::user()->first_name;
+    $user_last_name     = Auth::user()->last_name;
+} else {
 
-@section('styles')
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-metrojs/MetroJs.css')}}">
-@endsection
+}
+?>
 
-@section('scripts')
-    <script src="{{asset('assets/plugins/jquery-metrojs/MetroJs.min.js')}}"></script>
-@endsection
-
-@section('content')
-    <div class="row">
-        <div class="col-md-6 m-b-10">
-            <div class="panel">
-                <div class="panel-body">
-                    <h3>Hi there {{Auth::user()->first_name}}</h3>
-
-                        <ul class="nav nav-tabs nav-tabs-left nav-tabs-simple">
-                            <li class="active">
-                                <a data-toggle="tab" href="#tab2hellowWorld">Your infos</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab2FollowUs">Subscription</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab2Inspire">Misc.</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab2hellowWorld">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 class="m-t-0">Your account</h3>
-
-                                        <strong>First name</strong>
-                                        <p>{{Auth::user()->first_name}}</p>
-
-                                        <strong>Last name</strong>
-                                        <p>{{Auth::user()->last_name}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab2FollowUs">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 class="m-t-0">Subscription</h3>
-                                        <div class="alert alert-info">
-                                            <strong>Free beta account</strong>
-                                            <p>As an early subscriber you are entitled to a free account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab2Inspire">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 class="m-t-0">Delete my account</h3>
-                                        <p>Deleting your account is permanent and cannot be canceled.</p>
-                                        <p>Any open subscription will be lorem ipsum.</p>
-                                        <a href="#" class="btn btn-danger">I wish to delete my account permanently</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
-            </div>
-        </div>
+@if($logged_in)
+<!-- START User Info-->
+<div class="visible-lg visible-md m-t-10">
+    <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
+        <span class="semi-bold">{{$user_first_name}}</span>
+        <span class="text-master">{{$user_last_name}}</span>
     </div>
-@endsection
+    <div class="dropdown pull-right">
+        <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+                <i class="fa fa-user" style="font-size: 20px;"></i>
+            </span>
+        </button>
+        <ul class="dropdown-menu profile-dropdown" role="menu">
+            <li><a href="/account"><i class="pg-settings_small"></i> My account</a></li>
+            <li><a href="#"><i class="pg-italic"></i> Help</a></li>
+            <li><a href="/contact"><i class="pg-mail"></i> Contact</a></li>
+            <li class="bg-master-lighter">
+                <a href="/logout" class="clearfix">
+                    <span class="pull-left">Logout</span>
+                    <span class="pull-right"><i class="pg-power"></i></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- END User Info-->
+@endif

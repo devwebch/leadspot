@@ -6,6 +6,10 @@
  * Time: 21:12
  */
 return [
+	'maps' => [
+		'icon_blue'  => '/assets/img/icn_pin_blue.png',
+		'icon_red'  => '/assets/img/icn_pin_red.png',
+	],
     'lead' => [
         'status' => [
             0   => 'lead.status.neutral',

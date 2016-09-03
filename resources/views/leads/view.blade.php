@@ -30,7 +30,7 @@
                 map: map,
                 position: pyrmont,
                 icon: {
-                    url: '/assets/img/icn_pin_blue.png',
+                    url: '{{config('constants.maps.icon_blue')}}',
                     size: new google.maps.Size(24, 30),
                     origin: new google.maps.Point(0,0),
                     anchor: new google.maps.Point(10, 25)
