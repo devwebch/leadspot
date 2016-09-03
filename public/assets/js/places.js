@@ -75,7 +75,19 @@ var analyzeModule = new Vue({
         $('#wbfInputRadius').change(function (e) {
             var radius = (parseInt($(this).val()));
             request.radius = radius;
+            console.info(radius);
             showRadius(request.location, radius);
+
+            if ( radius < 150 ) {
+                map.setZoom(17);
+            } else if ( radius < 500 ) {
+                map.setZoom(15);
+            } else if ( radius <= 900 ) {
+                map.setZoom(14);
+            } else if ( radius <= 2000 ) {
+                map.setZoom(13);
+            }
+
         });
 
         $('.wbf-location-form').submit(function (e) {

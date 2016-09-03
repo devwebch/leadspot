@@ -29,6 +29,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="auto-overflow widget-11-2-table">
+                    @if(count($leads))
                     <table class="table table-condensed table-hover">
                         <tbody>
                             @foreach($leads as $lead)
@@ -44,6 +45,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <p class="text-center"><a href="/leads/search">You do not have any leads</a>.</p>
+                    @endif
                 </div>
             </div>
         </div>
