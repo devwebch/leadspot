@@ -18,14 +18,16 @@ class CreateLeadsTable extends Migration
             $table->integer('user_id');
             $table->timestamps();
             $table->string('name');
-            $table->string('url');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->text('notes');
+            $table->string('url')->nullable();
+            $table->string('cms', 20)->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->text('notes')->nullable();
             $table->tinyInteger('status');
-            $table->float('lat', 10, 8);
-            $table->float('lng', 10, 8);
+            $table->float('lat', 10, 8)->nullable();
+            $table->float('lng', 10, 8)->nullable();
         });
+
     }
 
     /**
@@ -36,7 +38,7 @@ class CreateLeadsTable extends Migration
     public function down()
     {
         Schema::table('leads', function (Blueprint $table) {
-            //
+            Schema::drop('leads');
         });
     }
 }

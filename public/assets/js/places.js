@@ -294,6 +294,9 @@ var analyzeModule = new Vue({
                 Vue.set(analyzeModuleData.details, 'lat', placeResult.geometry.location.lat);
                 Vue.set(analyzeModuleData.details, 'lng', placeResult.geometry.location.lng);
 
+                Vue.set(analyzeModuleData.details, 'cms', null);
+                Vue.set(analyzeModuleData.details, 'cmsID', null);
+
                 var place_website_encoded   = encodeURI(place.website);
 
                 var API_URL = API_PAGESPEED + '?url=' + place_website_encoded + '&screenshot=true&strategy=mobile&key=' + API_KEY;
@@ -321,6 +324,28 @@ var analyzeModule = new Vue({
                         analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
 
                     });
+
+                    $.ajax({
+                        url: '/service/leads/getcms',
+                        method: 'POST',
+                        data: {
+                            'url': place.website
+                        },
+                        success: function (data) {
+                            var cmsInfos    = JSON.parse(data);
+                            var cms         = cmsInfos.cms;
+                            var cmsID       = cmsInfos.id;
+
+                            if (!cms) {
+                                cms         = null;
+                                cmsInfos    = null;
+                            }
+
+                            Vue.set(analyzeModuleData.details, 'cms', cms);
+                            Vue.set(analyzeModuleData.details, 'cmsID', cmsID);
+                        }
+                    });
+
                 } else {
                     analyzeModuleData.details.indicators        = {};
                     analyzeModuleData.details.stats             = {};

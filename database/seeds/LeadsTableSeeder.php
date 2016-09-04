@@ -24,7 +24,8 @@ class LeadsTableSeeder extends Seeder
                     'lng'           => 6.6287104,
                     'user_id'       => 1,
                     'created_at'    => date('Y-m-d H:i:s'),
-                    'updated_at'    => date('Y-m-d H:i:s')
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                    'cms'           => null
                 ]
             );
         }

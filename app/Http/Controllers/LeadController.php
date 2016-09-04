@@ -8,8 +8,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Lead;
+use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use League\Flysystem\Config;
@@ -33,6 +33,9 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
+        $cms_data   = new DetectCMS($lead->url);
+        $cms        = $cms_data->getResult();
+
         $status_classes = [
             0   => '',
             1   => 'label-warning',
@@ -43,7 +46,8 @@ class LeadController extends Controller
         return view('leads.view', [
             'lead'              => $lead,
             'status'            => $status,
-            'status_classes'    => $status_classes
+            'status_classes'    => $status_classes,
+            'cms'               => $cms
         ]);
     }
 
@@ -163,8 +167,8 @@ class LeadController extends Controller
         $lead->name         = $request->leadName;
         $lead->address      = $request->leadAddress;
         $lead->url          = $request->leadUrl;
-        $lead->lat          = $request->leadLat;
-        $lead->lng          = $request->leadLng;
+        $lead->lat          = 0;
+        $lead->lng          = 0;
         $lead->notes        = $request->leadNotes;
         $lead->status       = $request->leadStatus;
         $lead->user_id      = $user->id;

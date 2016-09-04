@@ -208,6 +208,24 @@
                             </table>
                         </div>
 
+                        <div class="wbf-website-cms" v-show="status.loaded && details.website && details.cms">
+                            <h4>CMS</h4>
+                            <div class="text-center">
+                                <div>
+                                    <img src="{{asset('assets/img/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
+                                    <img src="{{asset('assets/img/logo_expressionengine.png')}}" alt="ExpressionEngine" v-show="details.cmsID=='expressionengine'">
+                                    <img src="{{asset('assets/img/logo_joomla.png')}}" alt="Joomla!" v-show="details.cmsID=='joomla'">
+                                    <img src="{{asset('assets/img/logo_liferay.png')}}" alt="LifeRay" v-show="details.cmsID=='liferay'">
+                                    <img src="{{asset('assets/img/logo_magento.png')}}" alt="Magento" v-show="details.cmsID=='magento'">
+                                    <img src="{{asset('assets/img/logo_sitecore.png')}}" alt="SiteCore" v-show="details.cmsID=='sitecore'">
+                                    <img src="{{asset('assets/img/logo_typo3.png')}}" alt="Typo3" v-show="details.cmsID=='typo3'">
+                                    <img src="{{asset('assets/img/logo_vbulletin.png')}}" alt="vBulletin" v-show="details.cmsID=='vbulletin'">
+                                    <img src="{{asset('assets/img/logo_wordpress.png')}}" alt="WordPress" v-show="details.cmsID=='wordpress'">
+                                </div>
+                                <strong class="m-t-10">@{{ details.cms }}</strong>
+                            </div>
+                        </div>
+
                         <div class="wbf-business-details__preview m-b-20" v-if="status.loaded && details.score_screenshot">
                             <h4>Mobile preview</h4>
                             <div style="text-align: center;">

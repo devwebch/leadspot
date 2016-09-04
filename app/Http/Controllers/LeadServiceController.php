@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Lead;
+use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
 
 class LeadServiceController extends Controller
@@ -34,10 +35,26 @@ class LeadServiceController extends Controller
         $lead->lat              = $request->lat;
         $lead->lng              = $request->lng;
         $lead->user_id          = $user->id;
+        $lead->cms              = $request->cmsID;
 
         // save the Model
         $lead->save();
 
         return $request->all();
+    }
+
+    public function getCMS(Request $request)
+    {
+        $url        = $request->input('url');
+
+        if ( $url ) {
+            $cms_data   = new DetectCMS($url);
+            $return     = $cms_data->getResult();
+        } else {
+            $return     = ['cms' => null];
+            $return     = json_encode($return);
+        }
+
+        return $return;
     }
 }

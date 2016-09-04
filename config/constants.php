@@ -17,5 +17,16 @@ return [
             2   => 'lead.status.accepted',
             3   => 'lead.status.denied'
         ]
+    ],
+    'cms'   => [
+        'drupal'                => 'Drupal',
+        'expressionengine'      => 'ExpressionEngine',
+        'joomla'                => 'Joomla!',
+        'liferay'               => 'LifeRay',
+        'magento'               => 'Magento',
+        'sitecore'              => 'SiteCore',
+        'typo3'                 => 'Typo3',
+        'vbulletin'             => 'vBulletin',
+        'wordpress'             => 'WordPress'
     ]
 ];

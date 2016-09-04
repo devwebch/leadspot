@@ -29,6 +29,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
 
 Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
     Route::post('/leads/save', 'LeadServiceController@save');
+    Route::post('/leads/getcms', 'LeadServiceController@getCMS');
 });
 
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function(){

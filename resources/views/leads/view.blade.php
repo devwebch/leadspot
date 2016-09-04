@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'New lead')
+@section('title', 'Details: ' . $lead->name)
 
 @section('breadcrumb')
     <li><a href="/leads/list" class="">Leads</a></li>
@@ -11,6 +11,7 @@
 @endsection
 
 @section('scripts')
+    @if($lead->lat && $lead->lng)
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&libraries=places"></script>
     <script>
         jQuery(document).ready(function ($) {
@@ -45,6 +46,7 @@
             });
         });
     </script>
+    @endif
 @endsection
 
 @section('content')
@@ -70,7 +72,9 @@
                     <input type="hidden" id="location_lng" value="{{$lead->lng}}">
                     <h1>{{$lead->name}}</h1>
                     <h4>{{$lead->address}}</h4>
+                    @if($lead->lat && $lead->lng)
                     <div id="map" style="height: 400px;" class="m-t-20"></div>
+                    @endif
                 </div>
                 <div class="col-md-4">
                     <h4>Details</h4>
@@ -78,6 +82,7 @@
                     @if($lead->url)
                         <p>Website: <a href="{{$lead->url}}">{{$lead->url}}</a></p>
                     @endif
+                    {{$cms}}
                     @if($lead->phone_number)
                         <p>Phone: {{$lead->phone_number}}</p>
                     @endif
