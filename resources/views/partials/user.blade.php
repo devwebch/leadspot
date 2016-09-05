@@ -35,7 +35,7 @@ if (Auth::check()) {
         </button>
         <ul class="dropdown-menu profile-dropdown" role="menu">
             <li><a href="/account"><i class="pg-settings_small"></i> My account</a></li>
-            <li><a href="#"><i class="pg-italic"></i> Help</a></li>
+            <li><a href="/help"><i class="pg-italic"></i> Help</a></li>
             <li><a href="/contact"><i class="pg-mail"></i> Contact</a></li>
             <li class="bg-master-lighter">
                 <a href="/logout" class="clearfix">

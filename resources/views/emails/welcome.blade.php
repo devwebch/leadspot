@@ -1,1 +1,3 @@
-Hello SparkPost : <?php echo date('d.m.Y H:i'); ?>
+@extends('layouts.mail')
+
+@yield('greetings', 'Hello Simon')

@@ -14,9 +14,11 @@
 Auth::routes();
 
 Route::get('/', 'Controller@home');
-Route::get('/contact', function () { return view('contact'); } );
+Route::get('/contact', function () { return view('contact'); } )->middleware('auth');
 Route::post('/contact/send', 'Controller@contact');
+Route::get('/help', function () { return view('help'); } )->middleware('auth');
 
+// Leads
 Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
     Route::get('list', 'LeadController@getLeads');
     Route::get('new', 'LeadController@newLead');
@@ -27,14 +29,15 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
     Route::get('view/{lead}', 'LeadController@viewLead');
 });
 
+// Service
 Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
     Route::post('/leads/save', 'LeadServiceController@save');
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
 });
 
+// User account
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function(){
     Route::get('/', function (){ return view('auth.account.user'); });
 });
-
 
 Route::get('/logout', 'Auth\LoginController@logout');
