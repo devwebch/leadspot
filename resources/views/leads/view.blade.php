@@ -82,7 +82,6 @@
                     @if($lead->url)
                         <p>Website: <a href="{{$lead->url}}">{{$lead->url}}</a></p>
                     @endif
-                    {{$cms}}
                     @if($lead->phone_number)
                         <p>Phone: {{$lead->phone_number}}</p>
                     @endif

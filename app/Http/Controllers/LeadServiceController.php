@@ -26,9 +26,11 @@ class LeadServiceController extends Controller
         $user   = $request->user();
 
         $lead = new Lead();
+        $lead->place_id         = $request->place_id;
         $lead->name             = $request->name;
         $lead->url              = $request->website ? $request->website : '';
         $lead->address          = $request->formatted_address;
+        $lead->rating           = 0;
         $lead->status           = 0;
         $lead->phone_number     = $request->formatted_phone_number;
         $lead->notes            = '';

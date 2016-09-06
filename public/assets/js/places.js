@@ -7,14 +7,11 @@ appstate.loading          = false;
 appstate.loaded           = false;
 
 var place                 = {};
-place.stats               = {};
-place.indicators          = {};
-
 var currentPlace          = {};
 
 var analyzeModuleData   = {
     status: appstate,
-    details: place,
+    details: currentPlace,
     geolocating: false
 };
 
@@ -103,7 +100,7 @@ var analyzeModule = new Vue({
             $.ajax({
                 type: 'POST',
                 url: '/service/leads/save',
-                data: place,
+                data: currentPlace,
                 success: function (data) {
                     // success alert
                     swal({ title: "Saved!", text: "The lead was added to your list.", type: "success", timer: 3000 });
@@ -176,17 +173,17 @@ var analyzeModule = new Vue({
      * Handles the display of the InfoWindow for each marker
      * @param place
      */
-    function addPlaceMarker(place)
+    function addPlaceMarker(placeData)
     {
         var marker = new Marker({
             map: map,
-            position: place.geometry.location,
-            title: place.name,
-            id: place.id,
-            place_id: place.place_id,
-            vicinity: place.vicinity,
-            types: place.types,
-            permanently_closed: place.permanently_closed,
+            position: placeData.geometry.location,
+            title: placeData.name,
+            id: placeData.id,
+            place_id: placeData.place_id,
+            vicinity: placeData.vicinity,
+            types: placeData.types,
+            permanently_closed: placeData.permanently_closed,
             icon: {
                 url: constants.maps.icon,
                 size: new google.maps.Size(24, 30),
@@ -205,18 +202,26 @@ var analyzeModule = new Vue({
             infoWindow.close();
             infoWindow  = new google.maps.InfoWindow();
 
-            // TODO: replace analyze call to Places API
-            service.getDetails(place, function(result, status){
+            service.getDetails(placeData, function(result, status){
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     return;
                 }
 
-                currentPlace        = {};
+                place.place_id                   = result.place_id;
+                place.name                       = result.name;
+                place.website                    = result.website;
+                place.formatted_address          = result.formatted_address;
+                place.formatted_phone_number     = result.formatted_phone_number;
+                place.formatted_address          = result.formatted_address;
+                place.formatted_address          = result.formatted_address;
+                place.lat                        = result.geometry.location.lat;
+                place.lng                        = result.geometry.location.lng;
+                place.cms                        = null;
+                place.cmsID                      = null;
 
-                currentPlace        = result;
-                currentPlace.stats  = {};
-                currentPlace.cms    = null;
-                currentPlace.cmdID  = null;
+                place.stats  = {};
+
+                console.info(place);
 
                 infoWindow.setContent('<div id="content">'+
                     '<h3 id="firstHeading" class="firstHeading">' + result.name + '</h3>'+
@@ -231,8 +236,7 @@ var analyzeModule = new Vue({
                 // btn Analyze click handler
                 $('.btn-analyze').on('click', function (e) {
                     e.preventDefault();
-                    var placeID = $(this).attr('data-id');
-                    analyze(placeID);
+                    analyze(place);
                 });
             });
         });
@@ -286,10 +290,13 @@ var analyzeModule = new Vue({
      * Handles the display of informations
      * @param placeID
      */
-    function analyze(placeID)
+    function analyze(placeToAnalyze)
     {
         appstate.loading    = true;
         appstate.loaded     = false;
+
+        currentPlace        = {};
+        currentPlace        = jQuery.extend({}, place);
 
         var place_website_encoded   = encodeURI(currentPlace.website);
 
@@ -301,8 +308,6 @@ var analyzeModule = new Vue({
             $.getJSON(API_URL, function (data) {
                 appstate.loaded           = true;
                 appstate.loading          = false;
-
-                console.info(data);
 
                 currentPlace.page_title         = data.title;
                 currentPlace.score_screenshot   = data.screenshot.data;
@@ -317,8 +322,9 @@ var analyzeModule = new Vue({
                 currentPlace.score_screenshot = currentPlace.score_screenshot.replace(/-/g, '+');
                 currentPlace.score_screenshot = 'data:image/jpeg;base64,' + currentPlace.score_screenshot;
 
-                analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
+                Vue.set(analyzeModuleData, 'details', currentPlace);
 
+                analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
             });
 
             $.ajax({
@@ -338,22 +344,17 @@ var analyzeModule = new Vue({
                     }
 
                     currentPlace.cms    = cms;
-                    currentPlace.cmdID  = cmsID;
-
+                    currentPlace.cmsID  = cmsID;
                 }
             });
 
         } else {
-            analyzeModuleData.details.indicators        = {};
-            analyzeModuleData.details.stats             = {};
-            analyzeModuleData.details.page_title        = '';
-            analyzeModuleData.details.score_screenshot  = '';
+            Vue.set(analyzeModuleData, 'details', currentPlace);
 
             appstate.loaded     = true;
             appstate.loading    = false;
         }
 
-        Vue.set(analyzeModuleData, 'details', currentPlace);
     }
 
     /**

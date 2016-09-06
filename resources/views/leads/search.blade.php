@@ -177,6 +177,7 @@
                         <p>Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.</p>
                         <p>By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.</p>
                     </div>
+
                     <div class="wbf-business-details">
                         {{csrf_field()}}
 
