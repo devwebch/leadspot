@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/', 'Controller@home');
 Route::get('/contact', function () { return view('contact'); } )->middleware('auth');
-Route::post('/contact/send', 'Controller@contact');
+Route::post('/contact/send', 'Controller@contactSend');
 Route::get('/help', function () { return view('help'); } )->middleware('auth');
 
 // Leads

@@ -16,7 +16,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <h3>Hi there {{Auth::user()->first_name}}!</h3>
-                    <p>Thank you for participating to the LeadSpot beta launch!</p>
+                    <p>Thank you for participating to the <strong>LeadSpot beta launch</strong>!</p>
                     <p>This is your dashboard, here you can manage your leads and access the latest news regarding LeadSpot.</p>
                     <p>During the beta a lot of features are going to evolve, share your good ideas and concerns with us.</p>
                 </div>

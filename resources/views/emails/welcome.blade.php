@@ -1,3 +1,5 @@
 @extends('layouts.mail')
 
-@yield('greetings', 'Hello Simon')
+@section('greeting')
+    Hello Simon
+@endsection
