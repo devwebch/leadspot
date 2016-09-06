@@ -39,7 +39,9 @@ class Drupal extends DetectCMS {
 			 */
 			$lines = explode(PHP_EOL, $data);
 
-			return strpos($lines[1], "Drupal") !== FALSE;
+            if (isset($lines[1])) {
+                return strpos($lines[1], "Drupal") !== FALSE;
+            }
 		}
 
 		return FALSE;

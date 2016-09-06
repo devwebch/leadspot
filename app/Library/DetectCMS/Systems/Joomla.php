@@ -39,12 +39,12 @@ class Joomla extends DetectCMS {
 
 			for($i=0;$i<10;$i++) {
 
-				if(strpos($lines[$i], "2- What is Joomla?") !== FALSE) {
-					return TRUE;
-				}
-
+			    if ( isset($lines[$i]) ) {
+                    if(strpos($lines[$i], "2- What is Joomla?") !== FALSE) {
+                        return TRUE;
+                    }
+                }
 			}
-
 		}
 
 		return FALSE;
@@ -114,7 +114,9 @@ class Joomla extends DetectCMS {
 			 */
 			$lines = explode(PHP_EOL, $data);
 
-			return strpos($lines[3], "var Joomla={};") !== FALSE;
+            if ( isset($lines[3]) ) {
+                return strpos($lines[3], "var Joomla={};") !== FALSE;
+            }
 		}
 
 		return FALSE;

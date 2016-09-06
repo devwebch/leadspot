@@ -2,13 +2,15 @@
  * Created by srapin on 30.07.16.
  */
 
-var appstate                        = {};
-appstate.loading                    = false;
-appstate.loaded                     = false;
+var appstate              = {};
+appstate.loading          = false;
+appstate.loaded           = false;
 
-var place                           = {};
-place.stats                         = {};
-place.indicators                    = {};
+var place                 = {};
+place.stats               = {};
+place.indicators          = {};
+
+var currentPlace          = {};
 
 var analyzeModuleData   = {
     status: appstate,
@@ -75,7 +77,6 @@ var analyzeModule = new Vue({
         $('#wbfInputRadius').change(function (e) {
             var radius = (parseInt($(this).val()));
             request.radius = radius;
-            console.info(radius);
             showRadius(request.location, radius);
 
             if ( radius < 150 ) {
@@ -204,10 +205,18 @@ var analyzeModule = new Vue({
             infoWindow.close();
             infoWindow  = new google.maps.InfoWindow();
 
+            // TODO: replace analyze call to Places API
             service.getDetails(place, function(result, status){
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     return;
                 }
+
+                currentPlace        = {};
+
+                currentPlace        = result;
+                currentPlace.stats  = {};
+                currentPlace.cms    = null;
+                currentPlace.cmdID  = null;
 
                 infoWindow.setContent('<div id="content">'+
                     '<h3 id="firstHeading" class="firstHeading">' + result.name + '</h3>'+
@@ -247,10 +256,13 @@ var analyzeModule = new Vue({
             position: position,
             draggable: true,
             icon: {
-                url: '/assets/img/icn_up_circle_arrow.png',
-                size: new google.maps.Size(20, 20),
-                origin: new google.maps.Point(0,0),
-                anchor: new google.maps.Point(10, 10)
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 8,
+                fillColor: '#b94b68',
+                fillOpacity: 1,
+                strokeColor: '#fff',
+                strokeOpacity: 1,
+                strokeWeight: 4
             }
         });
 
@@ -279,88 +291,69 @@ var analyzeModule = new Vue({
         appstate.loading    = true;
         appstate.loaded     = false;
 
-        // Get Places details
-        service.getDetails({placeId: placeID}, function (placeResult, placesServiceStatus) {
-            if (placesServiceStatus == google.maps.places.PlacesServiceStatus.OK) {
+        var place_website_encoded   = encodeURI(currentPlace.website);
 
-                Vue.set(analyzeModuleData.details, 'id', placeResult.place_id);
-                Vue.set(analyzeModuleData.details, 'name', placeResult.name);
-                Vue.set(analyzeModuleData.details, 'rating', placeResult.rating);
-                Vue.set(analyzeModuleData.details, 'website', placeResult.website);
-                Vue.set(analyzeModuleData.details, 'google_page', placeResult.url);
-                Vue.set(analyzeModuleData.details, 'opening_hours', placeResult.opening_hours);
-                Vue.set(analyzeModuleData.details, 'formatted_address', placeResult.formatted_address);
-                Vue.set(analyzeModuleData.details, 'formatted_phone_number', placeResult.formatted_phone_number);
-                Vue.set(analyzeModuleData.details, 'lat', placeResult.geometry.location.lat);
-                Vue.set(analyzeModuleData.details, 'lng', placeResult.geometry.location.lng);
+        var API_URL = API_PAGESPEED + '?url=' + place_website_encoded + '&screenshot=true&strategy=mobile&key=' + API_KEY;
 
-                Vue.set(analyzeModuleData.details, 'cms', null);
-                Vue.set(analyzeModuleData.details, 'cmsID', null);
+        if (currentPlace.website) {
 
-                var place_website_encoded   = encodeURI(place.website);
+            // Run PageSpeed analysis
+            $.getJSON(API_URL, function (data) {
+                appstate.loaded           = true;
+                appstate.loading          = false;
 
-                var API_URL = API_PAGESPEED + '?url=' + place_website_encoded + '&screenshot=true&strategy=mobile&key=' + API_KEY;
+                console.info(data);
 
-                if (place.website) {
+                currentPlace.page_title         = data.title;
+                currentPlace.score_screenshot   = data.screenshot.data;
 
-                    // Run PageSpeed analysis
-                    $.getJSON(API_URL, function (data) {
-                        appstate.loaded           = true;
-                        appstate.loading          = false;
+                currentPlace.stats.score_speed          = data.ruleGroups.SPEED.score;
+                currentPlace.stats.score_usability      = data.ruleGroups.USABILITY.score;
+                currentPlace.stats.total_request_bytes  = data.pageStats.totalRequestBytes;
+                currentPlace.stats.num_js_ressources    = data.pageStats.numberJsResources;
+                currentPlace.stats.num_css_ressources   = data.pageStats.numberCssResources;
 
-                        Vue.set(analyzeModuleData.details, 'page_title', data.title);
-                        Vue.set(analyzeModuleData.details, 'score_screenshot', data.screenshot.data);
+                currentPlace.score_screenshot = currentPlace.score_screenshot.replace(/_/g, '/');
+                currentPlace.score_screenshot = currentPlace.score_screenshot.replace(/-/g, '+');
+                currentPlace.score_screenshot = 'data:image/jpeg;base64,' + currentPlace.score_screenshot;
 
-                        Vue.set(analyzeModuleData.details.stats, 'score_speed', data.ruleGroups.SPEED.score);
-                        Vue.set(analyzeModuleData.details.stats, 'score_usability', data.ruleGroups.USABILITY.score);
-                        Vue.set(analyzeModuleData.details.stats, 'total_request_bytes', data.pageStats.totalRequestBytes);
-                        Vue.set(analyzeModuleData.details.stats, 'num_js_ressources', data.pageStats.numberJsResources);
-                        Vue.set(analyzeModuleData.details.stats, 'num_css_ressources', data.pageStats.numberCssResources);
+                analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
 
-                        analyzeModuleData.details.score_screenshot = analyzeModuleData.details.score_screenshot.replace(/_/g, '/');
-                        analyzeModuleData.details.score_screenshot = analyzeModuleData.details.score_screenshot.replace(/-/g, '+');
-                        analyzeModuleData.details.score_screenshot = 'data:image/jpeg;base64,' + analyzeModuleData.details.score_screenshot;
+            });
 
-                        analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
+            $.ajax({
+                url: '/service/leads/getcms',
+                method: 'POST',
+                data: {
+                    'url': currentPlace.website
+                },
+                success: function (data) {
+                    var cmsInfos    = JSON.parse(data);
+                    var cms         = cmsInfos.cms;
+                    var cmsID       = cmsInfos.id;
 
-                    });
+                    if (!cms) {
+                        cms         = null;
+                        cmsInfos    = null;
+                    }
 
-                    $.ajax({
-                        url: '/service/leads/getcms',
-                        method: 'POST',
-                        data: {
-                            'url': place.website
-                        },
-                        success: function (data) {
-                            var cmsInfos    = JSON.parse(data);
-                            var cms         = cmsInfos.cms;
-                            var cmsID       = cmsInfos.id;
+                    currentPlace.cms    = cms;
+                    currentPlace.cmdID  = cmsID;
 
-                            if (!cms) {
-                                cms         = null;
-                                cmsInfos    = null;
-                            }
-
-                            Vue.set(analyzeModuleData.details, 'cms', cms);
-                            Vue.set(analyzeModuleData.details, 'cmsID', cmsID);
-                        }
-                    });
-
-                } else {
-                    analyzeModuleData.details.indicators        = {};
-                    analyzeModuleData.details.stats             = {};
-                    analyzeModuleData.details.page_title        = '';
-                    analyzeModuleData.details.score_screenshot  = '';
-
-                    appstate.loaded     = true;
-                    appstate.loading    = false;
                 }
+            });
 
-            } else {
-                appstate.loading = false;
-                console.log('No Places informations available.');
-            }
-        });
+        } else {
+            analyzeModuleData.details.indicators        = {};
+            analyzeModuleData.details.stats             = {};
+            analyzeModuleData.details.page_title        = '';
+            analyzeModuleData.details.score_screenshot  = '';
+
+            appstate.loaded     = true;
+            appstate.loading    = false;
+        }
+
+        Vue.set(analyzeModuleData, 'details', currentPlace);
     }
 
     /**
@@ -368,14 +361,16 @@ var analyzeModule = new Vue({
      */
     function analyzeObsolescenceIndicators(results)
     {
-        Vue.set(analyzeModuleData.details, 'indicators', {});
-        Vue.set(analyzeModuleData.details.indicators, 'viewport', results.ConfigureViewport.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'gzip', results.EnableGzipCompression.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'minifyCss', results.MinifyCss.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'minifyJs', results.MinifyJavaScript.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'minifyHTML', results.MinifyHTML.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'optimizeImages', results.OptimizeImages.ruleImpact);
-        Vue.set(analyzeModuleData.details.indicators, 'fontSize', results.UseLegibleFontSizes.ruleImpact);
+        currentPlace.indicators                 = {};
+        currentPlace.indicators.viewport        = results.ConfigureViewport.ruleImpact;
+        currentPlace.indicators.gzip            = results.EnableGzipCompression.ruleImpact;
+        currentPlace.indicators.minifyCss       = results.MinifyCss.ruleImpact;
+        currentPlace.indicators.minifyJs        = results.MinifyJavaScript.ruleImpact;
+        currentPlace.indicators.minifyHTML      = results.MinifyHTML.ruleImpact;
+        currentPlace.indicators.optimizeImages  = results.OptimizeImages.ruleImpact;
+        currentPlace.indicators.fontSize        = results.UseLegibleFontSizes.ruleImpact;
+
+        Vue.set(analyzeModuleData.details, 'indicators', currentPlace.indicators);
     }
 
     /**

@@ -115,7 +115,9 @@ class Wordpress extends DetectCMS {
 			 */
 			$lines = explode(PHP_EOL, $data);
 
-			return strpos($lines[8], "WordPress-style Buttons") !== FALSE;
+            if ( isset($lines[8]) ){
+                return strpos($lines[8], "WordPress-style Buttons") !== FALSE;
+            }
 		}
 
 		return FALSE;
