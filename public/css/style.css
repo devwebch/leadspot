@@ -6,7 +6,7 @@
 }
 
 .login-wrapper .bg-pic {
-    background: url("/assets/img/photo-1422393462206-207b0fbd8d6b.jpg");
+    background: url("/img/photo-1422393462206-207b0fbd8d6b.jpg");
     background-size: cover;
 }
 .login-wrapper .bg-pic:after {
