@@ -433,7 +433,7 @@
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Primary Link" data-link-color="Primary Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #888888;font-weight: bold;padding-bottom: 0;padding-top: 16px;">
                                                 <a href="#" data-color="Buttons &amp; Labels" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;">
-                                                    <img src="http://go.leadspotapp.com/assets/img/logo-leadspot.png" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
+                                                    <img src="{{asset('assets/img/logo-leadspot.png')}}" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
                                                 </a>
                                             </td>
                                             <!-- /.column_cell -->
@@ -640,30 +640,7 @@
                                     <table class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;vertical-align: top;">
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Content Text" data-link-color="Primary Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: center;vertical-align: top;color: #888888;">
-                                                <h5 data-color="Headings" style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;padding: 0;font-size: 18px;line-height: 26px;font-weight: bold;color: #666666;">
-                                                    Heading 																						</h5>
-                                                <p data-color="Content Text" style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;">
-                                                    Summary 																						</p>
-                                                <table class="primary_btn" align="center" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;clear: both;margin: 0 auto;">
-                                                    <tr>
-                                                        <td class="font_default" data-bgcolor="Primary Background" data-color="Buttons &amp; Labels" data-link-color="Buttons &amp; Labels" style="padding: 12px 24px;font-family: Helvetica, Arial, sans-serif;font-size: 16px;mso-line-height-rule: exactly;text-align: center;vertical-align: middle;-webkit-border-radius: 4px;border-radius: 4px;background-color: #666666;">
-                                                            <a href="#" data-color="Buttons &amp; Labels" style="display: block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;font-weight: bold;text-align: center;">
-<span data-color="Buttons &amp; Labels" style="text-decoration: none;color: #ffffff;text-align: center;display: block;">
-Button</span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <!-- end .primary_btn -->
-                                                <p data-color="Content Text" style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 16px;margin-bottom: 24px;">
-                                                    <small class="text-muted" data-color="Muted Text" style="font-size: 86%;font-weight: normal;color: #b3b3b5;">
-                                                        Secondary text.</small>
-                                                    <br>
-                                                    <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #f06161;">
-                                                        <strong class="text-muted" data-color="Muted Text" style="color: #b3b3b5;">
-                                                            Text Link</strong>
-                                                    </a>
-                                                </p>
+                                                @yield('action')
                                             </td>
                                             <!-- /.column_cell -->
                                         </tr>
@@ -754,16 +731,10 @@ Button</span>
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Muted Text" data-link-color="Footer Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
                                                 <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="images/img1.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
+                                                    &nbsp;<img src="{{asset('assets/img/email/icn_facebook')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
                                                     &nbsp;</a>
                                                 &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="images/img2.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
-                                                    &nbsp;</a>
-                                                &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="images/img3.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
-                                                    &nbsp;</a>
-                                                &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="images/img4.png" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
+                                                    &nbsp;<img src="{{asset('assets/img/email/icn_twitter')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
                                                     &nbsp;</a>
                                             </td>
                                             <!-- /.column_cell -->
