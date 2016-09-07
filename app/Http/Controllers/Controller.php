@@ -64,7 +64,7 @@ class Controller extends BaseController
             'inputMessage' => 'required',
         ]);*/
 
-        Mail::to('simon.rapin@gmail.com')->send(new Contact());
+        Mail::to('simon.rapin@gmail.com')->send(new Welcome());
 
         return back();
     }

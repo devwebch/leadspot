@@ -575,8 +575,7 @@
                                     <table class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;vertical-align: top;">
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Content Text" data-link-color="Primary Link" style="padding: 16px 16px 0;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: center;vertical-align: top;color: #888888;">
-                                                <p data-color="Content Text" style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 8px;margin-bottom: 8px;">
-                                                    Pellentesque et ipsum imperdiet, congue enim quis, cursus nulla. Nulla quis velit ac arcu tristique vehicula ac vitae erat.</p>
+                                                <p data-color="Content Text" style="font-family: Helvetica, Arial, sans-serif;font-size: 15px;line-height: 23px;margin-top: 8px;margin-bottom: 8px;">@yield('content')</p>
                                             </td>
                                             <!-- /.column_cell -->
                                         </tr>

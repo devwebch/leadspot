@@ -12,7 +12,7 @@
              alt="LeadSpot"
              class="brand"
              data-src="{{asset('assets/img/logo-leadspot-negative.png')}}"
-             data-src-retina="{{asset('assets/img/logo_white2x.png')}}"
+             data-src-retina="{{asset('assets/img/logo-leadspot-negative.png')}}"
              width="120"></a>
     </div>
     <!-- END SIDEBAR HEADER -->
@@ -66,7 +66,7 @@
                         <a href="/"><img src="{{asset('assets/img/logo-leadspot.png')}}" 
                              alt="LeadSpot" 
                              data-src="{{asset('assets/img/logo-leadspot.png')}}" 
-                             data-src-retina="{{asset('assets/img/logo_2x.png')}}" 
+                             data-src-retina="{{asset('assets/img/logo-leadspot.png')}}"
                              width="78" height="22"></a>
                     </div>
                 </div>
