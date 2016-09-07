@@ -18,16 +18,16 @@
 <meta content="" name="description" />
 <meta content="" name="author" />
 <!-- BEGIN Vendor CSS-->
-<link href="{{asset('assets/plugins/pace/pace-theme-flash.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('assets/plugins/bootstrapv3/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('assets/plugins/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.css')}}" rel="stylesheet" type="text/css" media="screen" />
-<link href="{{asset('assets/plugins/bootstrap-select2/select2.css')}}" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{asset('plugins/pace/pace-theme-flash.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('plugins/bootstrapv3/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('plugins/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('plugins/jquery-scrollbar/jquery.scrollbar.css')}}" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{asset('plugins/bootstrap-select2/select2.css')}}" rel="stylesheet" type="text/css" media="screen" />
 @yield('styles')
 <!-- BEGIN Pages CSS-->
 <link href="{{asset('pages/css/pages-icons.css')}}" rel="stylesheet" type="text/css">
 <link class="main-stylesheet" href="{{asset('pages/css/pages.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
 <!--[if lte IE 9]>
 <link href="{{asset('pages/css/ie9.css')}}" rel="stylesheet" type="text/css" />
 <![endif]-->

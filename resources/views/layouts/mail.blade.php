@@ -433,7 +433,7 @@
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Primary Link" data-link-color="Primary Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #888888;font-weight: bold;padding-bottom: 0;padding-top: 16px;">
                                                 <a href="#" data-color="Buttons &amp; Labels" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;">
-                                                    <img src="{{asset('assets/img/logo-leadspot.png')}}" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
+                                                    <img src="{{asset('img/logo-leadspot.png')}}" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
                                                 </a>
                                             </td>
                                             <!-- /.column_cell -->
@@ -731,10 +731,10 @@
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Muted Text" data-link-color="Footer Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
                                                 <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="{{asset('assets/img/email/icn_facebook')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
+                                                    &nbsp;<img src="{{asset('img/email/icn_facebook')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
                                                     &nbsp;</a>
                                                 &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="{{asset('assets/img/email/icn_twitter')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
+                                                    &nbsp;<img src="{{asset('img/email/icn_twitter')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
                                                     &nbsp;</a>
                                             </td>
                                             <!-- /.column_cell -->

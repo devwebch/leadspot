@@ -3,12 +3,12 @@
 @section('title', 'New lead')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('assets/plugins/summernote/css/summernote.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/summernote/css/summernote.css')}}">
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/plugins/summernote/js/summernote.min.js')}}"></script>
-    <script src="{{asset('assets/js/widgets.js')}}"></script>
+    <script src="{{asset('plugins/summernote/js/summernote.min.js')}}"></script>
+    <script src="{{asset('js/widgets.js')}}"></script>
 @endsection
 
 @section('content')

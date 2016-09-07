@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 
 class Welcome extends Mailable
 {
@@ -19,7 +20,7 @@ class Welcome extends Mailable
     public function __construct()
     {
         //
-        $this->subject('Welcome to LeadSpot');
+        $this->subject("Let's get you started [LeadSpot]");
     }
 
     /**
@@ -29,6 +30,9 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcome');
+        $user_first_name    = Auth::user()->first_name;
+        $user_last_name     = Auth::user()->last_name;
+
+        return $this->view('emails.welcome', ['first_name' => $user_first_name, 'last_name' => $user_last_name]);
     }
 }

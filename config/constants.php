@@ -7,8 +7,8 @@
  */
 return [
 	'maps' => [
-		'icon_blue'  => '/assets/img/icn_pin_blue.png',
-		'icon_red'  => '/assets/img/icn_pin_red.png',
+		'icon_blue'  => '/img/icn_pin_blue.png',
+		'icon_red'  => '/img/icn_pin_red.png',
 	],
     'lead' => [
         'status' => [

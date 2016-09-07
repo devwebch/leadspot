@@ -8,11 +8,11 @@
 <div class="page-sidebar" data-pages="sidebar">
     <!-- BEGIN SIDEBAR HEADER -->
     <div class="sidebar-header">
-        <a href="/"><img src="{{asset('assets/img/logo-leadspot-negative.png')}}"
+        <a href="/"><img src="{{asset('img/logo-leadspot-negative.png')}}"
              alt="LeadSpot"
              class="brand"
-             data-src="{{asset('assets/img/logo-leadspot-negative.png')}}"
-             data-src-retina="{{asset('assets/img/logo-leadspot-negative.png')}}"
+             data-src="{{asset('img/logo-leadspot-negative.png')}}"
+             data-src-retina="{{asset('img/logo-leadspot-negative.png')}}"
              width="120"></a>
     </div>
     <!-- END SIDEBAR HEADER -->
@@ -63,10 +63,10 @@
             <div class="pull-center hidden-md hidden-lg">
                 <div class="header-inner">
                     <div class="brand inline">
-                        <a href="/"><img src="{{asset('assets/img/logo-leadspot.png')}}" 
+                        <a href="/"><img src="{{asset('img/logo-leadspot.png')}}" 
                              alt="LeadSpot" 
-                             data-src="{{asset('assets/img/logo-leadspot.png')}}" 
-                             data-src-retina="{{asset('assets/img/logo-leadspot.png')}}"
+                             data-src="{{asset('img/logo-leadspot.png')}}" 
+                             data-src-retina="{{asset('img/logo-leadspot.png')}}"
                              width="78" height="22"></a>
                     </div>
                 </div>
@@ -76,8 +76,8 @@
         <div class=" pull-left sm-table hidden-xs hidden-sm">
             <div class="header-inner">
                 <div class="brand inline">
-                    <a href="/"><img src="{{asset('assets/img/logo-leadspot.png')}}"
-                         alt="LeadSpot" data-src="{{asset('assets/img/logo-leadspot.png')}}" data-src-retina="{{asset('assets/img/logo_2x.png')}}" width="120"></a>
+                    <a href="/"><img src="{{asset('img/logo-leadspot.png')}}"
+                         alt="LeadSpot" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo_2x.png')}}" width="120"></a>
                 </div>
             </div>
         </div>

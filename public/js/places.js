@@ -325,6 +325,12 @@ var analyzeModule = new Vue({
                 Vue.set(analyzeModuleData, 'details', currentPlace);
 
                 analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
+            }).fail(function () {
+                // impossible to fetch data: may be a DNS related error
+                swal("Sorry", "Something went wrong during the analysis, please try again later.", "error");
+
+                appstate.loading = false;
+                appstate.loaded = false;
             });
 
             $.ajax({

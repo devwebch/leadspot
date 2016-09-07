@@ -7,18 +7,18 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/datatables-responsive/css/datatables.responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/datatables.responsive.css')}}">
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js')}}"></script>
-    <script src="{{asset('assets/plugins/datatables-responsive/js/datatables.responsive.js')}}"></script>
-    <script src="{{asset('assets/plugins/datatables-responsive/js/lodash.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-datatable/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-datatable/media/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/datatables.responsive.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/lodash.min.js')}}"></script>
 
     <script>
         $(document).ready(function () {

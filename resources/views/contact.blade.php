@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-metrojs/MetroJs.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/jquery-metrojs/MetroJs.css')}}">
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/plugins/jquery-metrojs/MetroJs.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-metrojs/MetroJs.min.js')}}"></script>
 @endsection
 
 @section('content')

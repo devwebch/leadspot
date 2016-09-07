@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="text-center">
-        <img src="{{asset('assets/img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('assets/img/logo-leadspot.png')}}" data-src-retina="{{asset('assets/img/logo-leadspot@2x.png')}}" width="200">
+        <img src="{{asset('img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot@2x.png')}}" width="200">
         <h3>Create a free account in one simple step.</h3>
         <p>During the beta phase, only free accounts are available. Be an early adopter and enjoy a discount when LeadSpot launches.</p>
     </div>

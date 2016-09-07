@@ -7,9 +7,9 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select2/select2.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/map-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/alerts/sweet-alert.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-select2/select2.css')}}">
+    <link rel="stylesheet" href="{{asset('css/map-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/alerts/sweet-alert.css')}}">
 @endsection
 
 @section('scripts')
@@ -20,11 +20,11 @@
             }
         };
     </script>
-    <script src="{{asset('assets/plugins/bootstrap-select2/select2.min.js')}}"></script>
+    <script src="{{asset('plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&libraries=places"></script>
-    <script src="{{asset('assets/js/map-icons.js')}}"></script>
-    <script src="{{asset('assets/plugins/alerts/sweet-alert.min.js')}}"></script>
-    <script src="{{asset('assets/js/places.js')}}"></script>
+    <script src="{{asset('js/map-icons.js')}}"></script>
+    <script src="{{asset('plugins/alerts/sweet-alert.min.js')}}"></script>
+    <script src="{{asset('js/places.js')}}"></script>
 @endsection
 
 @section('content')
@@ -213,15 +213,15 @@
                             <h4>CMS</h4>
                             <div class="text-center">
                                 <div>
-                                    <img src="{{asset('assets/img/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
-                                    <img src="{{asset('assets/img/logo_expressionengine.png')}}" alt="ExpressionEngine" v-show="details.cmsID=='expressionengine'">
-                                    <img src="{{asset('assets/img/logo_joomla.png')}}" alt="Joomla!" v-show="details.cmsID=='joomla'">
-                                    <img src="{{asset('assets/img/logo_liferay.png')}}" alt="LifeRay" v-show="details.cmsID=='liferay'">
-                                    <img src="{{asset('assets/img/logo_magento.png')}}" alt="Magento" v-show="details.cmsID=='magento'">
-                                    <img src="{{asset('assets/img/logo_sitecore.png')}}" alt="SiteCore" v-show="details.cmsID=='sitecore'">
-                                    <img src="{{asset('assets/img/logo_typo3.png')}}" alt="Typo3" v-show="details.cmsID=='typo3'">
-                                    <img src="{{asset('assets/img/logo_vbulletin.png')}}" alt="vBulletin" v-show="details.cmsID=='vbulletin'">
-                                    <img src="{{asset('assets/img/logo_wordpress.png')}}" alt="WordPress" v-show="details.cmsID=='wordpress'">
+                                    <img src="{{asset('img/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
+                                    <img src="{{asset('img/logo_expressionengine.png')}}" alt="ExpressionEngine" v-show="details.cmsID=='expressionengine'">
+                                    <img src="{{asset('img/logo_joomla.png')}}" alt="Joomla!" v-show="details.cmsID=='joomla'">
+                                    <img src="{{asset('img/logo_liferay.png')}}" alt="LifeRay" v-show="details.cmsID=='liferay'">
+                                    <img src="{{asset('img/logo_magento.png')}}" alt="Magento" v-show="details.cmsID=='magento'">
+                                    <img src="{{asset('img/logo_sitecore.png')}}" alt="SiteCore" v-show="details.cmsID=='sitecore'">
+                                    <img src="{{asset('img/logo_typo3.png')}}" alt="Typo3" v-show="details.cmsID=='typo3'">
+                                    <img src="{{asset('img/logo_vbulletin.png')}}" alt="vBulletin" v-show="details.cmsID=='vbulletin'">
+                                    <img src="{{asset('img/logo_wordpress.png')}}" alt="WordPress" v-show="details.cmsID=='wordpress'">
                                 </div>
                                 <strong class="m-t-10">@{{ details.cms }}</strong>
                             </div>
