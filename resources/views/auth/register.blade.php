@@ -68,7 +68,7 @@
         <div class="form-group">
             <div class="checkbox">
                 <input type="checkbox" value="agreed" name="terms_agree" id="terms_agree">
-                <label for="terms_agree">I have read and agree to the <a href="#">terms and conditions</a>.</label>
+                <label for="terms_agree">I have read and agree to the <a href="http://leadspotapp.com/terms-and-conditions" target="_blank">terms and conditions</a>.</label>
             </div>
         </div>
 

@@ -57,12 +57,12 @@ class Controller extends BaseController
 
     public function contactSend(Request $request)
     {
-        /*$this->validate($request, [
+        $this->validate($request, [
             'inputFirstName' => 'required|max:255',
             'inputLastName' => 'required|max:255',
             'inputEmail' => 'required|email',
             'inputMessage' => 'required',
-        ]);*/
+        ]);
 
         Mail::to('simon.rapin@gmail.com')->send(new Welcome());
 
