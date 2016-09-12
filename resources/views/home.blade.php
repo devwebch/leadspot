@@ -57,14 +57,14 @@
                 <div class="padding-15">
                     <div class="item-header clearfix">
                         <div class="inline">
-                            <p class="no-margin"><strong>Anne Simons</strong></p>
+                            <p class="no-margin"><strong>LeadSpot team</strong></p>
                         </div>
                     </div>
                 </div>
                 <hr class="no-margin">
                 <div class="padding-15">
-                    <p>Inspired by : good design is obvious, great design is transparent</p>
-                    <div class="hint-text">22.08.2016</div>
+                    <p>The beta is now open to everyone!</p>
+                    <div class="hint-text">12.09.2016</div>
                 </div>
             </div><!-- /.panel -->
         </div>
