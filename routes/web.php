@@ -18,6 +18,11 @@ Route::get('/contact', function () { return view('contact'); } )->middleware('au
 Route::post('/contact/send', 'Controller@contactSend');
 Route::get('/help', function () { return view('help'); } )->middleware('auth');
 
+// Subscriptions
+Route::get('/subscription/new', function () { return view('auth.subscription'); });
+Route::post('/subscription/save', 'Controller@addSubscription');
+Route::get('/subscription/cancel', 'Controller@removeSubscription');
+
 // Leads
 Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
     Route::get('list', 'LeadController@getLeads');
@@ -37,7 +42,7 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
 
 // User account
 Route::group(['prefix' => 'account', 'middleware' => 'auth'], function(){
-    Route::get('/', function (){ return view('auth.account.user'); });
+    Route::get('/', 'Controller@userAccount');
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

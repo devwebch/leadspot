@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Lead;
 use App\Mail\Contact;
 use App\Mail\Welcome;
+use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Stripe\Stripe;
 
 class Controller extends BaseController
 {
@@ -67,5 +70,33 @@ class Controller extends BaseController
         Mail::to('simon.rapin@gmail.com')->send(new Welcome());
 
         return back();
+    }
+
+    public function userAccount()
+    {
+        $user = Auth::user();
+
+        return view('auth.account.user', ['user' => $user]);
+    }
+
+    public function addSubscription(Request $request)
+    {
+        $user = Auth::user();
+
+        $stripeToken        = $request->input('stripeToken');
+        $stripeTokenType    = $request->input('stripeTokenType');
+        $stripeEmail        = $request->input('stripeEmail');
+
+        $user->newSubscription('main', 'leadspot_free')->create($stripeToken);
+
+        return redirect('/account');
+    }
+
+    public function removeSubscription()
+    {
+        $user = Auth::user();
+        $user->subscription('main')->cancelNow();
+
+        return redirect('/account');
     }
 }

@@ -51,6 +51,22 @@
                                     <div class="alert alert-info">
                                         <strong>Free beta account</strong>
                                         <p>As an early subscriber you are entitled to a free account.</p>
+
+                                        @if($user->subscribedToPlan('leadspot_free' ,'main'))
+                                            Yep subscribed
+                                        @else
+                                            Nope fuck this shit
+                                        @endif
+
+                                        @if ( !$user->subscribed('main') )
+                                            <p>
+                                                <a href="/subscription/new" class="btn btn-primary">Add Subscription</a>
+                                            </p>
+                                        @else
+                                            <p>
+                                                <a href="/subscription/cancel" class="btn btn-danger">Cancel Subscription</a>
+                                            </p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
