@@ -37,14 +37,15 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
 
 // Service
 Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
-    Route::post('/checkUsage', 'LeadServiceController@checkSubscriptionUsage');
     Route::post('/leads/save', 'LeadServiceController@save');
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
+    Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
+    Route::post('/subscription/update', 'SubscriptionServiceController@updateSubscriptionUsage');
 });
 
 // User account
-Route::group(['prefix' => 'account', 'middleware' => ['auth', 'subscriptionUsage']], function(){
-    Route::get('/', 'Controller@userAccount');
+Route::group(['prefix' => 'account', 'middleware' => ['auth']], function(){
+    Route::get('/', 'UserController@account');
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

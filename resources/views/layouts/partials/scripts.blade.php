@@ -18,6 +18,5 @@
 <script src="{{asset('pages/js/pages.js')}}" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS -->
 <!-- BEGIN PAGE LEVEL JS -->
-<script src="{{asset('js/scripts.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/widgets.js')}}"></script>
 <!-- END PAGE LEVEL JS -->

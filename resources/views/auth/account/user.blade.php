@@ -34,17 +34,17 @@
 
                     <ul class="nav nav-tabs nav-tabs-left nav-tabs-simple">
                         <li class="active">
-                            <a data-toggle="tab" href="#tab2hellowWorld">Your infos</a>
+                            <a data-toggle="tab" href="#tabInfos">Your infos</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tab2FollowUs">Subscription</a>
+                            <a data-toggle="tab" href="#tabSubscription">Subscription</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#tab2Inspire">Misc.</a>
+                            <a data-toggle="tab" href="#tabMisc">Misc.</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="tab2hellowWorld">
+                        <div class="tab-pane active" id="tabInfos">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="m-t-0">Your account</h3>
@@ -60,10 +60,29 @@
                                     <p>Used: {{$usage->used}}</p>
                                     <p>Updated at: {{$usage->updated_at}}</p>
 
+                                    @if( $user->subscribed('main') )
+                                        <p>Yes Subscribed: {{$user->subscribed('main')}}</p>
+                                    @else
+                                        <p>No Subscribed: {{$user->subscribed('main')}}</p>
+                                    @endif
+
+                                    @foreach($subscriptions as $item)
+                                        <p>sub : {{$item->stripe_plan}}</p>
+                                    @endforeach
+
+                                    @if ( $user->subscribed('main', 'leadspot_free') )
+                                        <p>Subscribed to FREE</p>
+                                    @elseif( $user->subscribed('main', 'leadspot_advanced') )
+                                        <p>Subscribed to ADVANCED</p>
+                                    @elseif( $user->subscribed('main', 'leadspot_pro') )
+                                        <p>Subscribed to PRO</p>
+                                    @endif
+
+
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab2FollowUs">
+                        <div class="tab-pane" id="tabSubscription">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="m-t-0">Subscription</h3>
@@ -90,7 +109,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tab2Inspire">
+                        <div class="tab-pane" id="tabMisc">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="m-t-0">Delete my account</h3>

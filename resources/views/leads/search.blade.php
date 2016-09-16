@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&libraries=places"></script>
     <script src="{{asset('js/map-icons.js')}}"></script>
     <script src="{{asset('plugins/alerts/sweet-alert.min.js')}}"></script>
-    <script src="{{asset('js/places.js')}}"></script>
+    <script src="{{elixir('js/places.js')}}"></script>
 @endsection
 
 @section('content')

@@ -22,24 +22,6 @@ class LeadServiceController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function checkSubscriptionUsage(Request $request)
-    {
-        $user   = $request->user();
-        $usage  = $user->subscriptionUsage()->first();
-
-        if ( $usage->used >= $usage->limit ) {
-            $return = false;
-        } else {
-            $return = true;
-        }
-
-        return response()->json($return);
-    }
-
-    /**
-     * @param Request $request
      * @return array
      */
     public function save(Request $request)

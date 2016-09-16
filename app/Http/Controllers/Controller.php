@@ -73,16 +73,6 @@ class Controller extends BaseController
         return back();
     }
 
-    public function userAccount()
-    {
-        $user   = Auth::user();
-        $usage  = $user->subscriptionUsage()->first();
-
-        $usage->increaseUse();
-
-        return view('auth.account.user', ['user' => $user, 'usage' => $usage]);
-    }
-
     public function addSubscription(Request $request)
     {
         $user = Auth::user();

@@ -62,19 +62,9 @@ var analyzeModule = new Vue({
             if ( searchCategory ) { request.types = [searchCategory]; } else { request.types = []; }
             if ( searchRadius ) { request.radius = parseInt(searchRadius); } else { request.radius = 100; }
 
-            $.ajax({
-                url: '/service/checkUsage',
-                method: 'POST'
-            }).done(function (data) {
-                if ( data == true ) { searchGranted = true; }
-
-                if ((request.name || request.types.length) && searchGranted) {
-                    mapSearch();
-                } else {
-                    swal("Error", "You have reached the limit of your subscription", "error");
-                }
-            });
-
+            if (request.name || request.types.length) {
+                mapSearch();
+            }
         });
 
         $('#wbfInputGeolocation').click(function (e) {
@@ -247,7 +237,21 @@ var analyzeModule = new Vue({
                 // btn Analyze click handler
                 $('.btn-analyze').on('click', function (e) {
                     e.preventDefault();
-                    analyze(place);
+                    $.ajax({
+                        url: '/service/subscription/usageGranted',
+                        method: 'POST',
+                        data: {update: true}
+                    }).done(function (data) {
+                        var analyzeGranted = false;
+                        if ( data == true ) { analyzeGranted = true; }
+
+                        if (analyzeGranted) {
+                            analyze(place);
+                        } else {
+                            swal("Error", "You have reached the limit of your subscription", "error");
+                        }
+                    });
+
                 });
             });
         });
