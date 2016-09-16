@@ -20,6 +20,28 @@ class LeadServiceController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkSubscriptionUsage(Request $request)
+    {
+        $user   = $request->user();
+        $usage  = $user->subscriptionUsage()->first();
+
+        if ( $usage->used >= $usage->limit ) {
+            $return = false;
+        } else {
+            $return = true;
+        }
+
+        return response()->json($return);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function save(Request $request)
     {
         // get the authenticated user
@@ -45,6 +67,10 @@ class LeadServiceController extends Controller
         return $request->all();
     }
 
+    /**
+     * @param Request $request
+     * @return array|string
+     */
     public function getCMS(Request $request)
     {
         $url        = $request->input('url');

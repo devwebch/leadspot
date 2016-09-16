@@ -33,4 +33,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Lead');
     }
+
+    public function subscriptionUsage()
+    {
+        return $this->hasOne('App\SubscriptionsUsage');
+    }
 }

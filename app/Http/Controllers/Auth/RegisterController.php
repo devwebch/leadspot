@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\SubscriptionsUsage;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -64,12 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name'    => $data['first_name'],
             'last_name'     => $data['last_name'],
             'email'         => $data['email'],
             'password'      => bcrypt($data['password']),
             'company'       => ''
         ]);
+
+        // create a subscription usage entry for this new user
+        $usage = new SubscriptionsUsage();
+        $usage->user_id     = $user->id;
+        $usage->limit       = config('subscriptions.free.limit');
+        $usage->used        = 0;
+
+        $usage->save();
+
+        return $user;
     }
 }

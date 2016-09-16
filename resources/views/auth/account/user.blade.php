@@ -10,6 +10,19 @@
 @endsection
 
 @section('scripts')
+    <script>
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: '/service/checkUsage',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            }).done(function (data) {
+                console.info(data);
+            });
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -41,6 +54,12 @@
 
                                     <strong>Last name</strong>
                                     <p>{{Auth::user()->last_name}}</p>
+
+                                    <h3>Usage</h3>
+                                    <p>Limit: {{$usage->limit}}</p>
+                                    <p>Used: {{$usage->used}}</p>
+                                    <p>Updated at: {{$usage->updated_at}}</p>
+
                                 </div>
                             </div>
                         </div>
@@ -87,4 +106,5 @@
             </div>
         </div>
     </div>
+    {{ csrf_field() }}
 @endsection

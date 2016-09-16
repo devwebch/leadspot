@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\SubscriptionsUsage;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,6 +27,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->call(function(){
+            SubscriptionsUsage::where('used', '!=', '0')
+                ->update(['used' => 0]);
+        })->dailyAt('00:00');
+
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lead;
 use App\Mail\Contact;
 use App\Mail\Welcome;
+use App\SubscriptionsUsage;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -61,10 +62,10 @@ class Controller extends BaseController
     public function contactSend(Request $request)
     {
         $this->validate($request, [
-            'inputFirstName' => 'required|max:255',
-            'inputLastName' => 'required|max:255',
-            'inputEmail' => 'required|email',
-            'inputMessage' => 'required',
+            'inputFirstName'    => 'required|max:255',
+            'inputLastName'     => 'required|max:255',
+            'inputEmail'        => 'required|email',
+            'inputMessage'      => 'required',
         ]);
 
         Mail::to('simon.rapin@gmail.com')->send(new Welcome());
@@ -74,9 +75,12 @@ class Controller extends BaseController
 
     public function userAccount()
     {
-        $user = Auth::user();
+        $user   = Auth::user();
+        $usage  = $user->subscriptionUsage()->first();
 
-        return view('auth.account.user', ['user' => $user]);
+        $usage->increaseUse();
+
+        return view('auth.account.user', ['user' => $user, 'usage' => $usage]);
     }
 
     public function addSubscription(Request $request)

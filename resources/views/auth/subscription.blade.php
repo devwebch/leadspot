@@ -22,7 +22,7 @@
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<?php echo env('STRIPE_KEY'); ?>"
-                data-amount="10"
+                data-amount="0"
                 data-name="LeadSpot"
                 data-description="LeadSpot subscription Free"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

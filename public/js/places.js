@@ -56,14 +56,25 @@ var analyzeModule = new Vue({
             var searchText          = $('#wbfInputText').val();
             var searchCategory      = $('#wbfInputCategory').val();
             var searchRadius        = $('#wbfInputRadius').val();
+            var searchGranted       = false;
 
             if ( searchText ) { request.name = searchText; } else { request.name = ''; }
             if ( searchCategory ) { request.types = [searchCategory]; } else { request.types = []; }
             if ( searchRadius ) { request.radius = parseInt(searchRadius); } else { request.radius = 100; }
 
-            if (request.name || request.types.length) {
-                mapSearch();
-            }
+            $.ajax({
+                url: '/service/checkUsage',
+                method: 'POST'
+            }).done(function (data) {
+                if ( data == true ) { searchGranted = true; }
+
+                if ((request.name || request.types.length) && searchGranted) {
+                    mapSearch();
+                } else {
+                    swal("Error", "You have reached the limit of your subscription", "error");
+                }
+            });
+
         });
 
         $('#wbfInputGeolocation').click(function (e) {
