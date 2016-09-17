@@ -21,9 +21,9 @@ class UserController extends Controller
     {
         $user           = Auth::user();
         $usage          = $user->subscriptionUsage()->first();
-        $subscriptions  = $user->subscriptions()->get();
+        $subscription   = $user->subscriptions()->get()->first();
 
-        return view('auth.account.user', ['user' => $user, 'usage' => $usage, 'subscriptions' => $subscriptions]);
+        return view('auth.account.user', ['user' => $user, 'usage' => $usage, 'subscription' => $subscription]);
     }
 
 }

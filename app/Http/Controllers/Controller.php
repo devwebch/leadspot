@@ -72,25 +72,4 @@ class Controller extends BaseController
 
         return back();
     }
-
-    public function addSubscription(Request $request)
-    {
-        $user = Auth::user();
-
-        $stripeToken        = $request->input('stripeToken');
-        $stripeTokenType    = $request->input('stripeTokenType');
-        $stripeEmail        = $request->input('stripeEmail');
-
-        $user->newSubscription('main', 'leadspot_free')->create($stripeToken);
-
-        return redirect('/account');
-    }
-
-    public function removeSubscription()
-    {
-        $user = Auth::user();
-        $user->subscription('main')->cancelNow();
-
-        return redirect('/account');
-    }
 }

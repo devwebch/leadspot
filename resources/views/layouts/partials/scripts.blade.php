@@ -12,6 +12,7 @@
 <script src="{{asset('plugins/imagesloaded/imagesloaded.pkgd.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-actual/jquery.actual.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+<script src="{{asset('plugins/alerts/sweet-alert.min.js')}}"></script>
 @yield('scripts')
 <!-- END VENDOR JS -->
 <!-- BEGIN CORE TEMPLATE JS -->

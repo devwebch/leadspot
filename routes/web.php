@@ -19,10 +19,8 @@ Route::post('/contact/send', 'Controller@contactSend');
 Route::get('/help', function () { return view('help'); } )->middleware('auth');
 
 // Subscriptions
-Route::get('/subscription/new', function () { return view('auth.subscription'); });
-Route::post('/subscription/save', 'Controller@addSubscription');
-Route::get('/subscription/cancel', 'Controller@removeSubscription');
-Route::get('/subscription/error/limit', function () { return view('shared.error_subscription_limit'); });
+Route::get('/subscribe/{plan}', 'SubscriptionController@subscribe' );
+Route::get('/subscribe/transaction/success', function () { return view('subscriptions.success'); } );
 
 // Leads
 Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
@@ -41,6 +39,8 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
     Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
     Route::post('/subscription/update', 'SubscriptionServiceController@updateSubscriptionUsage');
+    Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
+    Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');
 });
 
 // User account

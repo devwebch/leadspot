@@ -13,14 +13,14 @@ return [
     ],
 	'free' => [
 	    'price' => 0,
-        'limit' => 10
+        'limit' => 3
     ],
     'advanced'  => [
-        'price' => 25,
+        'price' => 75,
         'limit' => 50
     ],
     'pro'       => [
-        'price' => 50,
+        'price' => 125,
         'limit' => 100
     ]
 ];

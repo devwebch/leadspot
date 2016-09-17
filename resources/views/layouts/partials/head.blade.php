@@ -23,6 +23,7 @@
 <link href="{{asset('plugins/font-awesome/css/font-awesome.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('plugins/jquery-scrollbar/jquery.scrollbar.css')}}" rel="stylesheet" type="text/css" media="screen" />
 <link href="{{asset('plugins/bootstrap-select2/select2.css')}}" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{asset('plugins/alerts/sweet-alert.css')}}">
 @yield('styles')
 <!-- BEGIN Pages CSS-->
 <link href="{{asset('pages/css/pages-icons.css')}}" rel="stylesheet" type="text/css">

@@ -7722,7 +7722,7 @@ div.cs-skin-slide .cs-options ul li.cs-selected span {
   margin-bottom: -20px;
 }
 .table tbody tr td {
-  background: #fff;
+  /*background: #fff;*/
   border-bottom: 1px solid rgba(230, 230, 230, 0.7);
   border-top: 0px;
   padding: 20px;
@@ -7743,7 +7743,7 @@ div.cs-skin-slide .cs-options ul li.cs-selected span {
   color: #000;
 }
 .table tbody tr.selected td {
-  background: #fef6dd;
+  /*background: #fef6dd;*/
 }
 .table.table-hover tbody tr:hover td {
   background: #daeffd !important;

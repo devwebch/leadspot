@@ -9,7 +9,6 @@
 @section('styles')
     <link rel="stylesheet" href="{{asset('plugins/bootstrap-select2/select2.css')}}">
     <link rel="stylesheet" href="{{asset('css/map-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/alerts/sweet-alert.css')}}">
 @endsection
 
 @section('scripts')
@@ -23,7 +22,6 @@
     <script src="{{asset('plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&libraries=places"></script>
     <script src="{{asset('js/map-icons.js')}}"></script>
-    <script src="{{asset('plugins/alerts/sweet-alert.min.js')}}"></script>
     <script src="{{elixir('js/places.js')}}"></script>
 @endsection
 
