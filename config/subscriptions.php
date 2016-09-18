@@ -11,6 +11,11 @@ return [
         'advanced',
         'pro'
     ],
+    'label' => [
+        'leadspot_free'      => 'LeadSpot Free',
+        'leadspot_advanced'  => 'LeadSpot Advanced',
+        'leadspot_pro'       => 'LeadSpot Pro'
+    ],
 	'free' => [
 	    'price' => 0,
         'limit' => 3

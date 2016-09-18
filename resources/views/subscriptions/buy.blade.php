@@ -43,19 +43,17 @@
                                 swal("Error", "We were unable to validate your credit card, please verify your informations.", "error");
                             } else {
                                 $('input[name="token"]').val(response.id);
-                                $('#buy-form').submit();
-                                swal({
-                                    type: 'success',
-                                    title: 'Success',
-                                    text: "Please wait while your payment is being processed...",
-                                    timer: 4000,
-                                    showConfirmButton: false
-                                });
+                                $('#btn-validate-cc').addClass('hidden');
+                                $('#btn-buy-now').removeClass('hidden');
                             }
 
                             $('.cc-form .btn .fa').addClass('hidden');
                         });
                     }
+                });
+
+                $('#buy-form').submit(function (e) {
+                    $('#btn-buy-now .fa').removeClass('hidden');
                 });
 
                 function disableFields() {
@@ -80,14 +78,6 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
-            <h2>{{$planName}}</h2>
-            <h4>Subscribe now for: <strong>${{config('subscriptions.' . $plan . '.price')}} / month</strong></h4>
-            <form action="/service/subscription/new/{{$plan}}" id="buy-form" method="post">
-                {{csrf_field()}}
-                <input type="hidden" name="token" value="">
-            </form>
-        </div>
         <div class="col-md-6">
             <form role="form" class="cc-form">
                 <div class="bg-master-light padding-30 m-b-20 b-rad-sm">
@@ -151,7 +141,16 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit"><i class="fa fa-refresh fa-spin hidden"></i> Proceed to payment</button>
+                <button class="btn btn-primary" id="btn-validate-cc" type="submit"><i class="fa fa-refresh fa-spin hidden"></i> Check my informations</button>
+            </form>
+        </div>
+        <div class="col-md-5 col-md-push-1">
+            <h2>{{$planName}}</h2>
+            <h4>Subscribe now for: <strong>${{config('subscriptions.' . $plan . '.price')}} / month</strong></h4>
+            <form action="/service/subscription/new/{{$plan}}" id="buy-form" method="post">
+                {{csrf_field()}}
+                <input type="hidden" name="token" value="">
+                <button class="btn btn-success btn-lg btn-block hidden" id="btn-buy-now"><i class="fa fa-refresh fa-spin hidden"></i> Buy now</button>
             </form>
         </div>
     </div>

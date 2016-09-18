@@ -22,7 +22,7 @@
         <div class="col-md-12 m-b-10">
             <div class="panel">
                 <div class="panel-body">
-                    <h3>Hi there {{Auth::user()->first_name}}</h3>
+                    <h3>Hi there {{$user->first_name}}</h3>
 
                     <ul class="nav nav-tabs nav-tabs-top nav-tabs-simple">
                         <li class="active">
@@ -42,10 +42,15 @@
                                     <h3 class="m-t-0">Your account</h3>
 
                                     <strong>First name</strong>
-                                    <p>{{Auth::user()->first_name}}</p>
+                                    <p>{{$user->first_name}}</p>
 
                                     <strong>Last name</strong>
-                                    <p>{{Auth::user()->last_name}}</p>
+                                    <p>{{$user->last_name}}</p>
+
+                                    @if( $user->company)
+                                    <strong>Company</strong>
+                                    <p>{{$user->company}}</p>
+                                    @endif
 
                                     <h3>Daily usage</h3>
                                     <strong>{{$usage->used}} / {{$usage->limit}}</strong>
@@ -60,9 +65,12 @@
 
                                     @if ( $user->subscribed('main') )
                                         <div class="alert alert-info" style="max-width: 400px">
-                                            <p>You are currently on {{$subscription->stripe_plan}}</p>
+                                            <p>You are currently on {{config('subscriptions.label.' . $subscription->stripe_plan)}}</p>
                                         </div>
                                         <p><a href="/service/subscription/cancel" class="btn btn-danger">Cancel subscription</a></p>
+                                    @else
+                                        <p>You are currently using the LeadSpot free plan.</p>
+                                        <p>Take a look at our extended plans below.</p>
                                     @endif
 
                                     @if ( !$user->subscribed('main') )
@@ -240,9 +248,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="m-t-0">Delete my account</h3>
-                                    <p>Deleting your account is permanent and cannot be canceled.</p>
-                                    <p>Any open subscription will be lorem ipsum.</p>
-                                    <a href="#" class="btn btn-danger">I wish to delete my account permanently</a>
+                                    <p>Please <a href="/contact">contact us</a> if you wish to delete your account and subscriptions.</p>
                                 </div>
                             </div>
                         </div>
