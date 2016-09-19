@@ -50,3 +50,6 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function(){
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+// Stripe
+Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');

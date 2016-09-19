@@ -34,6 +34,7 @@ var analyzeModule = new Vue({
     var overlays            = [];
     var infoWindow          = null;
     var request             = {};
+    var permissions         = {};
 
     /**
      * Application bootstrap
@@ -108,11 +109,12 @@ var analyzeModule = new Vue({
             });
         });
 
+        // retrieve permissions
         $.ajax({
             type: 'POST',
             url: '/service/subscription/permissions',
             success: function (data) {
-                console.info(data);
+                permissions = data;
             }
         });
 
@@ -150,7 +152,8 @@ var analyzeModule = new Vue({
         // add the initial search Marker
         addSearchMarker(request.location);
 
-        //tryAutoGeoLocation();
+        // auto geolocation
+        tryAutoGeoLocation();
     }
 
     /**
@@ -356,26 +359,26 @@ var analyzeModule = new Vue({
                 appstate.loaded = false;
             });
 
-            $.ajax({
-                url: '/service/leads/getcms',
-                method: 'POST',
-                data: {
-                    'url': currentPlace.website
-                },
-                success: function (data) {
-                    var cmsInfos    = JSON.parse(data);
-                    var cms         = cmsInfos.cms;
-                    var cmsID       = cmsInfos.id;
+            if ( permissions.cms ) {
+                $.ajax({
+                    url: '/service/leads/getcms',
+                    method: 'POST',
+                    data: { 'url': currentPlace.website },
+                    success: function (data) {
+                        var cmsInfos    = JSON.parse(data);
+                        var cms         = cmsInfos.cms;
+                        var cmsID       = cmsInfos.id;
 
-                    if (!cms) {
-                        cms         = null;
-                        cmsInfos    = null;
+                        if (!cms) {
+                            cms         = null;
+                            cmsInfos    = null;
+                        }
+
+                        currentPlace.cms    = cms;
+                        currentPlace.cmsID  = cmsID;
                     }
-
-                    currentPlace.cms    = cms;
-                    currentPlace.cmsID  = cmsID;
-                }
-            });
+                });
+            }
 
         } else {
             Vue.set(analyzeModuleData, 'details', currentPlace);
@@ -409,27 +412,28 @@ var analyzeModule = new Vue({
      */
     function tryAutoGeoLocation()
     {
-        console.info('try geolocation');
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+        if ( permissions.auto_geolocation ) {
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                map.setCenter(pos);
-                addSearchMarker(pos);
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    map.setCenter(pos);
+                    addSearchMarker(pos);
+                    analyzeModuleData.geolocating = false;
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
                 analyzeModuleData.geolocating = false;
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-            analyzeModuleData.geolocating = false;
+            }
         }
     }
 
