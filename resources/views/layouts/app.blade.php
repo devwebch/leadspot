@@ -31,22 +31,29 @@
         <ul class="menu-items">
             <li class="m-t-30">
                 <a href="/" class="detailed">
-                    <span class="title">Dashboard</span>
+                    <span class="title">{{trans('menu.dashboard')}}</span>
                 </a>
-                <span class="icon-thumbnail "><i class="pg-home"></i></span>
+                <span class="icon-thumbnail bg-danger"><i class="pg-home"></i></span>
             </li>
             <li class="">
                 <a href="/leads/search">
-                    <span class="title">Search leads</span>
+                    <span class="title">{{trans('menu.search_leads')}}</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-map"></i></span>
             </li>
             <li class="">
                 <a href="/leads/list">
-                    <span class="title">My Leads</span>
+                    <span class="title">{{trans('menu.my_leads')}}</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-folder_alt"></i></span>
             </li>
+            <li class="m-t-30">
+                <a href="/account" class="detailed">
+                    <span class="title">{{trans('menu.my_account')}}</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-user"></i></span>
+            </li>
+
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -86,9 +93,19 @@
         <div class=" pull-left sm-table hidden-xs hidden-sm">
             <div class="header-inner">
                 <div class="brand inline">
-                    <a href="/"><img src="{{asset('img/logo-leadspot.png')}}"
-                         alt="LeadSpot" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo_2x.png')}}" width="120"></a>
+                    <a href="/">
+                        <img src="{{asset('img/logo-leadspot.png')}}"
+                                     alt="LeadSpot"
+                                     data-src="{{asset('img/logo-leadspot.png')}}"
+                                     data-src-retina="{{asset('img/logo-leadspot.png')}}"
+                                     width="130" style="margin-left: 20px;">
+                    </a>
                 </div>
+                <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
+                    <li class="p-r-15 inline">
+                        <a href="/help"><i class="pg-italic"></i> Help</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class=" pull-right">

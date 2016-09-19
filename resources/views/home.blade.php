@@ -52,30 +52,53 @@
             </div>
         </div>
         <div class="col-md-3">
-            <h4>News from LeadSpot</h4>
-            <div class="panel no-border">
-                <div class="padding-15">
-                    <div class="item-header clearfix">
-                        <div class="inline">
-                            <p class="no-margin"><strong>LeadSpot team</strong></p>
+            <div class="widget-11-2 panel no-border panel-condensed no-margin widget-loader-circle">
+                <div class="padding-25">
+                    <div class="pull-left">
+                        <h3 class="no-margin">News from LeadSpot</h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel no-border">
+                    <div class="padding-15">
+                        <div class="item-header clearfix">
+                            <div class="inline">
+                                <p class="no-margin"><strong>LeadSpot team</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="no-margin">
+                    <div class="padding-15">
+                        <p>The beta is now open to everyone!</p>
+                        <div class="hint-text">12.09.2016</div>
+                    </div>
+                </div><!-- /.panel -->
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ar-2-1 m-b-20">
+                <div class="panel no-border bg-master-dark widget">
+                    <div class="panel-body">
+                        <div class="pull-bottom bottom-left bottom-right padding-25">
+                            <a href="/account"><h2 class="text-white semi-bold">My account</h2></a>
+                            <p class="text-white">Manage options and subscriptions</p>
                         </div>
                     </div>
                 </div>
-                <hr class="no-margin">
-                <div class="padding-15">
-                    <p>The beta is now open to everyone!</p>
-                    <div class="hint-text">12.09.2016</div>
+            </div>
+
+            <div class="ar-1-1 m-b-20">
+                <div class="panel no-border bg-info-light widget">
+                    <div class="panel-body">
+                        <div class="padding-25">
+                            <a href="/account"><h3 class="text-white semi-bold">Your opinion matters</h3></a>
+                            <p class="text-white">Please let us know what you think of LeadSpot and help us improve during the beta phase.</p>
+                            <p><a href="/contact" class="btn btn-default">Contact LeadSpot</a></p>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- /.panel -->
-        </div>
-        <div class="col-md-3">
-            <h4>Your opinion matters</h4>
-            <div class="panel no-border">
-                <div class="padding-15">
-                    <p>Please let us know what you think of LeadSpot and help us improve during the beta phase.</p>
-                    <p><a href="/contact">Contact LeadSpot</a></p>
-                </div>
-            </div><!-- /.panel -->
+            </div>
+
         </div>
     </div>
 @endsection
