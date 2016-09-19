@@ -41,6 +41,7 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
     Route::post('/subscription/update', 'SubscriptionServiceController@updateSubscriptionUsage');
     Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
     Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');
+    Route::post('/subscription/permissions', 'SubscriptionServiceController@getSubscriptionPermissions');
 });
 
 // User account

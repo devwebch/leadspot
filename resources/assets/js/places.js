@@ -86,7 +86,6 @@ var analyzeModule = new Vue({
             } else if ( radius <= 2000 ) {
                 map.setZoom(13);
             }
-
         });
 
         $('.wbf-location-form').submit(function (e) {
@@ -108,6 +107,15 @@ var analyzeModule = new Vue({
                 }
             });
         });
+
+        $.ajax({
+            type: 'POST',
+            url: '/service/subscription/permissions',
+            success: function (data) {
+                console.info(data);
+            }
+        });
+
     });
 
     /**

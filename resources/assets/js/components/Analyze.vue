@@ -3,7 +3,7 @@
         <div class="panel-heading">Example Component</div>
 
         <div class="panel-body">
-            Message : {{message}}
+            Message : {{appstate.loaded}}
         </div>
     </div>
 </template>
@@ -11,7 +11,8 @@
 <script>
     export default {
         ready() {
-            console.log('Component ready.')
+            console.log('Component ready.');
+            console.log(status);
         }
     }
 </script>

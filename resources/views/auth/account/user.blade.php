@@ -31,9 +31,6 @@
                         <li>
                             <a data-toggle="tab" href="#tabSubscription">Subscription</a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#tabMisc">Misc.</a>
-                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabInfos">
@@ -241,14 +238,6 @@
                                         </tbody>
                                     </table>
                                     @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabMisc">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 class="m-t-0">Delete my account</h3>
-                                    <p>Please <a href="/contact">contact us</a> if you wish to delete your account and subscriptions.</p>
                                 </div>
                             </div>
                         </div>

@@ -63,8 +63,8 @@ class SubscriptionServiceController extends Controller
         // update the subscription usage
         $usage->save();
 
-        // redirect to account
-        return redirect('/account');
+        // redirect to success page
+        return redirect('/subscribe/transaction/success');
     }
 
     public function removeSubscription()
@@ -109,5 +109,38 @@ class SubscriptionServiceController extends Controller
         $user   = $request->user();
         $usage  = $user->subscriptionUsage()->first();
         $usage->increaseUse();
+    }
+
+    public function getSubscriptionPermissions(Request $request)
+    {
+        $user           = $request->user();
+        $subscription   = $user->subscriptions()->get()->first();
+        $permissions    = [
+            'cms'               => false,
+            'auto_geolocation'  => false,
+            'report'            => false,
+            'manual_lead'       => false,
+        ];
+
+        if ( $user->subscribed('main') ) {
+            if ( $subscription->stripe_plan == 'leadspot_pro' ) {
+                $permissions = [
+                    'cms'               => true,
+                    'auto_geolocation'  => true,
+                    'report'            => true,
+                    'manual_lead'       => true
+                ];
+            }
+            if ( $subscription->stripe_plan == 'leadspot_advanced' ) {
+                $permissions = [
+                    'cms'               => true,
+                    'auto_geolocation'  => true,
+                    'report'            => false,
+                    'manual_lead'       => false
+                ];
+            }
+        }
+
+        return response()->json($permissions);
     }
 }

@@ -57,7 +57,7 @@
     <div class="panel">
         <div class="panel-heading">
             <div class="panel-title">Leads list</div>
-            <div class="pull-right">
+            <div class="pull-right hidden">
                 <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> New lead</a>
             </div>
             <div class="clearfix"></div>
