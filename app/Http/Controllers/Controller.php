@@ -25,6 +25,11 @@ class Controller extends BaseController
         $this->middleware('auth');
     }
 
+    /**
+     * Home view
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function home(Request $request)
     {
         // get the authenticated user
@@ -54,11 +59,21 @@ class Controller extends BaseController
         ]);
     }
 
+    /**
+     * Contact view
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function contact(Request $request)
     {
         return view('contact');
     }
 
+    /**
+     * Contact form handling
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function contactSend(Request $request)
     {
         $this->validate($request, [

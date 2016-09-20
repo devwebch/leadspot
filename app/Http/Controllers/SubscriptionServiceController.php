@@ -28,6 +28,12 @@ class SubscriptionServiceController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Add subscription to logged in user
+     * @param $plan
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function addSubscription($plan, Request $request)
     {
         // logged in user
@@ -67,6 +73,10 @@ class SubscriptionServiceController extends Controller
         return redirect('/subscribe/transaction/success');
     }
 
+    /**
+     * Remove subscription from logged in user
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function removeSubscription()
     {
         $user = Auth::user();
@@ -81,6 +91,7 @@ class SubscriptionServiceController extends Controller
 
 
     /**
+     * Retrieve subscription usage, may increase if param is passed
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -104,6 +115,10 @@ class SubscriptionServiceController extends Controller
         return response()->json($return);
     }
 
+    /**
+     * Increase the subscription usage
+     * @param Request $request
+     */
     public function updateSubscriptionUsage(Request $request)
     {
         $user   = $request->user();
@@ -111,6 +126,11 @@ class SubscriptionServiceController extends Controller
         $usage->increaseUse();
     }
 
+    /**
+     * Retrieve the current user's permissions according to his plan
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getSubscriptionPermissions(Request $request)
     {
         $user           = $request->user();

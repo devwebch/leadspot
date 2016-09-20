@@ -13,10 +13,12 @@
 
 Auth::routes();
 
+// Standard pages
 Route::get('/', 'Controller@home');
 Route::get('/contact', function () { return view('contact'); } )->middleware('auth');
 Route::post('/contact/send', 'Controller@contactSend');
 Route::get('/help', function () { return view('help'); } )->middleware('auth');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 // Subscriptions
 Route::get('/subscribe/{plan}', 'SubscriptionController@subscribe' );
@@ -48,8 +50,6 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@account');
 });
-
-Route::get('/logout', 'Auth\LoginController@logout');
 
 // Stripe
 Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');

@@ -21,6 +21,7 @@ class LeadServiceController extends Controller
     }
 
     /**
+     * Save a single lead
      * @param Request $request
      * @return array
      */
@@ -50,6 +51,7 @@ class LeadServiceController extends Controller
     }
 
     /**
+     * Run CMS detector for provided url
      * @param Request $request
      * @return array|string
      */

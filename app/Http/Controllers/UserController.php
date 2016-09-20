@@ -17,6 +17,10 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Retrieve user informations
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function account()
     {
         $user           = Auth::user();

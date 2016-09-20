@@ -7,7 +7,7 @@ use Closure;
 class Subscribed
 {
     /**
-     * Handle an incoming request.
+     * Check if a user has an active paid subscription
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

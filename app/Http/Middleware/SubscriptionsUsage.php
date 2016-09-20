@@ -9,7 +9,7 @@ use App\SubscriptionsUsage as Usage;
 class SubscriptionsUsage
 {
     /**
-     * Handle an incoming request.
+     * Check if a user's subscription usage is within the limits
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -26,12 +26,6 @@ class SubscriptionsUsage
         if ( $subscription_usage->used >= $subscription_usage->limit ) {
             return redirect('/subscription/error/limit');
         }
-
-        // if latest update date from at least 24h, reset
-        if ( $usage_diff >= 24 ) {
-            return view('Limit mise à jour');
-        }
-
 
         return $next($request);
     }

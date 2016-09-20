@@ -13,6 +13,12 @@ class SubscriptionController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Display the subscription view
+     * @param $plan
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function subscribe($plan, Request $request)
     {
         $planID     = null;

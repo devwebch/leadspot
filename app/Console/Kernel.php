@@ -28,6 +28,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+        /**
+         * Reset every subscription usage to 0 at midnight
+         */
         $schedule->call(function(){
             SubscriptionsUsage::where('used', '!=', '0')
                 ->update(['used' => 0]);

@@ -24,6 +24,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Retrieve a single lead
      * @param Lead $lead
      * @param Request $request
      * @return View
@@ -33,6 +34,7 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
+        // TODO: get this information from db instead of running it every time
         $cms_data   = new DetectCMS($lead->url);
         $cms        = $cms_data->getResult();
 
@@ -52,6 +54,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Retrieve leads associated with logged in user
      * @param Request $request
      * @return View
      */
@@ -83,6 +86,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Add lead view
      * @param Request $request
      * @return View
      */
@@ -108,6 +112,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Edit lead view
      * @param Lead $lead
      * @param Request $request
      * @return View
@@ -142,6 +147,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Store lead in db
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -181,6 +187,7 @@ class LeadController extends Controller
     }
 
     /**
+     * Delete lead
      * @param Lead $lead
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|View
