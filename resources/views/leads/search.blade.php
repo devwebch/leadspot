@@ -31,40 +31,40 @@
         <div class="col-md-9">
             <div class="panel">
                 <div class="panel-heading">
-                    <div class="panel-title">Search location</div>
+                    <div class="panel-title">{{trans('search.general.search_location')}}</div>
                 </div>
                 <div class="panel-body">
                     <form class="wbf-location-form form-inline">
                         <div class="form-group">
-                            <label for="wbfInputAddress" class="sr-only">Address</label>
-                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="Address..." style="width: 300px">
+                            <label for="wbfInputAddress" class="sr-only">{{trans('search.general.address')}}</label>
+                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="{{trans('search.general.address')}}" style="width: 300px">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-default" id="wbfInputGeolocation" type="button"><i class="fa fa-crosshairs"></i></button>
                         </div>
-                        <button type="submit" class="btn btn-warning">Search address</button>
+                        <button type="submit" class="btn btn-warning">{{trans('search.general.search_address')}}</button>
                     </form>
                     <div class="m-t-20" v-show="geolocating">
-                        <i class="fa fa-refresh fa-spin m-r-10"></i> Searching for your location...
+                        <i class="fa fa-refresh fa-spin m-r-10"></i> {{trans('search.general.searching_for_location')}}
                     </div>
                 </div>
             </div>
             <div class="panel">
                 <div class="panel-heading">
-                    <div class="panel-title">Google Map</div>
+                    <div class="panel-title">{{trans('search.general.map')}}</div>
                 </div>
                 <div class="panel-body">
                     <form role="form" class="wbf-search-form m-b-20">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="wbfInputText">Search</label>
-                                    <input type="text" name="wbfInputText" id="wbfInputText" class="form-control" placeholder="Store name...">
+                                    <label for="wbfInputText">{{trans('search.general.search')}}</label>
+                                    <input type="text" name="wbfInputText" id="wbfInputText" class="form-control" placeholder="{{trans('search.general.store_name')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="wbfInputCategory">Category</label>
+                                    <label for="wbfInputCategory">{{trans('search.general.category')}}</label>
                                     <select name="wbfInputCategory" id="wbfInputCategory" class="full-width"  data-init-plugin="select2">
                                         <option value="">{{trans('search.general.select_category')}}</option>
                                         <option value="accounting">{{trans('search.categories.accounting')}}</option>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="wbfInputRadius">Radius</label>
+                                    <label for="wbfInputRadius">{{trans('search.general.radius')}}</label>
                                     <select name="wbfInputRadius" id="wbfInputRadius" class="form-control">
                                         <option value="50">50m</option>
                                         <option value="100">100m</option>
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Search</button>
+                        <button type="submit" class="btn btn-success">{{trans('search.general.search')}}</button>
                     </form>
                     <div class="map-container">
                         <div id="map" style="height: 500px"></div>
@@ -166,7 +166,7 @@
         <div class="col-md-3">
             <div class="panel">
                 <div class="panel-heading">
-                    <div class="panel-title"><i class="pg-map"></i> Business details</div>
+                    <div class="panel-title"><i class="pg-map"></i> {{trans('search.general.business_details')}}</div>
                 </div>
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
@@ -192,12 +192,12 @@
                         </div>
 
                         <div class="wbf-business-details__pagespeed" v-show="status.loaded && details.website">
-                            <h4>Pagespeed scores</h4>
+                            <h4>{{trans('search.general.pagespeed_scores')}}</h4>
                             <table class="table table-condensed">
                                 <thead>
                                 <tr>
-                                    <th>Speed</th>
-                                    <th>Usability</th>
+                                    <th>{{trans('search.general.speed')}}</th>
+                                    <th>{{trans('search.general.usability')}}</th>
                                 </tr>
                                 </thead>
                                 <tr>
@@ -208,7 +208,7 @@
                         </div>
 
                         <div class="wbf-website-cms" v-show="status.loaded && details.website && details.cms">
-                            <h4>CMS</h4>
+                            <h4>{{trans('search.general.cms')}}</h4>
                             <div class="text-center">
                                 <div>
                                     <img src="{{asset('img/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
@@ -226,7 +226,7 @@
                         </div>
 
                         <div class="wbf-business-details__preview m-b-20" v-if="status.loaded && details.score_screenshot">
-                            <h4>Mobile preview</h4>
+                            <h4>{{trans('search.general.mobile_preview')}}</h4>
                             <div style="text-align: center;">
                                 <img class="image" v-bind:src="details.score_screenshot" alt="">
                             </div>
@@ -237,69 +237,69 @@
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
-                                        <th width="70%">Variable</th>
+                                        <th width="70%">{{trans('search.general.variables')}}</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tr class="indicator--responsive">
                                     <td>
-                                        <strong>Responsive</strong>
-                                        <p class="small" style="white-space: normal">Website is adapted for mobile devices</p>
+                                        <strong>{{trans('search.general.responsive')}}</strong>
+                                        <p class="small" style="white-space: normal">{{trans('search.general.responsive_desc')}}</p>
                                     </td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.viewport==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.viewport==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--gzip">
                                     <td>
-                                        <strong>GZIP</strong>
+                                        <strong>{{trans('search.general.gzip')}}</strong>
                                         <p class="small" style="white-space: normal"></p>
                                     </td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.gzip==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.gzip==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--minify-css">
-                                    <td><strong>Minified CSS</strong></td>
+                                    <td><strong>{{trans('search.general.minified_css')}}</strong></td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.minifyCss==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.minifyCss==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--minify-js">
-                                    <td><strong>Minified JS</strong></td>
+                                    <td><strong>{{trans('search.general.minified_js')}}</strong></td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.minifyJs==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.minifyJs==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--minify-html">
-                                    <td><strong>Minified HTML</strong></td>
+                                    <td><strong>{{trans('search.general.minified_html')}}</strong></td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.minifyHTML==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.minifyHTML==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--optimized-images">
                                     <td>
-                                        <strong>Optimized images</strong>
-                                        <p class="small" style="white-space: normal">Images sizes are optimized</p>
+                                        <strong>{{trans('search.general.optimized_images')}}</strong>
+                                        <p class="small" style="white-space: normal">{{trans('search.general.optimized_images_desc')}}</p>
                                     </td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.optimizeImages==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.optimizeImages==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
                                 <tr class="indicator--font-size">
                                     <td>
-                                        <strong>Adapted font size</strong>
-                                        <p class="small" style="white-space: normal">Font size is optimized for readability</p>
+                                        <strong>{{trans('search.general.adapted_font_size')}}</strong>
+                                        <p class="small" style="white-space: normal">{{trans('search.general.adapted_font_size_desc')}}</p>
                                     </td>
                                     <td>
-                                        <span class="label label-success" v-if="details.indicators.fontSize==0">Yes</span>
-                                        <span class="label label-danger" v-else>No</span>
+                                        <span class="label label-success" v-if="details.indicators.fontSize==0">{{trans('search.general.yes')}}</span>
+                                        <span class="label label-danger" v-else>{{trans('search.general.no')}}</span>
                                     </td>
                                 </tr>
 
@@ -307,13 +307,13 @@
                         </div>
 
                         <div class="wbf-business-details__add-to-list" v-show="status.loaded">
-                            <button class="btn btn-complete btn-lg btn-block btn-add-to-list">Save this lead</button>
+                            <button class="btn btn-complete btn-lg btn-block btn-add-to-list">{{trans('search.general.save_lead')}}</button>
                         </div>
                     </div>
 
                     <div class="wbf-business-details-progress" style="text-align: center; padding: 40px 0;" v-show="status.loading">
                         <div class="progress-circle-indeterminate"></div>
-                        <p class="small hint-text">Loading</p>
+                        <p class="small hint-text">{{trans('search.general.loading')}}</p>
                     </div>
 
                 </div>

@@ -56,7 +56,7 @@
 
         </ul>
         <div class="clearfix"></div>
-    </div>
+</div>
     <!-- END SIDEBAR MENU -->
 </div>
 <!-- END SIDEBAR -->
@@ -103,7 +103,7 @@
                 </div>
                 <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
                     <li class="p-r-15 inline">
-                        <a href="/help"><i class="pg-italic"></i> Help</a>
+                        <a href="/help"><i class="pg-italic"></i> {{trans('menu.user.help')}}</a>
                     </li>
                 </ul>
             </div>

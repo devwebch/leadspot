@@ -34,12 +34,12 @@ if (Auth::check()) {
             </span>
         </button>
         <ul class="dropdown-menu profile-dropdown" role="menu">
-            <li><a href="/account"><i class="pg-settings_small"></i> My account</a></li>
-            <li><a href="/help"><i class="pg-italic"></i> Help</a></li>
-            <li><a href="/contact"><i class="pg-mail"></i> Contact</a></li>
+            <li><a href="/account"><i class="pg-settings_small"></i> {{trans('menu.user.account')}}</a></li>
+            <li><a href="/help"><i class="pg-italic"></i> {{trans('menu.user.help')}}</a></li>
+            <li><a href="/contact"><i class="pg-mail"></i> {{trans('menu.user.contact')}}</a></li>
             <li class="bg-master-lighter">
                 <a href="/logout" class="clearfix">
-                    <span class="pull-left">Logout</span>
+                    <span class="pull-left">{{trans('menu.user.logout')}}</span>
                     <span class="pull-right"><i class="pg-power"></i></span>
                 </a>
             </li>
