@@ -52,6 +52,8 @@ class Controller extends BaseController
             ->take(6)
             ->get();
 
+        Mail::to($user)->send(new Welcome());
+
         return view('home', [
             'leads' => $leads,
             'status' => $status,

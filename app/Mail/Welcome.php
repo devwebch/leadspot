@@ -19,7 +19,6 @@ class Welcome extends Mailable
      */
     public function __construct()
     {
-        //
         $this->subject("Let's get you started [LeadSpot]");
     }
 

@@ -433,7 +433,7 @@
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Primary Link" data-link-color="Primary Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 20px;text-align: left;vertical-align: top;color: #888888;font-weight: bold;padding-bottom: 0;padding-top: 16px;">
                                                 <a href="#" data-color="Buttons &amp; Labels" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #ffffff;">
-                                                    <img src="{{asset('img/logo-leadspot.png')}}" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
+                                                    <img src="http://leadspotapp.com/images/logo-leadspot.png" width="200" height="57" alt="LeadSpot" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;max-width: 200px;height: auto;">
                                                 </a>
                                             </td>
                                             <!-- /.column_cell -->
@@ -472,7 +472,7 @@
         <!-- /.email_container -->
     </tr>
 </table>
-<table class="email_body" width="100%" border="0" cellspacing="0" cellpadding="0" data-module="jumbotron_title_2" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2016/09/06/F2OxyQeTI9mrs7g5SpLRwdqX/simpleapp_stampready/thumbnails/06_jumbotron.png" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<table class="email_body" width="100%" border="0" cellspacing="0" cellpadding="0" data-module="jumbotron_title_2" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
     <tr>
         <td data-bgcolor="Body Background" style="padding: 0;padding-left: 10px;padding-right: 10px;text-align: center;background-color: #f2f2f2;">
             <!--[if (gte mso 9)|(IE)]>
@@ -705,16 +705,9 @@
                                     <table class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;vertical-align: top;">
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Muted Text" data-link-color="Footer Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
-                                                <strong>
-                                                    Commerce, Inc.</strong>
+                                                <strong>LeadSpot</strong>
                                                 <br>
-                                                <small style="font-size: 86%;font-weight: normal;">
-                                                    This email was sent to&nbsp;<a href="mailto:*|email|*" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                        *|email|*</a>
-                                                    . <br>
-                                                    <a href="*|unsubscribe|*" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                        Unsubscribe here</a>
-                                                </small>
+                                                <small style="font-size: 86%;font-weight: normal;">This email was sent to&nbsp;<a href="mailto:*|email|*" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">*|email|*</a>.</small>
                                             </td>
                                             <!-- /.column_cell -->
                                         </tr>
@@ -730,12 +723,6 @@
                                     <table class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;vertical-align: top;">
                                         <tr>
                                             <td class="column_cell font_default" align="center" valign="top" data-color="Muted Text" data-link-color="Footer Link" style="padding: 16px;font-family: Helvetica, Arial, sans-serif;font-size: 15px;text-align: left;vertical-align: top;color: #b3b3b5;padding-bottom: 0;padding-top: 16px;">
-                                                <a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="{{asset('img/email/icn_facebook')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
-                                                    &nbsp;</a>
-                                                &nbsp;<a href="#" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #7a7a7a;">
-                                                    &nbsp;<img src="{{asset('img/email/icn_twitter')}}" width="24" height="24" alt="" style="line-height: 1;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;mso-line-height-rule: exactly;">
-                                                    &nbsp;</a>
                                             </td>
                                             <!-- /.column_cell -->
                                         </tr>
