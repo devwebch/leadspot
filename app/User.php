@@ -34,6 +34,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Lead');
     }
 
+    public function getSubscription()
+    {
+        $relation = $this->hasOne('App\Subscription')->get()->first();
+
+        if ( $relation ) {
+            $relation = config('subscriptions.label.' . $relation->stripe_plan);
+        }
+
+        return $relation;
+    }
+
     public function subscriptionUsage()
     {
         return $this->hasOne('App\SubscriptionsUsage');

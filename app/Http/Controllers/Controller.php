@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Lead;
-use App\Mail\Contact;
-use App\Mail\Welcome;
 use App\Notifications\InvoicePaid;
+use App\Notifications\Welcome;
 use App\SubscriptionsUsage;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -53,7 +52,7 @@ class Controller extends BaseController
             ->take(6)
             ->get();
 
-        //Mail::to($user)->send(new Welcome());
+        $user->notify(new Welcome($user));
 
         return view('home', [
             'leads' => $leads,
@@ -86,7 +85,13 @@ class Controller extends BaseController
             'inputMessage'      => 'required',
         ]);
 
-        Mail::to('simon.rapin@gmail.com')->send(new Welcome());
+        // save message
+        $message = new \App\Message();
+        $message->first_name    = $request->input('inputFirstName');
+        $message->last_name     = $request->input('inputLastName');
+        $message->email         = $request->input('inputEmail');
+        $message->message       = $request->input('inputMessage');
+        $message->save();
 
         return back();
     }

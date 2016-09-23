@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class InvoicePaid extends Notification
+class Welcome extends Notification
 {
     use Queueable;
 
@@ -43,10 +43,12 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi there ' . $this->user->first_name)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://go.leadspotapp.com')
-                    ->line('Thank you for using our application!');
+            ->subject("Let's get you started [LeadSpot]")
+            ->greeting('Hello ' . $this->user->first_name)
+            ->line("Welcome to LeadSpot, your account has been successfully created!")
+            ->line("Friendly reminder: LeadSpot is an online tool that aim to help IT services providers to find local business opportunities.")
+            ->action('Go to my dashboard', 'https://go.leadspotapp.com')
+            ->line('Thank you for using our application!');
     }
 
     /**

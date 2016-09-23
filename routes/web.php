@@ -15,20 +15,28 @@ Auth::routes();
 
 // Standard pages
 Route::get('/', 'Controller@home');
-Route::get('/contact', function () { return view('contact'); } )->middleware('auth');
+Route::get('/contact', function () {
+    return view('contact');
+})->middleware('auth');
 Route::post('/contact/send', 'Controller@contactSend');
-Route::get('/help', function () { return view('help'); } )->middleware('auth');
+Route::get('/help', function () {
+    return view('help');
+})->middleware('auth');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // Subscriptions
-Route::get('/subscribe/{plan}', 'SubscriptionController@subscribe' );
-Route::get('/subscribe/transaction/success', function () { return view('subscriptions.success'); } );
+Route::get('/subscribe/{plan}', 'SubscriptionController@subscribe');
+Route::get('/subscribe/transaction/success', function () {
+    return view('subscriptions.success');
+});
 
 // Leads
-Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
+Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function () {
     Route::get('list', 'LeadController@getLeads');
     Route::get('new', 'LeadController@newLead');
-    Route::get('search', function () { return view('leads.search'); });
+    Route::get('search', function () {
+        return view('leads.search');
+    });
     Route::post('store/{id?}', 'LeadController@storeLead');
     Route::get('delete/{lead}', 'LeadController@deleteLead');
     Route::get('edit/{lead}', 'LeadController@editLead');
@@ -36,7 +44,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function (){
 });
 
 // Service
-Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
     Route::post('/leads/save', 'LeadServiceController@save');
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
     Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
@@ -47,13 +55,16 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function(){
 });
 
 // User account
-Route::group(['prefix' => 'account', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/', 'UserController@account');
 });
 
 // Admin
-Route::group(['prefix' => 'admin'], function (){
-   Route::get('/', 'Admin@home');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', 'Admin@home');
+    Route::get('/accounts', 'Admin@accounts');
+    Route::get('/subscriptions', 'Admin@subscriptions');
+    Route::get('/accounts/login/as/{id}', 'Admin@loginAsUserID');
 });
 
 // Stripe
