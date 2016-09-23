@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lead;
 use App\Mail\Contact;
 use App\Mail\Welcome;
+use App\Notifications\InvoicePaid;
 use App\SubscriptionsUsage;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -52,7 +53,7 @@ class Controller extends BaseController
             ->take(6)
             ->get();
 
-        Mail::to($user)->send(new Welcome());
+        //Mail::to($user)->send(new Welcome());
 
         return view('home', [
             'leads' => $leads,

@@ -51,5 +51,10 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function(){
     Route::get('/', 'UserController@account');
 });
 
+// Admin
+Route::group(['prefix' => 'admin'], function (){
+   Route::get('/', 'Admin@home');
+});
+
 // Stripe
 Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
