@@ -52,7 +52,7 @@ class Controller extends BaseController
             ->take(6)
             ->get();
 
-        $user->notify(new Welcome($user));
+        //$user->notify(new Welcome($user));
 
         return view('home', [
             'leads' => $leads,

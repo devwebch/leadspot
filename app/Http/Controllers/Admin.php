@@ -38,6 +38,14 @@ class Admin extends Controller
         return view('admin.subscriptions', ['subscriptions' => $subscriptions]);
     }
 
+    public function messages(Request $request)
+    {
+        $user           = $request->user();
+        $messages       = \App\Message::all();
+
+        return view('admin.messages', ['messages' => $messages]);
+    }
+
     public function loginAsUserID($userID)
     {
         if ($userID && $userID != 1) {

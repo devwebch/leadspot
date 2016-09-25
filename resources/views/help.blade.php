@@ -41,6 +41,10 @@
                                 <h4>I need help using LeadSpot</h4>
                                 <p>Do not hesitate to <a href="mailto:support@leadspotapp.com">contact our support</a> by e-mail, we will gladly help you find what you need.</p>
                             </div>
+                            <div class="m-b-20">
+                                <h4>What happens if I cancel my subscription?</h4>
+                                <p>Your subscription will still be active until the end of the purchased time period. If you subscribed on the 5th of november, cancel on the 15th, your subscription will still be active until the 5th of december.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,7 @@
                         <li class="active">
                             <a data-toggle="tab" href="#tabInfos">Your infos</a>
                         </li>
-                        <li>
+                        <li class="hidden">
                             <a data-toggle="tab" href="#tabSubscription">Subscription</a>
                         </li>
                     </ul>

@@ -64,6 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'Admin@home');
     Route::get('/accounts', 'Admin@accounts');
     Route::get('/subscriptions', 'Admin@subscriptions');
+    Route::get('/messages', 'Admin@messages');
     Route::get('/accounts/login/as/{id}', 'Admin@loginAsUserID');
 });
 

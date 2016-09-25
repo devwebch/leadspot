@@ -21,6 +21,7 @@
                     <ul>
                         <li><a href="/admin/accounts">Accounts</a></li>
                         <li><a href="/admin/subscriptions">Subscriptions</a></li>
+                        <li><a href="/admin/messages">Messages</a></li>
                     </ul>
                 </div>
             </div>
