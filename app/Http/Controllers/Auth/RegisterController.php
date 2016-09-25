@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\Welcome;
 
 class RegisterController extends Controller
 {
@@ -80,6 +81,9 @@ class RegisterController extends Controller
         $usage->used        = 0;
 
         $usage->save();
+
+        // send notification to user
+        $user->notify(new Welcome($user));
 
         return $user;
     }

@@ -57,6 +57,7 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
 // User account
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/', 'UserController@account');
+    Route::get('/invoice/{invoice}', 'UserController@downloadInvoice');
 });
 
 // Admin

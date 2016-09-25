@@ -35,8 +35,6 @@ class Controller extends BaseController
         // get the authenticated user
         $user = $request->user();
 
-        //Mail::to('simon.rapin@gmail.com')->send(new Welcome());
-
         // retrieve lead status
         $status = config('constants.lead.status');
 

@@ -44,8 +44,8 @@ class InvoicePaid extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hi there ' . $this->user->first_name)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://go.leadspotapp.com')
+                    ->line('Thank you for your subscription, your payment was successfully received.')
+                    ->action('View invoices', 'https://go.leadspotapp.com/account')
                     ->line('Thank you for using our application!');
     }
 

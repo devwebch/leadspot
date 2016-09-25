@@ -69,6 +69,9 @@ class SubscriptionServiceController extends Controller
         // update the subscription usage
         $usage->save();
 
+        // notify the user
+
+
         // redirect to success page
         return redirect('/subscribe/transaction/success');
     }

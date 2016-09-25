@@ -28,8 +28,11 @@
                         <li class="active">
                             <a data-toggle="tab" href="#tabInfos">Your infos</a>
                         </li>
-                        <li class="hidden">
+                        <li class="">
                             <a data-toggle="tab" href="#tabSubscription">Subscription</a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#tabInvoices">Invoices</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -241,6 +244,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="tabInvoices">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="m-t-0">Your invoices</h3>
+                                    <ul>
+                                        @foreach ($invoices as $invoice)
+                                        <li>{{$invoice->date()->toFormattedDateString()}} - {{($invoice->total/100)}}$ | <a href="/account/invoice/{{$invoice->id}}" target="_blank">Download</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
