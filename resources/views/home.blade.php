@@ -76,25 +76,21 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="ar-2-1 m-b-20">
-                <div class="panel no-border bg-master-dark widget">
+            <div class="m-b-20">
+                <div class="panel no-border bg-master-light widget">
                     <div class="panel-body">
-                        <div class="pull-bottom bottom-left bottom-right padding-25">
-                            <a href="/account"><h2 class="text-white semi-bold">My account</h2></a>
-                            <p class="text-white">Manage options and subscriptions</p>
-                        </div>
+                        <h2 class="semi-bold"><a href="/account" class="text-black">My account</a></h2>
+                        <p class="text-white"><a href="/account">Manage options and subscriptions</a></p>
                     </div>
                 </div>
             </div>
 
-            <div class="ar-1-1 m-b-20">
+            <div class="m-b-20">
                 <div class="panel no-border bg-info-light widget">
                     <div class="panel-body">
-                        <div class="padding-25">
-                            <a href="/account"><h3 class="text-white semi-bold">Your opinion matters</h3></a>
-                            <p class="text-white">Please let us know what you think of LeadSpot and help us improve during the beta phase.</p>
-                            <p><a href="/contact" class="btn btn-default">Contact LeadSpot</a></p>
-                        </div>
+                        <a href="/account"><h3 class="text-white semi-bold">Your opinion matters</h3></a>
+                        <p class="text-white">Please let us know what you think of LeadSpot and help us improve during the beta phase.</p>
+                        <p><a href="/contact" class="btn btn-default">Contact LeadSpot</a></p>
                     </div>
                 </div>
             </div>
