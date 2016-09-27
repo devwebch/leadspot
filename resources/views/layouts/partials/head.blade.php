@@ -4,7 +4,7 @@
     @if(View::hasSection('title'))
         @yield('title') - LeadSpot
     @else
-        LeadSpot - Local Business Analyzer
+        LeadSpot - IT Leads generation tool
     @endif
 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
