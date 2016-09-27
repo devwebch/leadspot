@@ -16,5 +16,6 @@ require('laravel-elixir-vue');
 elixir(mix => {
     mix.webpack('app.js'),
     mix.webpack('places.js'),
-    mix.version('js/places.js')
+    mix.version('js/places.js'),
+    mix.styles(['pages.css'], 'public/css/pages.css')
 });
