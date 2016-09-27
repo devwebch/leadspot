@@ -7,7 +7,6 @@
 @endsection
 
 @section('scripts')
-
 @endsection
 
 @section('content')
@@ -28,7 +27,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="auto-overflow widget-11-2-table">
+                <div class="widget-table">
                     @if(count($leads))
                     <table class="table table-condensed table-hover">
                         <tbody>
