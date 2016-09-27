@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta content="" name="description" />
+<meta content="B2B Leads generation tool for IT" name="description" />
 <meta content="" name="author" />
 <!-- BEGIN Vendor CSS-->
 <link href="{{asset('plugins/pace/pace-theme-flash.css')}}" rel="stylesheet" type="text/css" />
