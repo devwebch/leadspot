@@ -32,8 +32,7 @@ class Kernel extends ConsoleKernel
          * Reset every subscription usage to 0 at midnight
          */
         $schedule->call(function(){
-            SubscriptionsUsage::where('used', '!=', '0')
-                ->update(['used' => 0]);
+            SubscriptionsUsage::where('used', '!=', '0')->update(['used' => 0]);
         })->daily();
 
     }
