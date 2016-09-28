@@ -52,6 +52,9 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
     Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
     Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');
     Route::post('/subscription/permissions', 'SubscriptionServiceController@getSubscriptionPermissions');
+
+    Route::get('/leads/radar', 'LeadServiceController@getPlaces');
+    Route::get('/leads/details', 'LeadServiceController@getPlaceDetails');
 });
 
 // User account

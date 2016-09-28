@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             SubscriptionsUsage::where('used', '!=', '0')
                 ->update(['used' => 0]);
-        })->dailyAt('00:00');
+        })->daily();
 
     }
 
