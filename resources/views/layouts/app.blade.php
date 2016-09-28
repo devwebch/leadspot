@@ -72,7 +72,7 @@
                 <!-- START ACTION BAR -->
                 <div class="header-inner">
                     <a href="#" class="btn-link toggle-sidebar visible-sm-inline-block visible-xs-inline-block padding-5" data-toggle="sidebar">
-                        <span class="icon-set menu-hambuger"></span>
+                        <i class="fa fa-bars"></i>
                     </a>
                 </div>
                 <!-- END ACTION BAR -->
@@ -84,7 +84,7 @@
                              alt="LeadSpot" 
                              data-src="{{asset('img/logo-leadspot.png')}}" 
                              data-src-retina="{{asset('img/logo-leadspot.png')}}"
-                             width="78" height="22"></a>
+                             width="150"></a>
                     </div>
                 </div>
             </div>
