@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\NewUser;
 use App\SubscriptionsUsage;
 use App\User;
 use Validator;
@@ -74,6 +75,8 @@ class RegisterController extends Controller
             'company'       => ''
         ]);
 
+        $admin  = User::find(1);
+
         // create a subscription usage entry for this new user
         $usage = new SubscriptionsUsage();
         $usage->user_id     = $user->id;
@@ -84,6 +87,7 @@ class RegisterController extends Controller
 
         // send notification to user
         $user->notify(new Welcome($user));
+        $admin->notify(new NewUser($user));
 
         return $user;
     }

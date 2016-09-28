@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Lead;
 use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeadServiceController extends Controller
 {

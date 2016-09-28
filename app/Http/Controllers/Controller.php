@@ -50,12 +50,15 @@ class Controller extends BaseController
             ->take(10)
             ->get();
 
+        $usage = $user->subscriptionUsage();
+
         //$user->notify(new Welcome($user));
 
         return view('home', [
-            'leads' => $leads,
-            'status' => $status,
-            'status_classes' => $status_classes
+            'leads'             => $leads,
+            'usage'             => $usage,
+            'status'            => $status,
+            'status_classes'    => $status_classes
         ]);
     }
 

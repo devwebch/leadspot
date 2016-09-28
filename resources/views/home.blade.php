@@ -15,7 +15,6 @@
             <div class="panel">
                 <div class="panel-body">
                     <h3>Hi there {{Auth::user()->first_name}}!</h3>
-                    <p>Thank you for participating to the <strong>LeadSpot beta launch</strong>!</p>
                     <p>This is your dashboard, here you can manage your leads and access the latest news regarding LeadSpot.</p>
                     <p>During the beta a lot of features are going to evolve, share your good ideas and concerns with us.</p>
                 </div>
@@ -76,10 +75,21 @@
         </div>
         <div class="col-md-3">
             <div class="m-b-20">
-                <div class="panel no-border bg-master-light widget">
+                <div class="panel no-border bg-master-dark widget">
                     <div class="panel-body">
-                        <h2 class="semi-bold"><a href="/account" class="text-black">My account</a></h2>
-                        <p class="text-white"><a href="/account">Manage options and subscriptions</a></p>
+                        <h2 class="semi-bold"><a href="/account" class="text-white">My account</a></h2>
+                        <p class=""><a href="/account" class="text-white">Manage options and subscriptions</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-b-20">
+                <div class="panel no-border bg-complete-dark widget">
+                    <div class="panel-body">
+                        <h2 class="semi-bold text-white">Daily limit</h2>
+                        <h3 class="text-white">
+                            {{$usage->get()->first()->used}} / {{$usage->get()->first()->limit}}
+                        </h3>
                     </div>
                 </div>
             </div>
