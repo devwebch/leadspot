@@ -53,6 +53,12 @@
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-user"></i></span>
             </li>
+            <li class="visible-xs">
+                <a href="/logout">
+                    <span class="title">{{trans('menu.logout')}}</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-sign-out"></i></span>
+            </li>
 
         </ul>
         <div class="clearfix"></div>
@@ -105,6 +111,11 @@
                     <li class="p-r-15 inline">
                         <a href="/help"><i class="pg-italic"></i> {{trans('menu.user.help')}}</a>
                     </li>
+                    @if( Auth::user()->id == 1 )
+                        <li class="p-r-15 inline">
+                            <a href="/admin">Admin</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -148,7 +159,7 @@
                     <span class="hint-text">Copyright © 2016</span>
                     <span class="font-montserrat">LeadSpot</span>.
                     <span class="hint-text">All rights reserved.</span>
-                    <span class="sm-block"><a href="http://leadspotapp.com/terms-and-conditions" target="_blank" class="m-l-10 m-r-10">Terms of use</a> | <a href="#" class="m-l-10">Privacy Policy</a>
+                    <span class="sm-block"><a href="https://leadspotapp.com/terms-and-conditions" target="_blank" class="m-l-10 m-r-10">Terms of use</a> | <a href="#" class="m-l-10">Privacy Policy</a>
                         </span>
                 </p>
                 <p class="small no-margin pull-right sm-pull-reset p-l-20">

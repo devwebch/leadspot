@@ -74,7 +74,7 @@
                         <th>First name</th>
                         <th>Last name</th>
                         <th>E-mail</th>
-                        <th>Message</th>
+                        <th width="300">Message</th>
                         <th>Created at</th>
                         <th>Action</th>
                     </tr>
@@ -89,7 +89,8 @@
                         <td>{{date('d.m.Y', strtotime($message->created_at))}}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="/admin/accounts/login/as/{{$message->id}}" class="btn btn-default btn-xs" title="Sign in"><i class="fa fa-sign-in"></i></a>
+                                <a href="/admin/messages/view/{{$message->id}}" class="btn btn-default btn-xs" title="View"><i class="fa fa-eye"></i></a>
+                                <a href="/admin/messages/delete/{{$message->id}}" class="btn btn-danger btn-xs delete" title="Delete"><i class="fa fa-times"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -98,4 +99,28 @@
             </table>
         </div>
     </div>
+
+    <!-- MODAL STICK UP  -->
+    <div class="modal fade stick-up" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content-wrapper">
+                <div class="modal-content">
+                    <div class="modal-header clearfix text-left">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                        </button>
+                        <h5>Delete this entry</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="no-margin">This action will delete this entry for ever.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">Delete</a>
+                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- END MODAL STICK UP  -->
 @endsection

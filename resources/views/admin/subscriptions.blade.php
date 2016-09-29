@@ -93,7 +93,7 @@
                         <td>{{date('d.m.Y', strtotime($subscription->updated_at))}}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="/admin/accounts/login/as/{{$subscription->id}}" class="btn btn-default btn-xs" title="Sign in"><i class="fa fa-sign-in"></i></a>
+                                <a href="/admin/accounts/login/as/" class="btn btn-default btn-xs" title="Sign in"><i class="fa fa-sign-in"></i></a>
                             </div>
                         </td>
                     </tr>

@@ -69,7 +69,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/accounts', 'Admin@accounts');
     Route::get('/subscriptions', 'Admin@subscriptions');
     Route::get('/messages', 'Admin@messages');
+    Route::get('/messages/delete/{id}', 'Admin@deleteMessage');
     Route::get('/accounts/login/as/{id}', 'Admin@loginAsUserID');
+    Route::get('/accounts/delete/{id}', 'Admin@deleteAccount');
 });
 
 // Stripe

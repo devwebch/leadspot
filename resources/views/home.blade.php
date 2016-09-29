@@ -16,7 +16,6 @@
                 <div class="panel-body">
                     <h3>Hi there {{Auth::user()->first_name}}!</h3>
                     <p>This is your dashboard, here you can manage your leads and access the latest news regarding LeadSpot.</p>
-                    <p>During the beta a lot of features are going to evolve, share your good ideas and concerns with us.</p>
                 </div>
             </div>
             <div class="widget-11-2 panel no-border panel-condensed no-margin widget-loader-circle">
@@ -78,7 +77,7 @@
                 <div class="panel no-border bg-master-dark widget">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account" class="text-white">My account</a></h2>
-                        <p class=""><a href="/account" class="text-white">Manage options and subscriptions</a></p>
+                        <p class=""><a href="/account" class="btn btn-default">Manage options</a></p>
                     </div>
                 </div>
             </div>

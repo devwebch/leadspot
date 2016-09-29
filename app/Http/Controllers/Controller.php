@@ -52,8 +52,6 @@ class Controller extends BaseController
 
         $usage = $user->subscriptionUsage();
 
-        //$user->notify(new Welcome($user));
-
         return view('home', [
             'leads'             => $leads,
             'usage'             => $usage,

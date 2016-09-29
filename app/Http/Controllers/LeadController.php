@@ -34,10 +34,6 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
-        // TODO: get this information from db instead of running it every time
-        $cms_data   = new DetectCMS($lead->url);
-        $cms        = $cms_data->getResult();
-
         $status_classes = [
             0   => '',
             1   => 'label-warning',
@@ -49,7 +45,6 @@ class LeadController extends Controller
             'lead'              => $lead,
             'status'            => $status,
             'status_classes'    => $status_classes,
-            'cms'               => $cms
         ]);
     }
 

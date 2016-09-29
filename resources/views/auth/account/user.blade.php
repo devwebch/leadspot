@@ -28,9 +28,11 @@
                         <li class="active">
                             <a data-toggle="tab" href="#tabInfos">Your infos</a>
                         </li>
-                        <li class="hidden">
+                        @if (Auth::user()->id == 1)
+                        <li class="">
                             <a data-toggle="tab" href="#tabSubscription">Subscription</a>
                         </li>
+                        @endif
                         <li class="">
                             <a data-toggle="tab" href="#tabInvoices">Invoices</a>
                         </li>
@@ -58,6 +60,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if (Auth::user()->id == 1)
                         <div class="tab-pane" id="tabSubscription">
                             <div class="row">
                                 <div class="col-md-12">
@@ -244,6 +247,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="tab-pane" id="tabInvoices">
                             <div class="row">
                                 <div class="col-md-12">

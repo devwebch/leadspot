@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Billable;
+use Laravel\Cashier\Cashier;
+use Stripe\Stripe;
 
 class Admin extends Controller
 {
@@ -53,5 +58,31 @@ class Admin extends Controller
         }
 
         return redirect('/');
+    }
+
+    // actions
+    public function deleteAccount($id)
+    {
+        $user           = User::findOrFail($id);
+        $subscription   = $user->subscriptions()->get()->first();
+
+        if ( $user->subscribed('main') ) {
+            $user->subscription('main')->cancelNow();
+        }
+        if ( $subscription ) {
+            $subscription->delete();
+        }
+
+        $user->delete();
+
+        return back();
+    }
+
+    public function deleteMessage($id)
+    {
+        $message = Message::findOrFail($id);
+        $message->delete();
+
+        return back();
     }
 }
