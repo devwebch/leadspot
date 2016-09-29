@@ -77,7 +77,7 @@
                 <div class="panel no-border bg-master-dark widget">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account" class="text-white">My account</a></h2>
-                        <p class=""><a href="/account" class="btn btn-default">Manage options</a></p>
+                        <p class=""><a href="/account" class="btn btn-info">Manage options</a></p>
                     </div>
                 </div>
             </div>
