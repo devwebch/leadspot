@@ -41,6 +41,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function () {
     Route::get('delete/{lead}', 'LeadController@deleteLead');
     Route::get('edit/{lead}', 'LeadController@editLead');
     Route::get('view/{lead}', 'LeadController@viewLead');
+    Route::get('report', 'LeadController@report');
 });
 
 // Service

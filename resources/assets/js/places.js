@@ -153,7 +153,9 @@ var analyzeModule = new Vue({
         addSearchMarker(request.location);
 
         // auto geolocation
-        tryAutoGeoLocation();
+        if (permissions.auto_geolocation) {
+            tryAutoGeoLocation();
+        }
     }
 
     /**
@@ -257,7 +259,7 @@ var analyzeModule = new Vue({
                         if (analyzeGranted) {
                             analyze(place);
                         } else {
-                            swal("Error", "You have reached the limit of your subscription", "error");
+                            swal("Error", "You have reached the daily limit of your subscription", "error");
                         }
                     });
 
@@ -410,28 +412,26 @@ var analyzeModule = new Vue({
      */
     function tryAutoGeoLocation()
     {
-        if ( permissions.auto_geolocation ) {
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    map.setCenter(pos);
-                    addSearchMarker(pos);
-                    analyzeModuleData.geolocating = false;
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                map.setCenter(pos);
+                addSearchMarker(pos);
                 analyzeModuleData.geolocating = false;
-            }
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+            analyzeModuleData.geolocating = false;
         }
     }
 

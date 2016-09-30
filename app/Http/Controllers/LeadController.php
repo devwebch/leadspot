@@ -13,6 +13,7 @@ use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use League\Flysystem\Config;
+use Dompdf\Dompdf;
 
 class LeadController extends Controller
 {
@@ -199,5 +200,19 @@ class LeadController extends Controller
         } else {
             return view('shared.error_page');
         }
+    }
+
+    public function report()
+    {
+        $lead   = Lead::find(15);
+        $view   = view('leads.report', ['lead' => $lead]);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($view);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream();
+
+        return view('leads.report');
     }
 }
