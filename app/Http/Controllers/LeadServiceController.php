@@ -95,6 +95,7 @@ class LeadServiceController extends Controller
 
     public function getPlaces(Request $request)
     {
+        // TODO: get parameters from input
         $location_lat   = '-33.8670';
         $location_lng   = '151.1957';
         $location       = $location_lat . ',' . $location_lng;
@@ -118,6 +119,7 @@ class LeadServiceController extends Controller
 
     public function getPlaceDetails(Request $request)
     {
+        // TODO: get place ID from input
         $place_ID   = 'ChIJ__8_hziuEmsR27ucFXECfOg';
         $places = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $place_ID . '&key=' . $this->PAGESPEED_API_KEY;
 

@@ -233,8 +233,6 @@ var analyzeModule = new Vue({
 
                 place.stats  = {};
 
-                console.info(place);
-
                 infoWindow.setContent('<div id="content">'+
                     '<h3 id="firstHeading" class="firstHeading">' + result.name + '</h3>'+
                     '<div id="bodyContent">'+
