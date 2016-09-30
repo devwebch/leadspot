@@ -71,7 +71,7 @@ $style = [
                     <tr>
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                                {{ config('app.name') }}
+                                <img src="https://go.leadspotapp.com/img/logo-leadspot.png" alt="{{ config('app.name') }}" width="130" height="37">
                             </a>
                         </td>
                     </tr>

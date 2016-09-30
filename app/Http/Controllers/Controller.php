@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lead;
 use App\Notifications\InvoicePaid;
+use App\Notifications\NewMessage;
 use App\Notifications\Welcome;
 use App\SubscriptionsUsage;
 use App\User;
@@ -91,6 +92,9 @@ class Controller extends BaseController
         $message->email         = $request->input('inputEmail');
         $message->message       = $request->input('inputMessage');
         $message->save();
+
+        $admin  = User::find(1);
+        $admin->notify(new NewMessage($message));
 
         return back();
     }

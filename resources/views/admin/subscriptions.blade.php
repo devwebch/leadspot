@@ -57,7 +57,7 @@
 @section('content')
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Accounts</div>
+            <div class="panel-title">Subscriptions</div>
             <div class="pull-right hidden">
                 <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> New lead</a>
             </div>
