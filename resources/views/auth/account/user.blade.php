@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('breadcrumb')
-    <li><a href="/account" class="active">My account</a></li>
+    <li><a href="/account" class="active">{{trans('breadcrumbs.my_account')}}</a></li>
 @endsection
 
 @section('styles')

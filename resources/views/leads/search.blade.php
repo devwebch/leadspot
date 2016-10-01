@@ -3,7 +3,7 @@
 @section('title', 'Search new leads')
 
 @section('breadcrumb')
-    <li><a href="/leads/search" class="active">Search leads</a></li>
+    <li><a href="/leads/search" class="active">{{trans('breadcrumbs.search_leads')}}</a></li>
 @endsection
 
 @section('styles')

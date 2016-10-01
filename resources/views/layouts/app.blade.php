@@ -135,7 +135,7 @@
                     <div class="inner">
                         <!-- START BREADCRUMB -->
                         <ul class="breadcrumb">
-                            <li><p><a href="/">HOME</a></p></li>
+                            <li><p><a href="/">{{trans('breadcrumbs.home')}}</a></p></li>
                             @yield('breadcrumb')
                         </ul>
                         <!-- END BREADCRUMB -->

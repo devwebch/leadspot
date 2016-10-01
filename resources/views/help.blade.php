@@ -3,7 +3,7 @@
 @section('title', 'Help')
 
 @section('breadcrumb')
-    <li><a href="/help" class="active">Help</a></li>
+    <li><a href="/help" class="active">{{trans('breadcrumbs.help')}}</a></li>
 @endsection
 
 @section('styles')

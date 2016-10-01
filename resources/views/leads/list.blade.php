@@ -3,7 +3,7 @@
 @section('title', 'List of leads')
 
 @section('breadcrumb')
-    <li><a href="/leads/list" class="active">Leads list</a></li>
+    <li><a href="/leads/list" class="active">{{trans('breadcrumbs.leads_list')}}</a></li>
 @endsection
 
 @section('styles')
