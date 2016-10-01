@@ -33,9 +33,11 @@
                             <a data-toggle="tab" href="#tabSubscription">Subscription</a>
                         </li>
                         @endif
+                        @if (Auth::user()->id == 1)
                         <li class="">
                             <a data-toggle="tab" href="#tabInvoices">Invoices</a>
                         </li>
+                        @endif
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabInfos">
@@ -253,9 +255,11 @@
                                 <div class="col-md-12">
                                     <h3 class="m-t-0">Your invoices</h3>
                                     <ul>
-                                        @foreach ($invoices as $invoice)
+                                        @forelse($invoices as $invoice)
                                         <li>{{$invoice->date()->toFormattedDateString()}} - {{($invoice->total/100)}}$ | <a href="/account/invoice/{{$invoice->id}}" target="_blank">Download</a></li>
-                                        @endforeach
+                                        @empty
+                                        <li>No invoices</li>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>
