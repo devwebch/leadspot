@@ -28,7 +28,7 @@
     <!-- START Login Right Container-->
     <div class="login-container bg-white">
         <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-            <img src="{{asset('img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
+            <img src="{{asset('img/logo-leadspot.png')}}" alt="LeadSpot" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
             <p class="p-t-10">{{trans('login.form_intro')}}</p>
             <!-- START Login Form -->
             @yield('content')
@@ -38,9 +38,7 @@
                     <div class="col-sm-12 no-padding m-t-10">
                         <strong>{{trans('login.have_account')}}</strong>
                         <p>
-                            <small>
-                                <a href="/register">{{trans('login.create_account')}}</a>
-                            </small>
+                            <a href="/register">{{trans('login.create_account')}}</a>
                         </p>
                     </div>
                 </div>
