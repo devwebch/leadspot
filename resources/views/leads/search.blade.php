@@ -171,7 +171,7 @@
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
                         <h3>How do I start?</h3>
-                        <p><strong>Locate the area</strong> in which you would like to start search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.</p>
+                        <p><strong>Locate the area</strong> in which you would like to start to search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.</p>
                         <p>Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.</p>
                         <p>By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.</p>
                     </div>
@@ -188,7 +188,7 @@
                         </div>
 
                         <div class="wbf-business-details__no-website" v-show="status.loaded && !details.website && details.name">
-                            <div class="alert alert-info"><p>It looks like this business have no website.</p></div>
+                            <div class="alert alert-info"><p>{{trans('search.general.no_website')}}</p></div>
                         </div>
 
                         <div class="wbf-business-details__pagespeed" v-show="status.loaded && details.website">

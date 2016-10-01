@@ -32,7 +32,8 @@ return [
         'optimized_images_desc'     => 'Images sizes are optimized',
         'adapted_font_size'         => 'Adapted font size',
         'adapted_font_size_desc'    => 'Font size is optimized for readability',
-        'save_lead'                 => 'Save this lead'
+        'save_lead'                 => 'Save this lead',
+        'no_website'                => "This business doesn't seems to have a website."
     ],
     'categories' => [
         'accounting'                => 'Accounting',

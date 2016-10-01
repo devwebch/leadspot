@@ -18,7 +18,7 @@ return [
     ],
 	'free' => [
 	    'price' => 0,
-        'limit' => 3
+        'limit' => 5
     ],
     'advanced'  => [
         'price' => 75,

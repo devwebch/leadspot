@@ -24,6 +24,8 @@
                 <div class="panel-body">
                     <h3>Hi there {{$user->first_name}}</h3>
 
+                    <a href="/account/edit" class="btn btn-complete pull-right">Edit informations</a>
+
                     <ul class="nav nav-tabs nav-tabs-top nav-tabs-simple">
                         <li class="active">
                             <a data-toggle="tab" href="#tabInfos">Your infos</a>

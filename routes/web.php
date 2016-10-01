@@ -61,6 +61,8 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
 // User account
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/', 'UserController@account');
+    Route::get('/edit', 'UserController@edit');
+    Route::post('/save', 'UserController@save');
     Route::get('/invoice/{invoice}', 'UserController@downloadInvoice');
 });
 

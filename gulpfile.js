@@ -1,4 +1,5 @@
 const elixir = require('laravel-elixir');
+const imagemin = require('gulp-imagemin');
 
 require('laravel-elixir-vue');
 
@@ -19,3 +20,9 @@ elixir(mix => {
     mix.version('js/places.js'),
     mix.styles(['pages.css'], 'public/css/pages.css')
 });
+
+gulp.task('images', () =>
+    gulp.src('public/img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('public/img/dist'))
+);

@@ -49,4 +49,29 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(Request $request)
+    {
+        $user = $request->user();
+
+        return view('auth.account.form', ['user' => $user]);
+    }
+
+    public function save(Request $request)
+    {
+        $user = $request->user();
+
+        $this->validate($request, [
+            'inputFirstName'    => 'required',
+            'inputLastName'     => 'required',
+            'inputCompany'      => 'max:255'
+        ]);
+
+        $user->first_name       = $request->input('inputFirstName');
+        $user->last_name        = $request->input('inputLastName');
+        $user->company          = $request->input('inputCompany');
+        $user->save();
+
+        return redirect('/account');
+    }
+
 }
