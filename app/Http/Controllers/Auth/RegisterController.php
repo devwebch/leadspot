@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Notifications\NewMessage;
+use App\Notifications\NewUser;
 use App\SubscriptionsUsage;
 use App\User;
 use Validator;
@@ -87,7 +88,7 @@ class RegisterController extends Controller
 
         // send notification to user
         $user->notify(new Welcome($user));
-        $admin->notify(new NewMessage($user));
+        $admin->notify(new NewUser($user));
 
         return $user;
     }
