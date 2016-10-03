@@ -53,6 +53,9 @@
                                     <strong>Last name</strong>
                                     <p>{{$user->last_name}}</p>
 
+                                    <strong>E-mail</strong>
+                                    <p>{{$user->email}}</p>
+
                                     @if( $user->company)
                                     <strong>Company</strong>
                                     <p>{{$user->company}}</p>

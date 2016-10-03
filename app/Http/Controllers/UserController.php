@@ -34,10 +34,10 @@ class UserController extends Controller
         }
 
         return view('auth.account.user', [
-            'user' => $user,
-            'usage' => $usage,
-            'subscription' => $subscription,
-            'invoices'  => $invoices,
+            'user'              => $user,
+            'usage'             => $usage,
+            'subscription'      => $subscription,
+            'invoices'          => $invoices,
         ]);
     }
 
