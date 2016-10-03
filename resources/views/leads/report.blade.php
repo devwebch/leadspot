@@ -17,8 +17,13 @@
         h3 { font-size: 18px; }
         h4 { font-size: 16px; }
 
+        table {
+            width: 100%;
+        }
+
         table tr td {
             border-width: 1px;
+            vertical-align: top;
         }
 
         .report {
@@ -26,7 +31,7 @@
         }
         .report .header {
             border: none;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
     </style>
 @endsection
@@ -37,7 +42,7 @@
 
             <div class="report">
                 <div class="header">
-                    <img src="img/logo-leadspot.png" alt="LeadSpot" width="200">
+                    <img src="img/logo-leadspot.png" alt="LeadSpot" width="180">
                 </div>
 
                 <h1>{{$lead->name}}</h1>
@@ -51,7 +56,7 @@
                         </tr>
                         <tr>
                             <td><strong>CMS</strong></td>
-                            <td>{{$lead->cms}}</td>
+                            <td>{{config('constants.cms.' . $lead->cms)}}</td>
                         </tr>
                         <tr>
                             <td><strong>Phone</strong></td>
@@ -64,26 +69,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <h3>Pagespeed scores</h3>
-                                <table class="table">
-                                    <tr>
-                                        <th>Speed</th>
-                                        <th>Usability</th>
-                                    </tr>
-                                    <tr>
-                                        <td>59 / 100</td>
-                                        <td>95 / 100</td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td>
+                            <td width="45%">
                                 <h3>Obsolescence indicators</h3>
                                 <table class="table">
                                     <tr>
                                         <td>
                                             <strong>Responsive</strong>
-                                            <p class="small">Website is adapted for mobile devices</p>
                                         </td>
                                         <td>Yes</td>
                                     </tr>
@@ -108,16 +99,27 @@
                                     <tr>
                                         <td>
                                             <strong>Optimized images</strong>
-                                            <p class="small">Images sizes are optimized</p>
                                         </td>
                                         <td>No</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <strong>Adapted font size</strong>
-                                            <p class="small">Font size is optimized for readability</p>
                                         </td>
                                         <td>Yes</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="45%">
+                                <h3>Pagespeed scores</h3>
+                                <table class="table">
+                                    <tr>
+                                        <td><strong>Speed</strong></td>
+                                        <td>59 / 100</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Usability</strong></td>
+                                        <td>95 / 100</td>
                                     </tr>
                                 </table>
                             </td>

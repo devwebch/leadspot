@@ -202,17 +202,16 @@ class LeadController extends Controller
         }
     }
 
-    public function report()
+    public function report(Lead $lead)
     {
-        $lead   = Lead::find(15);
         $view   = view('leads.report', ['lead' => $lead]);
 
-        $dompdf = new Dompdf();
+        /*$dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream();
+        $dompdf->stream();*/
 
-        return view('leads.report');
+        return view('leads.report', ['lead' => $lead]);
     }
 }
