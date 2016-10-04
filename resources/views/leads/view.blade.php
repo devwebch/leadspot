@@ -100,16 +100,16 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>E-mail</th>
+                                <th width="70%">E-mail</th>
                                 <th>Type</th>
-                                <th>Confidence</th>
+                                <th>Trust</th>
                             </tr>
                         </thead>
                     @foreach($lead->contacts as $contact)
                         <tr>
-                            <td><a href="mailto:{{$contact->email}}">{{$contact->email}}</a></td>
+                            <td><a href="mailto:{{$contact->email}}" style="word-break: break-all; white-space: normal;">{{$contact->email}}</a></td>
                             <td>{{config('constants.contact.type.' . $contact->type)}}</td>
-                            <td>{{$contact->confidence}}</td>
+                            <td>{{$contact->confidence}}%</td>
                         </tr>
                     @endforeach
                     </table>

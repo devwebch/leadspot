@@ -20,9 +20,9 @@
         };
     </script>
     <script src="{{asset('plugins/bootstrap-select2/select2.min.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&signed_in=true&libraries=places" async defer></script>
-    <script src="{{asset('js/map-icons.js')}}" async defer></script>
-    <script src="{{elixir('js/places.js')}}" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&signed_in=true&libraries=places"></script>
+    <script src="{{asset('js/map-icons.js')}}"></script>
+    <script src="{{elixir('js/places.js')}}"></script>
 @endsection
 
 @section('content')
