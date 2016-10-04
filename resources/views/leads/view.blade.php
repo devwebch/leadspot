@@ -106,10 +106,17 @@
                             </tr>
                         </thead>
                     @foreach($lead->contacts as $contact)
+                        <?php
+                                $confidence = (int) $contact->confidence;
+                                $confidence_class = 'label-info';
+                                if ( $confidence >= 85 ) {
+                                    $confidence_class = 'label-success';
+                                }
+                            ?>
                         <tr>
                             <td><a href="mailto:{{$contact->email}}" style="word-break: break-all; white-space: normal;">{{$contact->email}}</a></td>
                             <td>{{config('constants.contact.type.' . $contact->type)}}</td>
-                            <td>{{$contact->confidence}}%</td>
+                            <td><span class="label {{$confidence_class}}">{{$contact->confidence}}%</span></td>
                         </tr>
                     @endforeach
                     </table>
