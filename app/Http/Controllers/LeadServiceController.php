@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Lead;
 use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class LeadServiceController extends Controller
 {
     private $PAGESPEED_API_KEY      = 'AIzaSyDCelPpT9KgfceVGY8cBRFc4D-n8rbT9-0';
+    private $EMAILHUNTER_API_KEY    = 'b7ed2eb558bb33918da354c3cb6525a33b28ccd3';
     private $referer                = 'https://go.leadspotapp.com';
 
     public function __construct()
@@ -134,5 +136,57 @@ class LeadServiceController extends Controller
         curl_close($curl);
 
         return response($output);
+    }
+
+    public function getLeadEmails(Lead $lead, Request $request)
+    {
+        $response   = false;
+        $website    = $lead->url;
+        $website    = parse_url($website)['host'];
+
+        // if no website, exit
+        if ( !$website ) {
+            return;
+        }
+
+        // check if lead has contacts
+        $contacts = Contact::where('lead_id', $lead->id)->take(1)->get();
+        if ( count($contacts) ) {
+            return;
+        }
+
+        // query the mailhunter api
+        $curl   = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'https://api.emailhunter.co/v2/domain-search?domain=' . $website . '&api_key=' . $this->EMAILHUNTER_API_KEY);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_REFERER, $this->referer);
+        $output = curl_exec($curl);
+        curl_close($curl);
+
+        // decode json response
+        $json_object    = json_decode($output);
+        $emails_raw     = $json_object->data->emails;
+        $emails         = [];
+
+        foreach ($emails_raw as $email) {
+
+            // check confidence
+            if ( $email->confidence >= 60 ) {
+
+                $emails[] = [ 'email' => $email->value, 'type' => $email->type, 'confidence' => $email->confidence];
+
+                $contact = new Contact();
+                $contact->lead_id       = $lead->id;
+                $contact->email         = $email->value;
+                $contact->type          = $email->type;
+                $contact->confidence    = $email->confidence;
+                $contact->save();
+            }
+        }
+
+        return back();
     }
 }

@@ -15,7 +15,7 @@ class LeadsTableSeeder extends Seeder
             DB::table('leads')->insert(
                 [
                     'name'          => 'Shop ' . str_random(5),
-                    'url'           => 'http://example.com',
+                    'url'           => 'http://wng.ch',
                     'address'       => 'Rue de Genève 7, 1003 Lausanne',
                     'phone_number'  => '021 646 76 23',
                     'notes'         => '',

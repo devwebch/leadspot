@@ -36,6 +36,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function () {
     Route::get('edit/{lead}', 'LeadController@editLead');
     Route::get('view/{lead}', 'LeadController@viewLead');
     Route::get('report/{lead}', 'LeadController@report');
+    Route::get('getcontacts/{lead}', 'LeadServiceController@getLeadEmails');
 });
 
 // Service

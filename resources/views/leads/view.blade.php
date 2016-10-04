@@ -95,6 +95,29 @@
                     @else
                         <a href="/leads/edit/{{$lead->id}}">Edit and add notes</a>
                     @endif
+                    <hr>
+                    <h4>Contacts</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>E-mail</th>
+                                <th>Type</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                    @foreach($lead->contacts as $contact)
+                        <tr>
+                            <td><a href="mailto:{{$contact->email}}">{{$contact->email}}</a></td>
+                            <td>{{config('constants.contact.type.' . $contact->type)}}</td>
+                            <td>{{$contact->confidence}}</td>
+                        </tr>
+                    @endforeach
+                    </table>
+
+                    @if(!count($lead->contacts))
+                        <a href="/leads/getcontacts/{{$lead->id}}" class="btn btn-success">Fetch contacts</a>
+                    @endif
+
                 </div>
             </div>
         </div>

@@ -10,4 +10,9 @@ class Lead extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function contacts()
+    {
+        return $this->hasMany('App\Contact');
+    }
 }

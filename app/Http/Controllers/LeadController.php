@@ -169,8 +169,8 @@ class LeadController extends Controller
         $lead->name         = $request->leadName;
         $lead->address      = $request->leadAddress;
         $lead->url          = $request->leadUrl;
-        $lead->lat          = 0;
-        $lead->lng          = 0;
+        $lead->lat          = $request->leadLat;
+        $lead->lng          = $request->leadLng;
         $lead->notes        = $request->leadNotes;
         $lead->status       = $request->leadStatus;
         $lead->user_id      = $user->id;

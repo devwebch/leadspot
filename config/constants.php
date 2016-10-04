@@ -28,5 +28,11 @@ return [
         'typo3'                 => 'Typo3',
         'vbulletin'             => 'vBulletin',
         'wordpress'             => 'WordPress'
+    ],
+    'contact' => [
+        'type' => [
+            'generic'   => 'Generic',
+            'personal'  => 'Personal'
+        ]
     ]
 ];
