@@ -97,6 +97,7 @@
                     @endif
                     <hr>
                     <h4>Contacts</h4>
+                    @if ($stored_contacts)
                     <table class="table">
                         <thead>
                             <tr>
@@ -107,12 +108,12 @@
                         </thead>
                     @foreach($lead->contacts as $contact)
                         <?php
-                                $confidence = (int) $contact->confidence;
-                                $confidence_class = 'label-info';
-                                if ( $confidence >= 85 ) {
-                                    $confidence_class = 'label-success';
-                                }
-                            ?>
+                        $confidence         = (int) $contact->confidence;
+                        $confidence_class   = 'label-info';
+                        if ( $confidence >= 85 ) {
+                            $confidence_class = 'label-success';
+                        }
+                        ?>
                         <tr>
                             <td><a href="mailto:{{$contact->email}}" style="word-break: break-all; white-space: normal;">{{$contact->email}}</a></td>
                             <td>{{config('constants.contact.type.' . $contact->type)}}</td>
@@ -120,9 +121,15 @@
                         </tr>
                     @endforeach
                     </table>
+                    @endif
 
-                    @if(!count($lead->contacts))
+                    @if(!$stored_contacts && ($available_contacts > 0))
+                        <p class="hint-text">Contacts may be available ({{$available_contacts}}), only relevant contact informations will be retrieved.</p>
                         <a href="/leads/getcontacts/{{$lead->id}}" class="btn btn-success">Fetch contacts</a>
+                    @endif
+
+                    @if(!$stored_contacts && ($available_contacts <=0))
+                        <p class="hint-text">No contacts informations were found for this website.</p>
                     @endif
 
                 </div>

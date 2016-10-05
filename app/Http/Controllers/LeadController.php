@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Lead;
 use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
+        $leadService = new LeadServiceController();
+
         $status_classes = [
             0   => '',
             1   => 'label-warning',
@@ -42,10 +45,19 @@ class LeadController extends Controller
             3   => 'label-danger'
         ];
 
+        $stored_contacts    = Contact::where('lead_id', $lead->id)->count();
+        $available_contacts = $stored_contacts;
+
+        if ( $stored_contacts == 0 ) {
+            $available_contacts = $leadService->checkLeadEmails($lead);
+        }
+
         return view('leads.view', [
-            'lead'              => $lead,
-            'status'            => $status,
-            'status_classes'    => $status_classes,
+            'lead'                  => $lead,
+            'status'                => $status,
+            'status_classes'        => $status_classes,
+            'stored_contacts'       => $stored_contacts,
+            'available_contacts'    => $available_contacts,
         ]);
     }
 

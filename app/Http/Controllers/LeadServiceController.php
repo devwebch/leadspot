@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\Lead;
 use App\Library\DetectCMS\DetectCMS;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -140,9 +141,9 @@ class LeadServiceController extends Controller
 
     public function getLeadEmails(Lead $lead, Request $request)
     {
-        $response   = false;
         $website    = $lead->url;
         $website    = parse_url($website)['host'];
+        $domain     = preg_replace('/www\./', '', $website);
 
         // if no website, exit
         if ( !$website ) {
@@ -150,14 +151,14 @@ class LeadServiceController extends Controller
         }
 
         // check if lead has contacts
-        $contacts = Contact::where('lead_id', $lead->id)->take(1)->get();
-        if ( count($contacts) ) {
+        $contacts = Contact::where('lead_id', $lead->id)->count();
+        if ( $contacts ) {
             return;
         }
 
         // query the mailhunter api
         $curl   = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://api.emailhunter.co/v2/domain-search?domain=' . $website . '&api_key=' . $this->EMAILHUNTER_API_KEY);
+        curl_setopt($curl, CURLOPT_URL, 'https://api.emailhunter.co/v2/domain-search?domain=' . $domain . '&api_key=' . $this->EMAILHUNTER_API_KEY);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
@@ -169,15 +170,14 @@ class LeadServiceController extends Controller
         // decode json response
         $json_object    = json_decode($output);
         $emails_raw     = $json_object->data->emails;
-        $emails         = [];
 
+        // loop through emails
         foreach ($emails_raw as $email) {
 
             // check confidence
             if ( $email->confidence >= 60 ) {
 
-                $emails[] = [ 'email' => $email->value, 'type' => $email->type, 'confidence' => $email->confidence];
-
+                // create Contact Model
                 $contact = new Contact();
                 $contact->lead_id       = $lead->id;
                 $contact->email         = $email->value;
@@ -188,5 +188,27 @@ class LeadServiceController extends Controller
         }
 
         return back();
+    }
+    public function checkLeadEmails(Lead $lead)
+    {
+        $website    = $lead->url;
+        $website    = parse_url($website)['host'];
+        $domain     = preg_replace('/www\./', '', $website);
+        $count      = 0;
+
+        // if no website, exit
+        if ( !$website ) {
+            return;
+        }
+
+        $client = new Client();
+        $res = $client->request('GET', 'https://api.emailhunter.co/v2/email-count?domain=' . $domain, ['verify' => false]);
+
+        if ( $res->getStatusCode() == '200' ) {
+            $data = json_decode($res->getBody());
+            $count = (int) $data->data->total;
+        }
+
+        return $count;
     }
 }
