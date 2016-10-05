@@ -37,7 +37,9 @@
                     { 'bSortable': false, 'aTargets': [ 3, 6 ] }
                 ]
             };
-
+            $('#search-table').keyup(function() {
+                table.fnFilter($(this).val());
+            });
             table.dataTable(settings);
 
             $('[data-toggle="popover"]').popover({
@@ -59,6 +61,11 @@
             <div class="panel-title">Leads list</div>
             <div class="pull-right hidden">
                 <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> New lead</a>
+            </div>
+            <div class="pull-right">
+                <div class="col-xs-12">
+                    <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
