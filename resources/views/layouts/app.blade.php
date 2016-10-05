@@ -29,29 +29,29 @@
     <!-- BEGIN SIDEBAR MENU -->
     <div class="sidebar-menu">
         <ul class="menu-items">
-            <li class="m-t-30">
-                <a href="/" class="detailed">
+            <li class="m-t-30 <?php echo (Route::current()->uri() == '/') ? 'active' : ''; ?>">
+                <a href="/">
                     <span class="title">{{trans('menu.dashboard')}}</span>
                 </a>
-                <span class="icon-thumbnail bg-danger"><i class="pg-home"></i></span>
+                <span class="icon-thumbnail <?php echo (Route::current()->uri() == '/') ? 'bg-danger' : ''; ?>"><i class="pg-home"></i></span>
             </li>
-            <li class="">
+            <li class="<?php echo (Route::current()->uri() == 'leads/search') ? 'active' : ''; ?>">
                 <a href="/leads/search">
                     <span class="title">{{trans('menu.search_leads')}}</span>
                 </a>
-                <span class="icon-thumbnail "><i class="pg-map"></i></span>
+                <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'leads/search') ? 'bg-danger' : ''; ?>"><i class="pg-map"></i></span>
             </li>
-            <li class="">
+            <li class="<?php echo (Route::current()->uri() == 'leads/list') ? 'active' : ''; ?>">
                 <a href="/leads/list">
                     <span class="title">{{trans('menu.my_leads')}}</span>
                 </a>
-                <span class="icon-thumbnail "><i class="pg-folder_alt"></i></span>
+                <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'leads/list') ? 'bg-danger' : ''; ?>"><i class="pg-folder_alt"></i></span>
             </li>
-            <li class="m-t-30">
-                <a href="/account" class="detailed">
+            <li class="m-t-30 <?php echo (Route::current()->uri() == 'account') ? 'active' : ''; ?>">
+                <a href="/account">
                     <span class="title">{{trans('menu.my_account')}}</span>
                 </a>
-                <span class="icon-thumbnail"><i class="fa fa-user"></i></span>
+                <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'account') ? 'bg-danger' : ''; ?>"><i class="fa fa-user"></i></span>
             </li>
             <li class="visible-xs">
                 <a href="/logout">
