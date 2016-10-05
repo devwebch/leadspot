@@ -64,6 +64,7 @@ var analyzeModule = new Vue({
             if ( searchRadius ) { request.radius = parseInt(searchRadius); } else { request.radius = 100; }
 
             if (request.name || request.types.length) {
+                $('.wbf-search-form .btn .fa').removeClass('hidden'); // show loading icon
                 mapSearch();
             }
         });
@@ -91,7 +92,7 @@ var analyzeModule = new Vue({
 
         $('.wbf-location-form').submit(function (e) {
             e.preventDefault();
-            var address          = $('#wbfInputAddress').val();
+            var address = $('#wbfInputAddress').val();
             if (address) { geoCodeAddress(address); }
         });
 
@@ -171,6 +172,13 @@ var analyzeModule = new Vue({
         // Handle the callback with an anonymous function.
         service = new google.maps.places.PlacesService(map);
         service.radarSearch(request, function(results, status) {
+            $('.wbf-search-form .btn .fa').addClass('hidden'); // hide loading icon
+
+            // no results
+            if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+                swal({title: "No results", text: "Sorry but we did not find any results.", type: "warning"});
+            }
+            // yup there's results
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];

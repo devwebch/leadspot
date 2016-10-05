@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">{{trans('search.general.search')}}</button>
+                        <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
                     </form>
                     <div class="map-container">
                         <div id="map" style="height: 500px"></div>
