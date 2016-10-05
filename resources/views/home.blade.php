@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{asset('css/shepherd-theme-arrow.css')}}" />
 @endsection
 
 @section('scripts')
@@ -12,7 +12,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 m-b-10">
-            <div class="panel">
+            <div class="panel panel-welcome">
                 <div class="panel-body">
                     <h3>{{trans('home.welcome', ['firstname' => Auth::user()->first_name])}}</h3>
                     <p>{{trans('home.introduction')}}</p>
