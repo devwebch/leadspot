@@ -74,7 +74,7 @@
         </div>
         <div class="col-md-3">
             <div class="m-b-20">
-                <div class="panel no-border bg-master-dark widget">
+                <div class="panel bg-master-dark widget panel-account">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account" class="text-white">{{trans('home.my_account')}}</a></h2>
                         <p class=""><a href="/account" class="btn btn-info">{{trans('home.manage_options')}}</a></p>
@@ -83,7 +83,7 @@
             </div>
 
             <div class="m-b-20">
-                <div class="panel no-border bg-complete-dark widget">
+                <div class="panel bg-complete-dark widget panel-limit">
                     <div class="panel-body">
                         <h2 class="semi-bold text-white">{{trans('home.daily_limit')}}</h2>
                         <h3 class="text-white">
@@ -94,7 +94,7 @@
             </div>
 
             <div class="m-b-20">
-                <div class="panel no-border bg-info-light widget">
+                <div class="panel bg-info-light widget panel-contact">
                     <div class="panel-body">
                         <a href="/account"><h3 class="text-white semi-bold">{{trans('home.opinion_title')}}</h3></a>
                         <p class="text-white">{{trans('home.opinion_desc')}}</p>
@@ -102,6 +102,12 @@
                     </div>
                 </div>
             </div>
+
+            @if( $leads->count() == 0 )
+            <div class="m-b-20">
+                <a href="/?tour=1" class="btn btn-success">Start tour</a>
+            </div>
+            @endif
 
         </div>
     </div>
