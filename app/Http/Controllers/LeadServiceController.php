@@ -83,17 +83,11 @@ class LeadServiceController extends Controller
 
         $pagespeed    = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=' . urlencode($website) . '&screenshot=true&strategy=mobile&key=' . $this->PAGESPEED_API_KEY;
 
-        $curl   = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $pagespeed);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_REFERER, $this->referer);
-        $output = curl_exec($curl);
-        curl_close($curl);
+        $client = new Client();
+        $res    = $client->request('GET', $pagespeed, ['verify' => false]);
+        $output = $res->getBody();
 
-        return response()->json($output);
+        return response($output);
     }
 
     public function getPlaces(Request $request)
@@ -107,15 +101,9 @@ class LeadServiceController extends Controller
         $name           = 'cruise';
         $places = 'https://maps.googleapis.com/maps/api/place/radarsearch/json?location=' . $location . '&radius=' . $radius . '&types=' . $types . '&name=' . $name . '&key=' . $this->PAGESPEED_API_KEY;
 
-        $curl   = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $places);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_REFERER, $this->referer);
-        $output = curl_exec($curl);
-        curl_close($curl);
+        $client = new Client();
+        $res    = $client->request('GET', $places, ['verify' => false]);
+        $output = $res->getBody();
 
         return response($output);
     }
@@ -126,15 +114,9 @@ class LeadServiceController extends Controller
         $place_ID   = 'ChIJ__8_hziuEmsR27ucFXECfOg';
         $places = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $place_ID . '&key=' . $this->PAGESPEED_API_KEY;
 
-        $curl   = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $places);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_REFERER, $this->referer);
-        $output = curl_exec($curl);
-        curl_close($curl);
+        $client = new Client();
+        $res    = $client->request('GET', $places, ['verify' => false]);
+        $output = $res->getBody();
 
         return response($output);
     }
@@ -157,33 +139,28 @@ class LeadServiceController extends Controller
         }
 
         // query the mailhunter api
-        $curl   = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://api.emailhunter.co/v2/domain-search?domain=' . $domain . '&api_key=' . $this->EMAILHUNTER_API_KEY);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_REFERER, $this->referer);
-        $output = curl_exec($curl);
-        curl_close($curl);
+        $client = new Client();
+        $res    = $client->request('GET', 'https://api.emailhunter.co/v2/domain-search?domain=' . $domain . '&api_key=' . $this->EMAILHUNTER_API_KEY, ['verify' => false]);
 
-        // decode json response
-        $json_object    = json_decode($output);
-        $emails_raw     = $json_object->data->emails;
+        if ( $res->getStatusCode() == '200' ) {
+            // decode json response
+            $json_object    = json_decode($res->getBody());
+            $emails_raw     = $json_object->data->emails;
 
-        // loop through emails
-        foreach ($emails_raw as $email) {
+            // loop through emails
+            foreach ($emails_raw as $email) {
 
-            // check confidence
-            if ( $email->confidence >= 60 ) {
+                // check confidence
+                if ( $email->confidence >= 60 ) {
 
-                // create Contact Model
-                $contact = new Contact();
-                $contact->lead_id       = $lead->id;
-                $contact->email         = $email->value;
-                $contact->type          = $email->type;
-                $contact->confidence    = $email->confidence;
-                $contact->save();
+                    // create Contact Model
+                    $contact = new Contact();
+                    $contact->lead_id       = $lead->id;
+                    $contact->email         = $email->value;
+                    $contact->type          = $email->type;
+                    $contact->confidence    = $email->confidence;
+                    $contact->save();
+                }
             }
         }
 
@@ -202,7 +179,7 @@ class LeadServiceController extends Controller
         }
 
         $client = new Client();
-        $res = $client->request('GET', 'https://api.emailhunter.co/v2/email-count?domain=' . $domain, ['verify' => false]);
+        $res    = $client->request('GET', 'https://api.emailhunter.co/v2/email-count?domain=' . $domain, ['verify' => false]);
 
         if ( $res->getStatusCode() == '200' ) {
             $data = json_decode($res->getBody());
