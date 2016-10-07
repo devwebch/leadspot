@@ -26,6 +26,20 @@ class LeadController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return View
+     */
+    public function searchLead(Request $request)
+    {
+        // get the tour param
+        $tour = $request->input('tour');
+
+        return view('leads.search', [
+            'tour'      => $tour
+        ]);
+    }
+
+    /**
      * Retrieve a single lead
      * @param Lead $lead
      * @param Request $request

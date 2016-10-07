@@ -30,7 +30,7 @@ Route::get('/subscribe/transaction/success', function () { return view('subscrip
 Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function () {
     Route::get('list', 'LeadController@getLeads');
     Route::get('new', 'LeadController@newLead');
-    Route::get('search', function () { return view('leads.search'); });
+    Route::get('search', 'LeadController@searchLead');
     Route::post('store/{id?}', 'LeadController@storeLead');
     Route::get('delete/{lead}', 'LeadController@deleteLead');
     Route::get('edit/{lead}', 'LeadController@editLead');

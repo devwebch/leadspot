@@ -3,11 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('styles')
-    <link rel="stylesheet" href="{{asset('css/shepherd-theme-arrow.css')}}" />
+    @if( $tour )
+        <link rel="stylesheet" href="{{asset('css/shepherd-theme-arrow.css')}}" />
+    @endif
 @endsection
 
 @section('scripts')
-    <script src="{{asset('js/tour.js')}}"></script>
+    @if( $tour )
+        <script>var tourConfig = {tour: 'intro'};</script>
+        <script src="{{asset('js/tour.js')}}"></script>
+    @endif
 @endsection
 
 @section('content')

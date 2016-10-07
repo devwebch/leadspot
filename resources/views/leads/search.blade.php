@@ -9,6 +9,9 @@
 @section('styles')
     <link rel="stylesheet" href="{{asset('plugins/bootstrap-select2/select2.css')}}">
     <link rel="stylesheet" href="{{asset('css/map-icons.css')}}">
+    @if( $tour )
+        <link rel="stylesheet" href="{{asset('css/shepherd-theme-arrow.css')}}" />
+    @endif
 @endsection
 
 @section('scripts')
@@ -23,13 +26,17 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&signed_in=true&libraries=places"></script>
     <script src="{{asset('js/map-icons.js')}}"></script>
     <script src="{{elixir('js/places.js')}}"></script>
+    @if( $tour )
+        <script>var tourConfig = {tour: 'search'};</script>
+        <script src="{{asset('js/tour.js')}}"></script>
+    @endif
 @endsection
 
 @section('content')
 
     <div class="row">
         <div class="col-md-9">
-            <div class="panel">
+            <div class="panel panel-search">
                 <div class="panel-heading">
                     <div class="panel-title">{{trans('search.general.search_location')}}</div>
                 </div>
@@ -49,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel">
+            <div class="panel panel-search-params">
                 <div class="panel-heading">
                     <div class="panel-title">{{trans('search.general.map')}}</div>
                 </div>
@@ -164,7 +171,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="panel">
+            <div class="panel panel-place-details">
                 <div class="panel-heading">
                     <div class="panel-title"><i class="pg-map"></i> {{trans('search.general.business_details')}}</div>
                 </div>

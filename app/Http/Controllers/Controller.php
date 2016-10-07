@@ -53,11 +53,15 @@ class Controller extends BaseController
 
         $usage = $user->subscriptionUsage();
 
+        // get the tour param
+        $tour = $request->input('tour');
+
         return view('home', [
             'leads'             => $leads,
             'usage'             => $usage,
             'status'            => $status,
-            'status_classes'    => $status_classes
+            'status_classes'    => $status_classes,
+            'tour'              => $tour,
         ]);
     }
 
