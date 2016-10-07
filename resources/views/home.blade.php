@@ -7,6 +7,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{asset('js/tour.js')}}"></script>
 @endsection
 
 @section('content')
@@ -103,7 +104,7 @@
                 </div>
             </div>
 
-            @if( $leads->count() == 0 )
+            @if( $leads->count() >= 0 )
             <div class="m-b-20">
                 <a href="/?tour=1" class="btn btn-success">Start tour</a>
             </div>

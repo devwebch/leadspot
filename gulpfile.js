@@ -17,6 +17,7 @@ require('laravel-elixir-vue');
 elixir(mix => {
     mix.webpack('app.js'),
     mix.webpack('places.js'),
+    mix.webpack('tour.js'),
     mix.version('js/places.js'),
     mix.styles(['pages.css'], 'public/css/pages.css'),
     mix.styles(['shepherd-themes'], 'public/css/shepherd-theme-arrow.css')

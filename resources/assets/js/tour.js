@@ -1,3 +1,5 @@
+window.Shepherd = require('tether-shepherd');
+
 jQuery(document).ready(function ($) {
    console.log('ready');
 });

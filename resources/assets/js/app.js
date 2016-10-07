@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-require('./tour');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the body of the page. From here, you may begin adding components to
