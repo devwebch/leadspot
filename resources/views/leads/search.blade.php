@@ -61,7 +61,7 @@
                     <div class="panel-title">{{trans('search.general.map')}}</div>
                 </div>
                 <div class="panel-body">
-                    <form role="form" class="wbf-search-form m-b-20">
+                    <form role="form" class="wbf-search-form">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -164,10 +164,10 @@
                         </div>
                         <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
                     </form>
-                    <div class="map-container">
-                        <div id="map" style="height: 500px"></div>
-                    </div>
                 </div>
+            </div>
+            <div class="panel panel-map">
+                <div id="map" style="height: 500px"></div>
             </div>
         </div>
         <div class="col-md-3">

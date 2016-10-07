@@ -24,7 +24,7 @@
                     <p>{{trans('home.introduction')}}</p>
                 </div>
             </div>
-            <div class="widget-11-2 panel no-border panel-condensed no-margin widget-loader-circle">
+            <div class="widget-11-2 panel panel-leads no-border panel-condensed no-margin widget-loader-circle">
                 <div class="padding-25">
                     <div class="pull-left">
                         <h3 class="no-margin">{{trans('home.your_leads')}}</h3>
@@ -79,6 +79,12 @@
             </div>
         </div>
         <div class="col-md-3">
+            @if( $leads->count() == 0 )
+                <div class="m-b-20">
+                    <a href="/?tour=1" class="btn btn-success btn-lg btn-block hidden-xs"><i class="fa fa-rocket"></i> Start tour</a>
+                </div>
+            @endif
+
             <div class="m-b-20">
                 <div class="panel bg-master-dark widget panel-account">
                     <div class="panel-body">
@@ -108,12 +114,6 @@
                     </div>
                 </div>
             </div>
-
-            @if( $leads->count() >= 0 )
-            <div class="m-b-20">
-                <a href="/?tour=1" class="btn btn-success">Start tour</a>
-            </div>
-            @endif
 
         </div>
     </div>
