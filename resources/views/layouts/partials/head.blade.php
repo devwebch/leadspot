@@ -38,3 +38,16 @@
             document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="{{asset('pages/css/windows.chrome.fix.css')}}" />'
     }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://go.leadspotapp.com",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "email": "contact@leadspotapp.com",
+    "contactType": "customer service",
+    "url": "https://leadspotapp.com/contact"
+  }]
+}
+</script>

@@ -12,7 +12,6 @@
 
     ga('create', 'UA-10894705-3', 'auto');
     ga('send', 'pageview');
-
 </script>
 <!-- BEGIN SIDEBAR -->
 <div class="page-sidebar" data-pages="sidebar">
