@@ -207,10 +207,11 @@ var analyzeModule = new Vue({
             types: placeData.types,
             permanently_closed: placeData.permanently_closed,
             icon: {
-                url: constants.maps.icon,
-                size: new google.maps.Size(24, 30),
+                url: '../img/icn_pin_blue.png',
+                scaledSize: new google.maps.Size(22, 30),
                 origin: new google.maps.Point(0,0),
-                anchor: new google.maps.Point(10, 25)
+                anchor: new google.maps.Point(10, 25),
+                optimized: false
             }
         });
 
