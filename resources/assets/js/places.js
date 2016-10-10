@@ -12,7 +12,8 @@ var currentPlace          = {};
 var analyzeModuleData   = {
     status: appstate,
     details: currentPlace,
-    geolocating: false
+    geolocating: false,
+    permissions: {}
 };
 
 var analyzeModule = new Vue({
@@ -116,6 +117,8 @@ var analyzeModule = new Vue({
             url: '/service/subscription/permissions',
             success: function (data) {
                 permissions = data;
+                analyzeModuleData.permissions = permissions;
+                console.log('permissions', permissions);
             }
         });
 
@@ -209,8 +212,9 @@ var analyzeModule = new Vue({
             icon: {
                 url: '../img/icn_pin_blue.png',
                 scaledSize: new google.maps.Size(22, 30),
+                size: new google.maps.Size(22, 30),
                 origin: new google.maps.Point(0,0),
-                anchor: new google.maps.Point(10, 25),
+                anchor: new google.maps.Point(11, 25),
                 optimized: false
             }
         });

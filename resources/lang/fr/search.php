@@ -32,7 +32,7 @@ return [
         'optimized_images_desc'     => 'Les images sont optimisées',
         'adapted_font_size'         => 'La police de texte est optimisée',
         'adapted_font_size_desc'    => 'La police de texte est adaptée à la lisibilité',
-        'save_lead'                 => 'Sauvegarder ce business',
+        'save_lead'                 => 'Sauvegarder ce prospect',
         'no_website'                => "Ce business ne semble pas avoir de site web."
     ],
     'categories' => [
@@ -42,7 +42,7 @@ return [
         'bakery'                    => 'Boulangerie',
         'bar'                       => 'Bar',
         'beauty_salon'              => 'Salon de beauté',
-        'bicycle_store'             => 'Magasin de vélio',
+        'bicycle_store'             => 'Magasin de vélo',
         'book_store'                => 'Librairie',
         'bowling_alley'             => 'Bowling',
         'cafe'                      => 'Café',
@@ -73,7 +73,7 @@ return [
         'jewelry_store'             => 'Bijouterie',
         'laundry'                   => 'Blanchisserie',
         'lawyer'                    => 'Avocat',
-        'library'                   => 'Librairie',
+        'library'                   => 'Bibliothèque',
         'liquor_store'              => 'Magasin d\'alcool',
         'locksmith'                 => 'Serrurier',
         'lodging'                   => 'Hébergement',

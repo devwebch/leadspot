@@ -183,6 +183,12 @@
                         <p>By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.</p>
                     </div>
 
+                    <div class="upsell-cms" v-show="details.website && !permissions.cms">
+                        <h3>Upgrade your account</h3>
+                        <p>Find out which CMS is used by this website.</p>
+                        <a href="#" class="btn btn-warning">Go Pro and </a>
+                    </div>
+
                     <div class="wbf-business-details">
                         {{csrf_field()}}
 
