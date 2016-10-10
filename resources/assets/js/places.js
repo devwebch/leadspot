@@ -116,6 +116,7 @@ var analyzeModule = new Vue({
             url: '/service/subscription/permissions',
             success: function (data) {
                 permissions = data;
+                Vue.set(analyzeModuleData, 'permissions', permissions);
             }
         });
 

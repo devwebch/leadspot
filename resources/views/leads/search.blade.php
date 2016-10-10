@@ -177,10 +177,10 @@
                 </div>
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
-                        <h3>How do I start?</h3>
-                        <p><strong>Locate the area</strong> in which you would like to start to search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.</p>
-                        <p>Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.</p>
-                        <p>By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.</p>
+                        <h3>{{trans('search.introduction.title')}}</h3>
+                        <p>{{trans('search.introduction.text_1')}}</p>
+                        <p>{{trans('search.introduction.text_2')}}</p>
+                        <p>{{trans('search.introduction.text_3')}}</p>
                     </div>
 
                     <div class="wbf-business-details">
@@ -214,19 +214,24 @@
                             </table>
                         </div>
 
+                        <div class="upsell-cms" v-show="!permissions.cms">
+                            <p>Get CMS informations</p>
+                            <a href="#" class="btn btn-warning">Go PRO</a>
+                        </div>
+
                         <div class="wbf-website-cms" v-show="status.loaded && details.website && details.cms">
                             <h4>{{trans('search.general.cms')}}</h4>
                             <div class="text-center">
                                 <div>
-                                    <img src="{{asset('img/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
-                                    <img src="{{asset('img/logo_expressionengine.png')}}" alt="ExpressionEngine" v-show="details.cmsID=='expressionengine'">
-                                    <img src="{{asset('img/logo_joomla.png')}}" alt="Joomla!" v-show="details.cmsID=='joomla'">
-                                    <img src="{{asset('img/logo_liferay.png')}}" alt="LifeRay" v-show="details.cmsID=='liferay'">
-                                    <img src="{{asset('img/logo_magento.png')}}" alt="Magento" v-show="details.cmsID=='magento'">
-                                    <img src="{{asset('img/logo_sitecore.png')}}" alt="SiteCore" v-show="details.cmsID=='sitecore'">
-                                    <img src="{{asset('img/logo_typo3.png')}}" alt="Typo3" v-show="details.cmsID=='typo3'">
-                                    <img src="{{asset('img/logo_vbulletin.png')}}" alt="vBulletin" v-show="details.cmsID=='vbulletin'">
-                                    <img src="{{asset('img/logo_wordpress.png')}}" alt="WordPress" v-show="details.cmsID=='wordpress'">
+                                    <img src="{{asset('img/cms/logo_drupal.png')}}" alt="Drupal" v-show="details.cmsID=='drupal'">
+                                    <img src="{{asset('img/cms/logo_expressionengine.png')}}" alt="ExpressionEngine" v-show="details.cmsID=='expressionengine'">
+                                    <img src="{{asset('img/cms/logo_joomla.png')}}" alt="Joomla!" v-show="details.cmsID=='joomla'">
+                                    <img src="{{asset('img/cms/logo_liferay.png')}}" alt="LifeRay" v-show="details.cmsID=='liferay'">
+                                    <img src="{{asset('img/cms/logo_magento.png')}}" alt="Magento" v-show="details.cmsID=='magento'">
+                                    <img src="{{asset('img/cms/logo_sitecore.png')}}" alt="SiteCore" v-show="details.cmsID=='sitecore'">
+                                    <img src="{{asset('img/cms/logo_typo3.png')}}" alt="Typo3" v-show="details.cmsID=='typo3'">
+                                    <img src="{{asset('img/cms/logo_vbulletin.png')}}" alt="vBulletin" v-show="details.cmsID=='vbulletin'">
+                                    <img src="{{asset('img/cms/logo_wordpress.png')}}" alt="WordPress" v-show="details.cmsID=='wordpress'">
                                 </div>
                                 <strong class="m-t-10">@{{ details.cms }}</strong>
                             </div>
