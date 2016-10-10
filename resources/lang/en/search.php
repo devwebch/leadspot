@@ -100,5 +100,11 @@ return [
         'university'                => 'University',
         'veterinary_care'           => 'Veterinary Care',
         'zoo'                       => 'Zoo',
+    ],
+    'introduction' => [
+        'title'     => 'How do I start?',
+        'text_1'    => '<strong>Locate the area</strong> in which you would like to start to search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.',
+        'text_2'    => 'Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.',
+        'text_3'    => 'By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.',
     ]
 ];
