@@ -15,4 +15,9 @@ class Lead extends Model
     {
         return $this->hasMany('App\Contact');
     }
+
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
 }

@@ -107,6 +107,9 @@ var analyzeModule = new Vue({
                 success: function (data) {
                     // success alert
                     swal({ title: "Saved!", text: "The lead was added to your list.", type: "success", timer: 3000 });
+                },
+                error: function (jqXHR, textStatus) {
+                    swal({ title: "Error", text: "Something went wrong, please try again later.", type: "error", timer: 3000 });
                 }
             });
         });

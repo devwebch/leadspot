@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\Lead;
 use App\Library\DetectCMS\DetectCMS;
+use App\Report;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,36 @@ class LeadServiceController extends Controller
 
         // save the Model
         $lead->save();
+
+        // reports data
+        $scores = [
+            'speed'     => $request->stats['score_speed'],
+            'usability' => $request->stats['score_usability']
+        ];
+        $stats = [
+            'total_request_bytes'   => $request->stats['total_request_bytes'],
+            'num_js_ressources'     => $request->stats['num_js_ressources'],
+            'num_css_ressources'    => $request->stats['num_css_ressources']
+        ];
+        $indicators = [
+            'viewport'              => $request->indicators['viewport'],
+            'gzip'                  => $request->indicators['gzip'],
+            'minifyCss'             => $request->indicators['minifyCss'],
+            'minifyJs'              => $request->indicators['minifyJs'],
+            'minifyHTML'            => $request->indicators['minifyHTML'],
+            'optimizeImages'        => $request->indicators['optimizeImages'],
+            'fontSize'              => $request->indicators['fontSize'],
+        ];
+        $website = [];
+        $website['cms'] = $request->cmsID;
+
+        $report = new Report();
+        $report->lead_id       = $lead->id;
+        $report->scores        = json_encode($scores);
+        $report->stats         = json_encode($stats);
+        $report->indicators    = json_encode($indicators);
+        $report->website       = json_encode($website);
+        $report->save();
 
         return $request->all();
     }
