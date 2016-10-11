@@ -13,31 +13,31 @@ var tour_intro = new Shepherd.Tour({
 });
 
 tour_intro.addStep('intro', {
-    title: 'Welcome to LeadSpot',
-    text: 'Hello, this is your dashboard, here you will find informations<br>related to your account and operations.'
+    title: tourI18n.intro_title,
+    text: tourI18n.intro_text
 });
 
 tour_intro.addStep('intro_1', {
-    title: 'My account',
-    text: 'Quicklink to your account, manage your informations and subscriptions.',
+    title: tourI18n.intro_1_title,
+    text: tourI18n.intro_1_text,
     attachTo: '.panel-account left'
 });
 tour_intro.addStep('intro_2', {
-    title: 'Daily limit',
-    text: "Depending on your account type (free or paid), your daily limit may vary.<br>The limit is reset every day at midnight.",
+    title: tourI18n.intro_2_title,
+    text: tourI18n.intro_2_text,
     attachTo: '.panel-limit left'
 });
 tour_intro.addStep('intro_3', {
-    title: 'Leads',
-    text: "Your latest leads will be shown here.",
+    title: tourI18n.intro_3_title,
+    text: tourI18n.intro_3_text,
     attachTo: '.panel-leads top'
 });
 tour_intro.addStep('intro_4', {
-    title: 'Contact us',
-    text: 'If you have a question or run into any issue, please let us know.',
+    title: tourI18n.intro_4_title,
+    text: tourI18n.intro_4_text,
     attachTo: '.panel-contact left',
     buttons: {
-        text: 'Continue',
+        text: tourI18n.intro_4_btn_label,
         action: function () {
             tour_intro.next;
             window.location = '/leads/search?tour=1';
@@ -53,39 +53,36 @@ var tour_search = new Shepherd.Tour({
 });
 
 tour_search.addStep('search_1', {
-    title: 'Search for leads',
-    text: "Start searching for new client! Use this view to analyze local businesses and save leads."
+    title: tourI18n.search_1_title,
+    text: tourI18n.search_1_text
 });
 tour_search.addStep('search_2', {
-    title: 'Set a search location',
-    text: 'You may search for a location by <em>address</em> or by using <em>geolocation</em>.',
+    title: tourI18n.search_2_title,
+    text: tourI18n.search_2_text,
     attachTo: '.panel-search top'
 });
 tour_search.addStep('search_3', {
-    title: 'Define parameters',
-    text: 'Places may be found by <em>name</em>, <em>category</em> and <em>radius</em>.',
+    title: tourI18n.search_3_title,
+    text: tourI18n.search_3_text,
     attachTo: '.panel-search-params top'
 });
 tour_search.addStep('search_4', {
-    title: 'Results',
-    text: 'Your results will be displayed on the map.',
+    title: tourI18n.search_4_title,
+    text: tourI18n.search_4_text,
     attachTo: '.panel-map top'
 });
 tour_search.addStep('search_5', {
-    title: 'Business details',
-    text: 'Click the <em>analyze</em> button and relevant results will be display here.',
+    title: tourI18n.search_5_title,
+    text: tourI18n.search_5_text,
     attachTo: '.panel-place-details left',
     buttons: {
-        text: "I'm ready!",
+        text: tourI18n.search_5_btn_label,
         action: function () {
             tour_search.cancel();
             window.location = '/leads/search';
         }
     }
 });
-
-
-
 
 
 // start tour

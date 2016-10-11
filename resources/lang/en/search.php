@@ -106,5 +106,18 @@ return [
         'text_1'    => '<strong>Locate the area</strong> in which you would like to start to search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.',
         'text_2'    => 'Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.',
         'text_3'    => 'By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.',
+    ],
+    'tour'              => [
+        'search_1_title'     => "Search for leads",
+        'search_1_text'      => "Start searching for new client! Use this view to analyze local businesses and save leads.",
+        'search_2_title'     => "Set a search location",
+        'search_2_text'      => "You may search for a location by <em>address</em> or by using <em>geolocation</em>.",
+        'search_3_title'     => "Define parameters",
+        'search_3_text'      => "Places may be found by <em>name</em>, <em>category</em> and <em>radius</em>.",
+        'search_4_title'     => "Results",
+        'search_4_text'      => "Your results will be displayed on the map.",
+        'search_5_title'     => "Business details",
+        'search_5_text'      => "Click the <em>analyze</em> button and relevant results will be display here.",
+        'search_5_btn_label'      => "I'm ready!",
     ]
 ];

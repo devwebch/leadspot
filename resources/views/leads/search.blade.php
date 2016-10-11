@@ -28,6 +28,21 @@
     <script src="{{elixir('js/places.js')}}"></script>
     @if( $tour )
         <script>var tourConfig = {tour: 'search'};</script>
+        <script>
+            var tourI18n = {
+                search_1_title: "{!! trans('search.tour.search_1_title') !!}",
+                search_1_text: "{!! trans('search.tour.search_1_text') !!}",
+                search_2_title: "{!! trans('search.tour.search_2_title') !!}",
+                search_2_text: "{!! trans('search.tour.search_2_text') !!}",
+                search_3_title: "{!! trans('search.tour.search_3_title') !!}",
+                search_3_text: "{!! trans('search.tour.search_3_text') !!}",
+                search_4_title: "{!! trans('search.tour.search_4_title') !!}",
+                search_4_text: "{!! trans('search.tour.search_4_text') !!}",
+                search_5_title: "{!! trans('search.tour.search_5_title') !!}",
+                search_5_text: "{!! trans('search.tour.search_5_text') !!}",
+                search_5_btn_label: "{!! trans('search.tour.search_5_btn_label') !!}"
+            };
+        </script>
         <script src="{{asset('js/tour.js')}}"></script>
     @endif
 @endsection
@@ -178,15 +193,15 @@
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
                         <h3>{{trans('search.introduction.title')}}</h3>
-                        <p>{{trans('search.introduction.text_1')}}</p>
-                        <p>{{trans('search.introduction.text_2')}}</p>
-                        <p>{{trans('search.introduction.text_3')}}</p>
+                        <p>{!!trans('search.introduction.text_1')!!}</p>
+                        <p>{!!trans('search.introduction.text_2')!!}</p>
+                        <p>{!!trans('search.introduction.text_3')!!}</p>
                     </div>
 
-                    <div class="upsell-cms" v-show="details.website && !permissions.cms">
-                        <h3>Upgrade your account</h3>
+                    <div class="upsell-cms alert alert-warning" v-show="details.website && !permissions.cms">
+                        <h4>Upgrade your account</h4>
                         <p>Find out which CMS is used by this website.</p>
-                        <a href="#" class="btn btn-warning">Go Pro and </a>
+                        <a href="#" class="btn btn-danger m-t-10">Upgrade my account</a>
                     </div>
 
                     <div class="wbf-business-details">
@@ -218,11 +233,6 @@
                                     <td><span class="label label-info">@{{ details.stats.score_usability }}</span><span> / 100</span></td>
                                 </tr>
                             </table>
-                        </div>
-
-                        <div class="upsell-cms" v-show="!permissions.cms">
-                            <p>Get CMS informations</p>
-                            <a href="#" class="btn btn-warning">Go PRO</a>
                         </div>
 
                         <div class="wbf-website-cms" v-show="status.loaded && details.website && details.cms">
