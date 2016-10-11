@@ -16,10 +16,10 @@ class CreateTableReports extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lead_id');
-            $table->json('scores');
-            $table->json('stats');
-            $table->json('indicators');
-            $table->json('website');
+            $table->text('scores')->nullable();
+            $table->text('stats')->nullable();
+            $table->text('indicators')->nullable();
+            $table->text('website')->nullable();
             $table->timestamps();
         });
     }
