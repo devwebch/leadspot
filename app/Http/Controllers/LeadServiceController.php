@@ -121,6 +121,12 @@ class LeadServiceController extends Controller
         return response($output);
     }
 
+    /**
+     * Retrieve contacts emails for a given domain
+     * @param Lead $lead
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
     public function getLeadEmails(Lead $lead, Request $request)
     {
         $website    = $lead->url;
@@ -166,6 +172,12 @@ class LeadServiceController extends Controller
 
         return back();
     }
+
+    /**
+     * Count how many e-mails are available for a given domain
+     * @param Lead $lead
+     * @return int|void
+     */
     public function checkLeadEmails(Lead $lead)
     {
         $website    = $lead->url;
