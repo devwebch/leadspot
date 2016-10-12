@@ -2,7 +2,11 @@ window.Shepherd = require('tether-shepherd');
 
 var default_config = {
     classes: 'shepherd-theme-arrows',
-    showCancelLink: true
+    showCancelLink: true,
+    buttons: {
+        text: tourI18n.button_text,
+        action: function() {return Shepherd.activeTour.next()}
+    }
 };
 
 /**

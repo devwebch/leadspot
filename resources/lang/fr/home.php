@@ -11,5 +11,5 @@ return [
     'daily_limit'       => 'Limite journalière',
     'opinion_title'     => 'Votre avis compte',
     'opinion_desc'      => "Partagez votre avis avec nous et permettez-nous d'améliorer LeadSpot.",
-    'opinion_action'    => 'Contacter LeadSpot'
+    'opinion_action'    => 'Contacter LeadSpot',
 ];

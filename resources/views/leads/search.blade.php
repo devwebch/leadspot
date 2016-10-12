@@ -30,17 +30,18 @@
         <script>var tourConfig = {tour: 'search'};</script>
         <script>
             var tourI18n = {
-                search_1_title: "{!! trans('search.tour.search_1_title') !!}",
-                search_1_text: "{!! trans('search.tour.search_1_text') !!}",
-                search_2_title: "{!! trans('search.tour.search_2_title') !!}",
-                search_2_text: "{!! trans('search.tour.search_2_text') !!}",
-                search_3_title: "{!! trans('search.tour.search_3_title') !!}",
-                search_3_text: "{!! trans('search.tour.search_3_text') !!}",
-                search_4_title: "{!! trans('search.tour.search_4_title') !!}",
-                search_4_text: "{!! trans('search.tour.search_4_text') !!}",
-                search_5_title: "{!! trans('search.tour.search_5_title') !!}",
-                search_5_text: "{!! trans('search.tour.search_5_text') !!}",
-                search_5_btn_label: "{!! trans('search.tour.search_5_btn_label') !!}"
+                button_text: "{!! trans('tour.general.button_text') !!}",
+                search_1_title: "{!! trans('tour.search.search_1_title') !!}",
+                search_1_text: "{!! trans('tour.search.search_1_text') !!}",
+                search_2_title: "{!! trans('tour.search.search_2_title') !!}",
+                search_2_text: "{!! trans('tour.search.search_2_text') !!}",
+                search_3_title: "{!! trans('tour.search.search_3_title') !!}",
+                search_3_text: "{!! trans('tour.search.search_3_text') !!}",
+                search_4_title: "{!! trans('tour.search.search_4_title') !!}",
+                search_4_text: "{!! trans('tour.search.search_4_text') !!}",
+                search_5_title: "{!! trans('tour.search.search_5_title') !!}",
+                search_5_text: "{!! trans('tour.search.search_5_text') !!}",
+                search_5_btn_label: "{!! trans('tour.search.search_5_btn_label') !!}"
             };
         </script>
         <script src="{{asset('js/tour.js')}}"></script>
@@ -78,12 +79,6 @@
                 <div class="panel-body">
                     <form role="form" class="wbf-search-form">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="wbfInputText">{{trans('search.general.search')}}</label>
-                                    <input type="text" name="wbfInputText" id="wbfInputText" class="form-control" placeholder="{{trans('search.general.store_name')}}">
-                                </div>
-                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="wbfInputCategory">{{trans('search.general.category')}}</label>
@@ -154,6 +149,12 @@
                                         <option value="veterinary_care">{{trans('search.categories.veterinary_care')}}</option>
                                         <option value="zoo">{{trans('search.categories.zoo')}}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="wbfInputText">{{trans('search.general.search')}}</label>
+                                    <input type="text" name="wbfInputText" id="wbfInputText" class="form-control" placeholder="{{trans('search.general.store_name')}}">
                                 </div>
                             </div>
                             <div class="col-md-2">

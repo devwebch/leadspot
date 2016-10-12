@@ -100,5 +100,11 @@ return [
         'university'                => 'Université',
         'veterinary_care'           => 'Soins vétérinaires',
         'zoo'                       => 'Zoo',
-    ]
+    ],
+    'introduction' => [
+        'title'     => 'Comment démarrer ?',
+        'text_1'    => '<strong>Localisez la zone</strong> dans laquelle vous désirez démarrer votre recherche, soit en tapant le <strong>nom d\'une ville</strong> ou <strong>en cliquant sur la carte</strong>.',
+        'text_2'    => 'Vous pouvez ensuite chercher par <strong>nom d\'entreprise</strong> directement ou sélectionner une <strong>catégorie</strong> de business et un <strong>rayon de recherche</strong>.',
+        'text_3'    => 'En cliquant sur les icônes vous obtiendrez des informations basique à propos de l\'entreprise, vous pourrez ensuite <strong>procéder à une analyse</strong> de leur présence web.',
+    ],
 ];

@@ -13,17 +13,18 @@
         <script>var tourConfig = {tour: 'intro'};</script>
         <script>
             var tourI18n = {
-                intro_title: "{!! trans('home.tour.intro_title') !!}",
-                intro_text: "{!! trans('home.tour.intro_text') !!}",
-                intro_1_title: "{!! trans('home.tour.intro_1_title') !!}",
-                intro_1_text: "{!! trans('home.tour.intro_1_text') !!}",
-                intro_2_title: "{!! trans('home.tour.intro_2_title') !!}",
-                intro_2_text: "{!! trans('home.tour.intro_2_text') !!}",
-                intro_3_title: "{!! trans('home.tour.intro_3_title') !!}",
-                intro_3_text: "{!! trans('home.tour.intro_3_text') !!}",
-                intro_4_title: "{!! trans('home.tour.intro_4_title') !!}",
-                intro_4_text: "{!! trans('home.tour.intro_4_text') !!}",
-                intro_4_btn_label: "{!! trans('home.tour.intro_4_btn_label') !!}"
+                button_text: "{!! trans('tour.general.button_text') !!}",
+                intro_title: "{!! trans('tour.intro.intro_title') !!}",
+                intro_text: "{!! trans('tour.intro.intro_text') !!}",
+                intro_1_title: "{!! trans('tour.intro.intro_1_title') !!}",
+                intro_1_text: "{!! trans('tour.intro.intro_1_text') !!}",
+                intro_2_title: "{!! trans('tour.intro.intro_2_title') !!}",
+                intro_2_text: "{!! trans('tour.intro.intro_2_text') !!}",
+                intro_3_title: "{!! trans('tour.intro.intro_3_title') !!}",
+                intro_3_text: "{!! trans('tour.intro.intro_3_text') !!}",
+                intro_4_title: "{!! trans('tour.intro.intro_4_title') !!}",
+                intro_4_text: "{!! trans('tour.intro.intro_4_text') !!}",
+                intro_4_btn_label: "{!! trans('tour.intro.intro_4_btn_label') !!}"
             };
         </script>
         <script src="{{asset('js/tour.js')}}"></script>
