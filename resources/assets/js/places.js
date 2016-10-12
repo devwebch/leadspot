@@ -12,6 +12,7 @@ var currentPlace          = {};
 var analyzeModuleData   = {
     status: appstate,
     details: currentPlace,
+    location: {},
     geolocating: false,
     permissions: {}
 };
@@ -494,6 +495,9 @@ var analyzeModule = new Vue({
                     map.setCenter(location);
                     request.location = location;
                     addSearchMarker(location);
+
+                    Vue.set(analyzeModuleData.location, 'lat', location.lat());
+                    Vue.set(analyzeModuleData.location, 'lng', location.lng());
 
                     $('#wbfInputAddress').val(formatted_address);
                 } else {

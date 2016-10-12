@@ -60,13 +60,16 @@
                     <form class="wbf-location-form form-inline">
                         <div class="form-group">
                             <label for="wbfInputAddress" class="sr-only">{{trans('search.general.address')}}</label>
-                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="{{trans('search.general.address')}}" style="width: 300px">
+                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="{{trans('search.general.address')}}" style="width: 300px"><br>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-default" id="wbfInputGeolocation" type="button"><i class="fa fa-crosshairs"></i></button>
                         </div>
                         <button type="submit" class="btn btn-warning">{{trans('search.general.search_address')}}</button>
                     </form>
+                    <div class="m-t-10">
+                        <i class="fa fa-street-view"></i> <a href="#">Set as default search location</a>
+                    </div>
                     <div class="m-t-20" v-show="geolocating">
                         <i class="fa fa-refresh fa-spin m-r-10"></i> {{trans('search.general.searching_for_location')}}
                     </div>

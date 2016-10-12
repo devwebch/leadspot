@@ -74,4 +74,23 @@ class UserController extends Controller
         return redirect('/account');
     }
 
+    public function savePreference(Request $request)
+    {
+        // get User
+        $user           = $request->user();
+        // get preferences or instanciate Object
+        $preferences    = !empty($user->preferences) ? json_decode($user->preferences) : (object) [];
+
+        // save default location
+        if ($request->input('defaultLocationLat') && $request->input('defaultLocationLng')) {
+            $preferences->defaultLocationLat = $request->input('defaultLocationLat');
+            $preferences->defaultLocationLng = $request->input('defaultLocationLng');
+        }
+
+        // encode preferences
+        $user->preferences = json_encode($preferences);
+        // save
+        $user->save();
+    }
+
 }
