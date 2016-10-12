@@ -122,7 +122,6 @@ var analyzeModule = new Vue({
             success: function (data) {
                 permissions = data;
                 analyzeModuleData.permissions = permissions;
-                console.log('permissions', permissions);
             }
         });
 
