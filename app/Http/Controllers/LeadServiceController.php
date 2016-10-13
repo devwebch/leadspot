@@ -57,22 +57,22 @@ class LeadServiceController extends Controller
 
         // reports data
         $scores = [
-            'speed'     => $request->stats['score_speed'],
-            'usability' => $request->stats['score_usability']
+            'speed'     => isset($request->stats['score_speed']) ? $request->stats['score_speed'] : '',
+            'usability' => isset($request->stats['score_usability']) ? $request->stats['score_usability'] : ''
         ];
         $stats = [
-            'total_request_bytes'   => $request->stats['total_request_bytes'],
-            'num_js_ressources'     => $request->stats['num_js_ressources'],
-            'num_css_ressources'    => $request->stats['num_css_ressources']
+            'total_request_bytes'   => isset($request->stats['total_request_bytes']) ? $request->stats['total_request_bytes'] : '',
+            'num_js_ressources'     => isset($request->stats['num_js_ressources']) ? $request->stats['num_js_ressources'] : '',
+            'num_css_ressources'    => isset($request->stats['num_css_ressources']) ? $request->stats['num_css_ressources'] : ''
         ];
         $indicators = [
-            'viewport'              => $request->indicators['viewport'],
-            'gzip'                  => $request->indicators['gzip'],
-            'minifyCss'             => $request->indicators['minifyCss'],
-            'minifyJs'              => $request->indicators['minifyJs'],
-            'minifyHTML'            => $request->indicators['minifyHTML'],
-            'optimizeImages'        => $request->indicators['optimizeImages'],
-            'fontSize'              => $request->indicators['fontSize'],
+            'viewport'              => isset($request->indicators['viewport']) ? $request->indicators['viewport'] : '',
+            'gzip'                  => isset($request->indicators['gzip']) ? $request->indicators['gzip'] : '',
+            'minifyCss'             => isset($request->indicators['minifyCss']) ? $request->indicators['minifyCss'] : '',
+            'minifyJs'              => isset($request->indicators['minifyJs']) ? $request->indicators['minifyJs'] : '',
+            'minifyHTML'            => isset($request->indicators['minifyHTML']) ? $request->indicators['minifyHTML'] : '',
+            'optimizeImages'        => isset($request->indicators['optimizeImages']) ? $request->indicators['optimizeImages'] : '',
+            'fontSize'              => isset($request->indicators['fontSize']) ? $request->indicators['fontSize'] : '',
         ];
         $website = [];
         $website['cms'] = $request->cmsID;
