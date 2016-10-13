@@ -230,7 +230,14 @@ class LeadController extends Controller
 
     public function report(Lead $lead)
     {
-        $view   = view('leads.report', ['lead' => $lead]);
+        $view       = view('leads.report', ['lead' => $lead]);
+        $report     = $lead->reports()->first();
+
+        $scores         = !empty($report->scores) ? json_decode($report->scores) : '';
+        $stats          = !empty($report->stats) ? json_decode($report->stats) : '';
+        $indicators     = !empty($report->indicators) ? json_decode($report->indicators) : '';
+        $website        = !empty($report->website) ? json_decode($report->website) : '';
+
 
         /*$dompdf = new Dompdf();
         $dompdf->loadHtml($view);
@@ -238,6 +245,13 @@ class LeadController extends Controller
         $dompdf->render();
         $dompdf->stream();*/
 
-        return view('leads.report', ['lead' => $lead]);
+        return view('leads.report', [
+            'lead'          => $lead,
+            'report'        => $report,
+            'scores'        => $scores,
+            'stats'         => $stats,
+            'indicators'    => $indicators,
+            'website'       => $website,
+        ]);
     }
 }
