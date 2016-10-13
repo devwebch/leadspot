@@ -12,6 +12,7 @@ return [
         'search'                    => 'Search',
         'store_name'                => 'Store Name',
         'radius'                    => 'Radius',
+        'set_location_default'      => 'Set current location as <em>default location</em>',
         'searching_for_location'    => 'Searching for your location...',
         'business_details'          => 'Business details',
         'loading'                   => 'Loading',
@@ -106,5 +107,17 @@ return [
         'text_1'    => '<strong>Locate the area</strong> in which you would like to start to search, either by typing a <strong>city name</strong> or <strong>clicking on the map</strong>.',
         'text_2'    => 'Then you may search by <strong>business name</strong> directly or select a <strong>category</strong> of business and a <strong>search radius</strong>.',
         'text_3'    => 'By clicking on icons you will have basic informations about the business, you will then be able to <strong>perform an analysis</strong> of their web presence.',
+    ],
+    'swal' => [
+        'saved'                 => 'Saved!',
+        'error'                 => 'Error',
+        'no_results'            => 'No results',
+        'sorry'                 => 'Sorry',
+        'generic_error'         => "Something went wrong, please try again later.",
+        'default_location_set'  => "Default location set.",
+        'lead_added'            => "The lead was added to your list.",
+        'no_results_msg'        => "Sorry but we did not find any results.",
+        'daily_limit'           => "You have reached the daily limit of your subscription.",
+        'analysis_error'        => "Something went wrong during the analysis, please try again later."
     ],
 ];

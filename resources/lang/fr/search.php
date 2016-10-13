@@ -12,6 +12,7 @@ return [
         'search'                    => 'Rechercher',
         'store_name'                => 'Nom de business',
         'radius'                    => 'Rayon',
+        'set_location_default'      => 'Définir l\'emplacement actuel comme <em>emplacement par défaut</em>',
         'searching_for_location'    => 'Recherche de votre emplacement...',
         'business_details'          => 'Détails de business',
         'loading'                   => 'Chargement',
@@ -106,5 +107,17 @@ return [
         'text_1'    => '<strong>Localisez la zone</strong> dans laquelle vous désirez démarrer votre recherche, soit en tapant le <strong>nom d\'une ville</strong> ou <strong>en cliquant sur la carte</strong>.',
         'text_2'    => 'Vous pouvez ensuite chercher par <strong>nom d\'entreprise</strong> directement ou sélectionner une <strong>catégorie</strong> de business et un <strong>rayon de recherche</strong>.',
         'text_3'    => 'En cliquant sur les icônes vous obtiendrez des informations basique à propos de l\'entreprise, vous pourrez ensuite <strong>procéder à une analyse</strong> de leur présence web.',
+    ],
+    'swal' => [
+        'saved'                 => 'Sauvegardé !',
+        'error'                 => 'Erreur',
+        'no_results'            => 'Aucun résultats',
+        'sorry'                 => 'Désolé',
+        'generic_error'         => "Quelque chose s\'est mal passé, veuillez réessayer plus tard.",
+        'default_location_set'  => "Emplacement par défaut défini.",
+        'lead_added'            => "Le prospect a bien été ajouté à votre liste.",
+        'no_results_msg'        => "Désolé mais nous n\'avons pas trouvé de résultat.",
+        'daily_limit'           => "Vous avez atteint la limite journalière de votre souscription.",
+        'analysis_error'        => "Quelque chose s\'est mal passé durant l\'analyse, veuillez réessayer plus tard."
     ],
 ];

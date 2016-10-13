@@ -51,6 +51,9 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
 
     Route::get('/leads/radar', 'LeadServiceController@getPlaces');
     Route::get('/leads/details', 'LeadServiceController@getPlaceDetails');
+
+    Route::post('/user/set/preferences', 'UserController@savePreference');
+    Route::post('/user/get/preferences', 'UserController@getPreferences');
 });
 
 // User account

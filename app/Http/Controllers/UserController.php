@@ -74,6 +74,16 @@ class UserController extends Controller
         return redirect('/account');
     }
 
+    public function getPreferences(Request $request)
+    {
+        // get User
+        $user = $request->user();
+        // get preferences or instanciate Object
+        $preferences    = !empty($user->preferences) ? $user->preferences : (object) [];
+
+        return response($preferences);
+    }
+
     public function savePreference(Request $request)
     {
         // get User
@@ -82,9 +92,9 @@ class UserController extends Controller
         $preferences    = !empty($user->preferences) ? json_decode($user->preferences) : (object) [];
 
         // save default location
-        if ($request->input('defaultLocationLat') && $request->input('defaultLocationLng')) {
-            $preferences->defaultLocationLat = $request->input('defaultLocationLat');
-            $preferences->defaultLocationLng = $request->input('defaultLocationLng');
+        if ($request->input('location')) {
+            $preferences->defaultLocationLat = $request->input('location.lat');
+            $preferences->defaultLocationLng = $request->input('location.lng');
         }
 
         // encode preferences

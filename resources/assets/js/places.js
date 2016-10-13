@@ -12,7 +12,7 @@ var currentPlace          = {};
 var analyzeModuleData   = {
     status: appstate,
     details: currentPlace,
-    location: {},
+    currentLocation: {lat:null, lng: null},
     geolocating: false,
     permissions: {}
 };
@@ -37,6 +37,7 @@ var analyzeModule = new Vue({
     var infoWindow          = null;
     var request             = {};
     var permissions         = {};
+    var preferences         = {};
 
     /**
      * Application bootstrap
@@ -98,6 +99,28 @@ var analyzeModule = new Vue({
             if (address) { geoCodeAddress(address); }
         });
 
+        $('.set-default-location').click(function (e) {
+            e.preventDefault();
+
+            var preference = {
+                location: analyzeModuleData.currentLocation
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/service/user/set/preferences',
+                data: preference,
+                success: function (data) {
+                    // success alert
+                    swal({ title: translations.swal.saved, text: translations.swal.default_location_set, type: "success", timer: 3000 });
+                },
+                error: function (jqXHR, textStatus) {
+                    swal({ title: translations.swal.error, text: translations.swal.generic_error, type: "error", timer: 3000 });
+                }
+            });
+
+        });
+
         $('.btn-add-to-list').click(function (e) {
             e.preventDefault();
 
@@ -107,10 +130,10 @@ var analyzeModule = new Vue({
                 data: currentPlace,
                 success: function (data) {
                     // success alert
-                    swal({ title: "Saved!", text: "The lead was added to your list.", type: "success", timer: 3000 });
+                    swal({ title: translations.swal.saved, text: translations.swal.lead_added, type: "success", timer: 3000 });
                 },
                 error: function (jqXHR, textStatus) {
-                    swal({ title: "Error", text: "Something went wrong, please try again later.", type: "error", timer: 3000 });
+                    swal({ title: translations.swal.error, text: translations.swal.generic_error, type: "error", timer: 3000 });
                 }
             });
         });
@@ -122,6 +145,20 @@ var analyzeModule = new Vue({
             success: function (data) {
                 permissions = data;
                 analyzeModuleData.permissions = permissions;
+            }
+        });
+
+        // retrieve preferences
+        $.ajax({
+            type: 'POST',
+            url: '/service/user/get/preferences',
+            success: function (data) {
+                preferences = JSON.parse(data);
+
+                if ( preferences.defaultLocationLat && preferences.defaultLocationLng) {
+                    var defaultLocation = new google.maps.LatLng(preferences.defaultLocationLat, preferences.defaultLocationLng);
+                    addSearchMarker(defaultLocation);
+                }
             }
         });
 
@@ -182,7 +219,7 @@ var analyzeModule = new Vue({
 
             // no results
             if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-                swal({title: "No results", text: "Sorry but we did not find any results.", type: "warning"});
+                swal({title: translations.swal.no_results, text: translations.swal.no_results_msg, type: "warning"});
             }
             // yup there's results
             if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -275,7 +312,7 @@ var analyzeModule = new Vue({
                         if (analyzeGranted) {
                             analyze(place);
                         } else {
-                            swal("Error", "You have reached the daily limit of your subscription", "error");
+                            swal(translations.swal.error, translations.swal.daily_limit, "error");
                         }
                     });
 
@@ -369,7 +406,7 @@ var analyzeModule = new Vue({
                 analyzeObsolescenceIndicators(data.formattedResults.ruleResults);
             }).fail(function () {
                 // impossible to fetch data: may be a DNS related error
-                swal("Sorry", "Something went wrong during the analysis, please try again later.", "error");
+                swal(translations.swal.error, translations.swal.analysis_error, "error");
 
                 appstate.loading = false;
                 appstate.loaded = false;
@@ -473,6 +510,8 @@ var analyzeModule = new Vue({
     {
         request.location = location;
         map.setCenter(location);
+        analyzeModuleData.currentLocation.lat = location.lat();
+        analyzeModuleData.currentLocation.lng = location.lng();
         showRadius(location, request.radius);
     }
 
@@ -494,9 +533,6 @@ var analyzeModule = new Vue({
                     map.setCenter(location);
                     request.location = location;
                     addSearchMarker(location);
-
-                    Vue.set(analyzeModuleData.location, 'lat', location.lat());
-                    Vue.set(analyzeModuleData.location, 'lng', location.lng());
 
                     $('#wbfInputAddress').val(formatted_address);
                 } else {

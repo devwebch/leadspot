@@ -21,14 +21,28 @@
                 icon: '{{config('constants.maps.icon_blue')}}'
             }
         };
+        var translations = {
+            swal: {
+                saved: "{!! trans('search.swal.saved') !!}",
+                error: "{!! trans('search.swal.error') !!}",
+                no_results: "{!! trans('search.swal.no_results') !!}",
+                sorry: "{!! trans('search.swal.sorry') !!}",
+                generic_error: "{!! trans('search.swal.generic_error') !!}",
+                default_location_set: "{!! trans('search.swal.default_location_set') !!}",
+                lead_added: "{!! trans('search.swal.lead_added') !!}",
+                no_results_msg: "{!! trans('search.swal.no_results_msg') !!}",
+                daily_limit: "{!! trans('search.swal.daily_limit') !!}",
+                analysis_error: "{!! trans('search.swal.analysis_error') !!}"
+            }
+        };
     </script>
     <script src="{{asset('plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&signed_in=true&libraries=places"></script>
     <script src="{{asset('js/map-icons.js')}}"></script>
     <script src="{{elixir('js/places.js')}}"></script>
     @if( $tour )
-        <script>var tourConfig = {tour: 'search'};</script>
         <script>
+            var tourConfig = {tour: 'search'};
             var tourI18n = {
                 button_text: "{!! trans('tour.general.button_text') !!}",
                 search_1_title: "{!! trans('tour.search.search_1_title') !!}",
@@ -67,8 +81,8 @@
                         </div>
                         <button type="submit" class="btn btn-warning">{{trans('search.general.search_address')}}</button>
                     </form>
-                    <div class="m-t-10">
-                        <i class="fa fa-street-view"></i> <a href="#">Set as default search location</a>
+                    <div class="m-t-10" v-show="currentLocation">
+                        <i class="fa fa-street-view"></i> <a href="#" class="set-default-location hint-text">{!! trans('search.general.set_location_default') !!}</a>
                     </div>
                     <div class="m-t-20" v-show="geolocating">
                         <i class="fa fa-refresh fa-spin m-r-10"></i> {{trans('search.general.searching_for_location')}}
@@ -197,9 +211,9 @@
                 <div class="panel-body" id="analyze">
                     <div class="wbf-business-details-introduction" v-show="!details.name">
                         <h3>{{trans('search.introduction.title')}}</h3>
-                        <p>{!!trans('search.introduction.text_1')!!}</p>
-                        <p>{!!trans('search.introduction.text_2')!!}</p>
-                        <p>{!!trans('search.introduction.text_3')!!}</p>
+                        <p>{!! trans('search.introduction.text_1') !!}</p>
+                        <p>{!! trans('search.introduction.text_2') !!}</p>
+                        <p>{!! trans('search.introduction.text_3') !!}</p>
                     </div>
 
                     <div class="upsell-cms alert alert-warning" v-show="details.website && !permissions.cms">
