@@ -32,9 +32,11 @@
                 position: pyrmont,
                 icon: {
                     url: '{{config('constants.maps.icon_blue')}}',
-                    size: new google.maps.Size(24, 30),
+                    scaledSize: new google.maps.Size(22, 30),
+                    size: new google.maps.Size(22, 30),
                     origin: new google.maps.Point(0,0),
-                    anchor: new google.maps.Point(10, 25)
+                    anchor: new google.maps.Point(11, 25),
+                    optimized: false
                 }
             });
 
