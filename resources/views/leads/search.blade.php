@@ -216,7 +216,7 @@
                         <p>{!! trans('search.introduction.text_3') !!}</p>
                     </div>
 
-                    <div class="upsell-cms alert alert-warning" v-show="details.website && !permissions.cms">
+                    <div class="upsell-cms alert alert-warning" v-show="details.website && !permissions.cms && 1==2">
                         <h4>Upgrade your account</h4>
                         <p>Find out which CMS is used by this website.</p>
                         <a href="#" class="btn btn-danger m-t-10">Upgrade my account</a>
