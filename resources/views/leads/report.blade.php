@@ -78,7 +78,7 @@
 
             <div class="report">
                 <div class="header">
-                    <img src="/img/logo-leadspot.png" alt="LeadSpot" width="180">
+                    <img src="img/logo-leadspot.png" alt="LeadSpot" width="180">
                 </div>
 
                 <h1>{{$lead->name}}</h1>
@@ -95,7 +95,7 @@
                         </tr>
                         <tr class="bg-gray">
                             <td><strong>CMS</strong></td>
-                            <td>Nom du CMS</td>
+                            <td>{{$website->cms}}</td>
                         </tr>
                         <tr class="bg-gray">
                             <td><strong>Phone</strong></td>
@@ -107,42 +107,16 @@
                                     <tr class="bg-green">
                                         <td colspan="2">Obsolescence indicators</td>
                                     </tr>
+                                    @foreach($indicators as $key => $indicator)
                                     <tr>
                                         <td>
-                                            <strong>Responsive</strong>
+                                            <strong><?php echo $indicators_labels[$key]; ?></strong>
                                         </td>
-                                        <td align="right">Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>GZIP</strong>
+                                        <td align="right">
+                                            <?php echo ($indicator == 0) ? 'Yes' : 'No'; ?>
                                         </td>
-                                        <td align="right">Yes</td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Minified CSS</strong></td>
-                                        <td align="right">No</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Minified JS</strong></td>
-                                        <td align="right">No</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Minified HTML</strong></td>
-                                        <td align="right">Yes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Optimized images</strong>
-                                        </td>
-                                        <td align="right">No</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Adapted font size</strong>
-                                        </td>
-                                        <td align="right">Yes</td>
-                                    </tr>
+                                    @endforeach
                                 </table>
                             </td>
                             <td width="50%" class="no-padding" style="padding-top: 40px;">
@@ -167,7 +141,9 @@
                                     <tr class="bg-blue">
                                         <td colspan="2">Notes</td>
                                     </tr>
-
+                                    <tr>
+                                        <td colspan="2">{{$lead->notes}}</td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>

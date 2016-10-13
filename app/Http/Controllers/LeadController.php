@@ -230,27 +230,55 @@ class LeadController extends Controller
 
     public function report(Lead $lead)
     {
-        $view       = view('leads.report', ['lead' => $lead]);
+        // get the first report
         $report     = $lead->reports()->first();
 
+        if ( !$report ) {
+            return;
+        }
+
+        // get report's data
         $scores         = !empty($report->scores) ? json_decode($report->scores) : '';
         $stats          = !empty($report->stats) ? json_decode($report->stats) : '';
         $indicators     = !empty($report->indicators) ? json_decode($report->indicators) : '';
         $website        = !empty($report->website) ? json_decode($report->website) : '';
 
+        $indicators_labels = [
+            'viewport'          => 'Viewport',
+            'gzip'              => 'GZIP compression',
+            'minifyCss'         => 'Minified CSS',
+            'minifyJs'          => 'Minified JS',
+            'minifyHTML'        => 'Minified HTML',
+            'optimizeImages'    => 'Optimized images',
+            'fontSize'          => 'Font size adapted to screen size',
+        ];
 
+        // store view
+        $view           = view('leads.report', [
+            'lead'                  => $lead,
+            'report'                => $report,
+            'scores'                => $scores,
+            'stats'                 => $stats,
+            'indicators'            => $indicators,
+            'indicators_labels'     => $indicators_labels,
+            'website'               => $website,
+        ]);
+
+        // generate PDF
         /*$dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream();*/
 
+        // return view (for testing purposes)
         return view('leads.report', [
             'lead'          => $lead,
             'report'        => $report,
             'scores'        => $scores,
             'stats'         => $stats,
             'indicators'    => $indicators,
+            'indicators_labels'     => $indicators_labels,
             'website'       => $website,
         ]);
     }

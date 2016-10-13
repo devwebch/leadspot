@@ -98,6 +98,15 @@
                         <a href="/leads/edit/{{$lead->id}}">Edit and add notes</a>
                     @endif
                     <hr>
+                    <h4>Report</h4>
+                    <ul class="list-unstyled">
+                    @forelse($lead->reports()->get() as $report)
+                        <li><a href="/leads/report/{{$lead->id}}" target="_blank">Download PDF report ({{date('d.m.Y', strtotime($report->created_at))}})</a></li>
+                    @empty
+                        <li>No reports available</li>
+                    @endforelse
+                    </ul>
+                    <hr>
                     <h4>Contacts</h4>
                     @if ($stored_contacts)
                     <table class="table">
