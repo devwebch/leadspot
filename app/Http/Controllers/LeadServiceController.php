@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LeadServiceController extends Controller
 {
+    private $MAPS_API_KEY           = 'AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
     private $PAGESPEED_API_KEY      = 'AIzaSyDCelPpT9KgfceVGY8cBRFc4D-n8rbT9-0';
     private $EMAILHUNTER_API_KEY    = 'b7ed2eb558bb33918da354c3cb6525a33b28ccd3';
     private $referer                = 'https://go.leadspotapp.com';
@@ -128,28 +129,66 @@ class LeadServiceController extends Controller
         $location_lng   = '151.1957';
         $location       = $location_lat . ',' . $location_lng;
         $radius         = '500';
-        $types          = 'food';
+        $types          = 'establishment';
         $name           = 'cruise';
-        $places = 'https://maps.googleapis.com/maps/api/place/radarsearch/json?location=' . $location . '&radius=' . $radius . '&types=' . $types . '&name=' . $name . '&key=' . $this->PAGESPEED_API_KEY;
+        $places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' . $location . '&radius=' . $radius . '&types=' . $types . '&key=' . $this->PAGESPEED_API_KEY;
 
-        $client = new Client();
+        $client = new Client([
+            'headers' => ['Referer' => 'leadspotapp.lan']
+        ]);
         $res    = $client->request('GET', $places, ['verify' => false]);
-        $output = $res->getBody();
+        $output = json_decode($res->getBody());
+        $places_list = $output->results;
 
-        return response($output);
+
+        return response()->json($output);
     }
 
-    public function getPlaceDetails(Request $request)
+    public function getPlacesSample(Request $request)
+    {
+        $location_lat   = '-33.8670';
+        $location_lng   = '151.1957';
+        $location       = $location_lat . ',' . $location_lng;
+        $radius         = '500';
+        $types          = 'establishment';
+        $name           = 'cruise';
+        $places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' . $location . '&radius=' . $radius . '&types=' . $types . '&key=' . $this->PAGESPEED_API_KEY;
+
+        $client = new Client([
+            'headers' => ['Referer' => 'leadspot.lan']
+        ]);
+        $res    = $client->request('GET', $places, ['verify' => false]);
+        $output = json_decode($res->getBody());
+        $places_list = $output->results;
+        $places = [];
+
+        $count  = 0;
+        $max    = 3;
+        foreach ($places_list as $place) {
+            if ( $count < $max ) {
+                $place_ID = $place->place_id;
+                $places[] = $this->getPlaceDetails($place_ID);
+                //$places[] = $place_ID;
+            }
+            $count++;
+        }
+
+        return response()->json($places);
+    }
+
+    public function getPlaceDetails($place_ID)
     {
         // TODO: get place ID from input
-        $place_ID   = 'ChIJ__8_hziuEmsR27ucFXECfOg';
-        $places = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $place_ID . '&key=' . $this->PAGESPEED_API_KEY;
+        //$place_ID   = 'ChIJ__8_hziuEmsR27ucFXECfOg';
+        $places = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $place_ID . '&key=' . $this->MAPS_API_KEY;
 
-        $client = new Client();
+        $client = new Client([
+            'headers' => ['Referer' => 'leadspot.lan']
+        ]);
         $res    = $client->request('GET', $places, ['verify' => false]);
-        $output = $res->getBody();
+        $output = json_decode($res->getBody());
 
-        return response($output);
+        return $output->result;
     }
 
     /**

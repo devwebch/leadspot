@@ -60,7 +60,6 @@ var analyzeModule = new Vue({
             var searchText          = $('#wbfInputText').val();
             var searchCategory      = $('#wbfInputCategory').val();
             var searchRadius        = $('#wbfInputRadius').val();
-            var searchGranted       = false;
 
             if ( searchText ) { request.name = searchText; } else { request.name = ''; }
             if ( searchCategory ) { request.types = [searchCategory]; } else { request.types = []; }
@@ -104,7 +103,7 @@ var analyzeModule = new Vue({
 
             var preference = {
                 location: analyzeModuleData.currentLocation
-            }
+            };
 
             $.ajax({
                 type: 'POST',
