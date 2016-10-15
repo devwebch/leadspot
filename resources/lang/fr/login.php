@@ -5,7 +5,7 @@ return [
     'form_intro'        => 'Connectez-vous à votre compte LeadSpot',
     'email_address'     => 'Adresse e-mail',
     'password'          => 'Mot de passe',
-    'signed_in'         => 'Rester connecter',
+    'signed_in'         => 'Rester connecté',
     'login'             => 'Connexion',
     'forgot_password'   => 'Mot de passe oublié ?',
     'have_account'      => "Vous n'avez pas encore de compte ?",

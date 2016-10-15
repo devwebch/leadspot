@@ -10,6 +10,6 @@ return [
     'manage_options'    => 'Manage options',
     'daily_limit'       => 'Daily limit',
     'opinion_title'     => 'Your opinion matters',
-    'opinion_desc'      => 'Please let us know what you think of LeadSpot and help us improve during the beta phase.',
+    'opinion_desc'      => 'Please let us know what you think of LeadSpot and help us improve.',
     'opinion_action'    => 'Contact LeadSpot',
 ];

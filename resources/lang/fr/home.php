@@ -10,6 +10,6 @@ return [
     'manage_options'    => 'Gérer mes options',
     'daily_limit'       => 'Limite journalière',
     'opinion_title'     => 'Votre avis compte',
-    'opinion_desc'      => "Partagez votre avis avec nous et permettez-nous d'améliorer LeadSpot.",
+    'opinion_desc'      => "Partagez votre avis pour nous permettre d'améliorer LeadSpot.",
     'opinion_action'    => 'Contacter LeadSpot',
 ];

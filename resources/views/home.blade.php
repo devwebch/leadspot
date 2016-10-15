@@ -65,7 +65,7 @@
                         </tbody>
                     </table>
                     @else
-                    <p class="text-center"><a href="/leads/search">{{trans('home.no_leads')}}</a>.</p>
+                    <p class="text-center p-b-20"><a href="/leads/search">{{trans('home.no_leads')}}</a>.</p>
                     @endif
                 </div>
             </div>
@@ -102,7 +102,7 @@
             @endif
 
             <div class="m-b-20">
-                <div class="panel bg-master-dark widget panel-account">
+                <div class="panel bg-master-dark widget panel-account text-center">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account" class="text-white">{{trans('home.my_account')}}</a></h2>
                         <p class=""><a href="/account" class="btn btn-info">{{trans('home.manage_options')}}</a></p>
@@ -111,7 +111,7 @@
             </div>
 
             <div class="m-b-20">
-                <div class="panel bg-complete-dark widget panel-limit">
+                <div class="panel bg-complete-dark widget panel-limit text-center">
                     <div class="panel-body">
                         <h2 class="semi-bold text-white">{{trans('home.daily_limit')}}</h2>
                         <h3 class="text-white">
@@ -122,7 +122,7 @@
             </div>
 
             <div class="m-b-20">
-                <div class="panel bg-info-light widget panel-contact">
+                <div class="panel bg-info-light widget panel-contact text-center">
                     <div class="panel-body">
                         <a href="/account"><h3 class="text-white semi-bold">{{trans('home.opinion_title')}}</h3></a>
                         <p class="text-white">{{trans('home.opinion_desc')}}</p>

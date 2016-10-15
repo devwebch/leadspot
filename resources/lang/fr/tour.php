@@ -6,7 +6,7 @@ return [
     ],
     'intro' => [
         'intro_title'       => "Bienvenue sur LeadSpot",
-        'intro_text'        => "Bonjour, c'est votre tableau de bord, vous trouverez ici des informations <br>relatives à votre compte et vos opérations en cours.",
+        'intro_text'        => "Bonjour, voici votre tableau de bord, vous trouverez ici vos opérations en cours et des informations <br>relatives à votre compte.",
         'intro_1_title'     => "Mon compte",
         'intro_1_text'      => "Lien rapide vers votre compte, gérez vos informations et souscriptions.",
         'intro_2_title'     => "Limite journalière",
@@ -19,11 +19,11 @@ return [
     ],
     'search' => [
         'search_1_title'     => "Recherche de prospects",
-        'search_1_text'      => "Commencez à chercher vos futures clients ! Utilisez cette vue pour analyser des business locaux.",
+        'search_1_text'      => "Commencez à chercher vos futurs clients ! Utilisez cette vue pour analyser des business locaux.",
         'search_2_title'     => "Définissez un emplacement de recherche",
-        'search_2_text'      => "Vous pouvez rechercher un emplacement par <em>adresse</em> ou en utilisant la <em>geolocalisation</em>.",
+        'search_2_text'      => "Vous pouvez rechercher un emplacement par <em>adresse</em> ou en utilisant la <em>géolocalisation</em>.",
         'search_3_title'     => "Définition de paramètres",
-        'search_3_text'      => "Les entreprises peuvent être recherchées par <em>nom</em>, <em>catégorie</em> et <em>périmètre</em>.",
+        'search_3_text'      => "Les entreprises peuvent être recherchées par <em>catégorie</em>, <em>nom</em> et <em>rayon</em>.",
         'search_4_title'     => "Résultats",
         'search_4_text'      => "Vos résultats de recherche s'afficheront sur la carte.",
         'search_5_title'     => "Détails entreprise",

@@ -15,6 +15,7 @@ Auth::routes();
 
 // Standard pages
 Route::get('/', 'Controller@home');
+Route::get('/home', function (){ return redirect('/'); });
 Route::get('/contact', function () {
     return view('contact');
 })->middleware('auth');

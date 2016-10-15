@@ -265,11 +265,11 @@ class LeadController extends Controller
         ]);
 
         // generate PDF
-        /*$dompdf = new Dompdf();
+        $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream();*/
+        $dompdf->stream();
 
         // return view (for testing purposes)
         return view('leads.report', [
