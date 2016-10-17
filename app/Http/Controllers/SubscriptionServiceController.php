@@ -58,19 +58,25 @@ class SubscriptionServiceController extends Controller
 
         // retrieve user's subscription usage
         $usage  = $user->subscriptionUsage()->first();
+        $quotas = json_decode($usage->quotas);
 
         // define usage limit
         if ( $subscription_type == 'leadspot_advanced' ) {
-            $usage->limit = config('subscriptions.advanced.limit');
+            $quotas->search->limit      = config('subscriptions.advanced.limit.search');
+            $quotas->contacts->limit    = config('subscriptions.advanced.limit.contacts');
         } elseif ( $subscription_type == 'leadspot_pro' ) {
-            $usage->limit = config('subscriptions.pro.limit');
+            $quotas->search->limit      = config('subscriptions.pro.limit.search');
+            $quotas->contacts->limit    = config('subscriptions.pro.limit.contacts');
         }
+
+        $quotas = json_encode($quotas);
+        $usage->quotas = $quotas;
 
         // update the subscription usage
         $usage->save();
 
         // notify the user
-
+        // TODO: Notify user
 
         // redirect to success page
         return redirect('/subscribe/transaction/success');
@@ -152,7 +158,7 @@ class SubscriptionServiceController extends Controller
         $user           = $request->user();
         $subscription   = $user->subscriptions()->get()->first();
         $permissions    = [
-            'cms'               => false,
+            'cms'               => true,
             'auto_geolocation'  => false,
             'report'            => false,
             'manual_lead'       => false,

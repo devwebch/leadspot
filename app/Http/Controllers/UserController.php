@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $user           = Auth::user();
         $usage          = $user->usageSearch();
-        $subscription   = $user->subscriptions()->get()->first();
+        $subscription   = $user->subscriptions()->first();
         $invoices       = [];
 
         if ( $user->subscribed('main') ){
@@ -79,7 +79,7 @@ class UserController extends Controller
         // get User
         $user = $request->user();
         // get preferences or instanciate Object
-        $preferences    = !empty($user->preferences) ? $user->preferences : (object) [];
+        $preferences    = !empty($user->preferences) ? $user->preferences : json_encode((object) []);
 
         return response($preferences);
     }

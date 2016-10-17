@@ -8,7 +8,7 @@ return [
     'news'              => 'News from LeadSpot',
     'my_account'        => 'My account',
     'manage_options'    => 'Manage options',
-    'daily_limit'       => 'Daily limit',
+    'monthly_limit'     => 'Monthly limits',
     'opinion_title'     => 'Your opinion matters',
     'opinion_desc'      => 'Please let us know what you think of LeadSpot and help us improve.',
     'opinion_action'    => 'Contact LeadSpot',

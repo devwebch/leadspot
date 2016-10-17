@@ -113,13 +113,18 @@
             <div class="m-b-20">
                 <div class="panel bg-complete-dark widget panel-limit text-center">
                     <div class="panel-body">
-                        <h2 class="semi-bold text-white">{{trans('home.daily_limit')}}</h2>
-                        <h3 class="text-white">
-                            {{$usage->search->used}} / {{$usage->search->limit}}
-                        </h3>
-                        <h3 class="text-white">
-                            {{$usage->contacts->used}} / {{$usage->contacts->limit}}
-                        </h3>
+                        <h2 class="semi-bold text-white">{{trans('home.monthly_limit')}}</h2>
+
+                        <div class="row">
+                            <div class="col-xs-6 text-white">
+                                <strong>Search</strong><br>
+                                {{$usage->search->used}} / {{$usage->search->limit}}
+                            </div>
+                            <div class="col-xs-6 text-white">
+                                <strong>Contacts</strong><br>
+                                {{$usage->contacts->used}} / {{$usage->contacts->limit}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -125,17 +125,17 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="block-title text-info m-t-10 fs-14">
-                                                    {{config('subscriptions.free.limit')}}
+                                                    {{config('subscriptions.free.limit.search')}}
                                                 </p>
                                             </td>
                                             <td class="bg-menu text-center">
                                                 <p class="block-title text-white m-t-10 fs-14">
-                                                    {{config('subscriptions.pro.limit')}}
+                                                    {{config('subscriptions.pro.limit.search')}}
                                                 </p>
                                             </td>
                                             <td class="text-center">
                                                 <p class="block-title text-info m-t-10 fs-14">
-                                                    {{config('subscriptions.advanced.limit')}}
+                                                    {{config('subscriptions.advanced.limit.search')}}
                                                 </p>
                                             </td>
                                         </tr>

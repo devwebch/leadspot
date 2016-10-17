@@ -71,35 +71,11 @@ class Controller extends BaseController
         // get the authenticated user
         $user = $request->user();
 
-        // retrieve lead status
-        $status = config('constants.lead.status');
-
-        $status_classes = [
-            0 => '',
-            1 => 'label-warning',
-            2 => 'label-success',
-            3 => 'label-danger'
-        ];
-
-        $leads = Lead::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
-
-        $usage = $user->subscriptionUsage();
-
-        // get the tour param
-        $tour = $request->input('tour');
-
-        $quotas = $usage->first()->quotas ? json_decode($usage->first()->quotas) : '';
+        $usage  = $user->subscriptionUsage()->first();
+        $quotas = $usage->quotas ? json_decode($usage->quotas) : '';
 
         return view('sandbox', [
             'user'              => $user,
-            'leads'             => $leads,
-            'usage'             => $usage,
-            'status'            => $status,
-            'status_classes'    => $status_classes,
-            'tour'              => $tour,
             'quotas'            => $quotas,
         ]);
     }

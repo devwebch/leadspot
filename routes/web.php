@@ -16,7 +16,7 @@ Auth::routes();
 // Standard pages
 Route::get('/', 'Controller@home');
 Route::get('/home', function (){ return redirect('/'); });
-Route::get('/sandbox', 'Controller@sandbox')->middleware('subscriptionUsage');
+Route::get('/sandbox', 'Controller@sandbox');
 Route::get('/contact', function () {
     return view('contact');
 })->middleware('auth');

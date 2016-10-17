@@ -29,11 +29,22 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         /**
-         * Reset every subscription usage to 0 at midnight
+         * Reset every subscription usage to 0 the first day of the month
          */
         $schedule->call(function(){
-            SubscriptionsUsage::where('used', '!=', '0')->update(['used' => 0]);
-        })->daily();
+
+            $usages = SubscriptionsUsage::all();
+
+            foreach ($usages as $usage) {
+                $quotas_to_update = json_decode($usage->quotas);
+                $quotas_to_update->search->used   = 0;
+                $quotas_to_update->contacts->used = 0;
+
+                $quotas_to_update = json_encode($quotas_to_update);
+                SubscriptionsUsage::where('id', $usage->id)->update(['quotas' => $quotas_to_update]);
+            }
+
+        })->monthlyOn(1, '01:00');
 
     }
 

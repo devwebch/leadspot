@@ -51,7 +51,7 @@ class LeadServiceController extends Controller
         $lead->lat              = $request->lat;
         $lead->lng              = $request->lng;
         $lead->user_id          = $user->id;
-        $lead->cms              = $request->cmsID;
+        $lead->cms              = '';
 
         // save the Model
         $lead->save();
