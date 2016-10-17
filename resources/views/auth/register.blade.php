@@ -1,6 +1,9 @@
 @extends('layouts.naked')
 
 @section('content')
+
+    @include('shared.errors');
+
     <div class="text-center">
         <img src="{{asset('img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
         <h3>{{trans('register.title')}}</h3>

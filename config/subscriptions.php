@@ -18,14 +18,23 @@ return [
     ],
 	'free' => [
 	    'price' => 0,
-        'limit' => 5
+        'limit' => [
+            'search'    => 50,
+            'contacts'  => 10
+        ]
     ],
     'advanced'  => [
         'price' => 75,
-        'limit' => 50
+        'limit' => [
+            'search'    => 200,
+            'contacts'  => 100
+        ]
     ],
     'pro'       => [
         'price' => 125,
-        'limit' => 100
+        'limit' => [
+            'search'    => 1000,
+            'contacts'  => 500
+        ]
     ]
 ];

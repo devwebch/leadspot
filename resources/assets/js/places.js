@@ -66,8 +66,24 @@ var analyzeModule = new Vue({
             if ( searchRadius ) { request.radius = parseInt(searchRadius); } else { request.radius = 100; }
 
             if (request.name || request.types.length) {
-                $('.wbf-search-form .btn .fa').removeClass('hidden'); // show loading icon
-                mapSearch();
+                $.ajax({
+                    url: '/service/subscription/usageGranted',
+                    method: 'POST',
+                    data: {
+                        update: true,
+                        type: 'search'
+                    }
+                }).done(function (data) {
+                    var searchGranted = false;
+                    if ( data == true ) { searchGranted = true; }
+
+                    if (searchGranted) {
+                        $('.wbf-search-form .btn .fa').removeClass('hidden'); // show loading icon
+                        mapSearch();
+                    } else {
+                        swal(translations.swal.error, translations.swal.daily_limit, "error");
+                    }
+                });
             }
         });
 
@@ -300,21 +316,7 @@ var analyzeModule = new Vue({
                 // btn Analyze click handler
                 $('.btn-analyze').on('click', function (e) {
                     e.preventDefault();
-                    $.ajax({
-                        url: '/service/subscription/usageGranted',
-                        method: 'POST',
-                        data: {update: true}
-                    }).done(function (data) {
-                        var analyzeGranted = false;
-                        if ( data == true ) { analyzeGranted = true; }
-
-                        if (analyzeGranted) {
-                            analyze(place);
-                        } else {
-                            swal(translations.swal.error, translations.swal.daily_limit, "error");
-                        }
-                    });
-
+                    analyze(place);
                 });
             });
         });

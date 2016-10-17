@@ -19,11 +19,16 @@ class SubscriptionsUsage
     {
         // get authenticated user
         $user                   = $request->user();
-        $subscription_usage     = $user->subscriptionUsage()->first();
-        $usage_diff             = $subscription_usage->updated_at->diffInHours(Carbon::now());
+        $usage                  = $user->subscriptionUsage()->first();
+        $quotas                 = json_decode($usage->quotas);
+        $usage_diff             = $usage->updated_at->diffInHours(Carbon::now());
 
         // if daily use exceeds the limit
-        if ( $subscription_usage->used >= $subscription_usage->limit ) {
+        if ( $usage->used >= $usage->limit ) {
+            return redirect('/subscription/error/limit');
+        }
+
+        if ( $quotas->search->used >= $quotas->search->limit ) {
             return redirect('/subscription/error/limit');
         }
 

@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function getSubscription()
     {
-        $relation = $this->hasOne('App\Subscription')->get()->first();
+        $relation = $this->hasOne('App\Subscription')->first();
 
         if ( $relation ) {
             $relation = config('subscriptions.label.' . $relation->stripe_plan);
@@ -48,5 +48,23 @@ class User extends Authenticatable
     public function subscriptionUsage()
     {
         return $this->hasOne('App\SubscriptionsUsage');
+    }
+
+    public function usageSearch()
+    {
+        $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        $usage = json_decode($usage->quotas);
+        $usage = $usage->search;
+
+        return $usage;
+    }
+
+    public function usageContacts()
+    {
+        $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        $usage = json_decode($usage->quotas);
+        $usage = $usage->contacts;
+
+        return $usage;
     }
 }

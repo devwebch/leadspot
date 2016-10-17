@@ -28,6 +28,19 @@ class SubscriptionsUsage extends Model
         }
     }
 
+    public function increaseUseByType($type)
+    {
+        $quotas = json_decode($this->quotas);
+
+        if ( $quotas ) {
+            $quotas->$type->used += 1;
+
+            $quotas = json_encode($quotas);
+            $this->quotas = $quotas;
+            $this->save();
+        }
+    }
+
     /**
      * Decreases the stored used count
      */

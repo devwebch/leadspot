@@ -16,6 +16,7 @@ Auth::routes();
 // Standard pages
 Route::get('/', 'Controller@home');
 Route::get('/home', function (){ return redirect('/'); });
+Route::get('/sandbox', 'Controller@sandbox')->middleware('subscriptionUsage');
 Route::get('/contact', function () {
     return view('contact');
 })->middleware('auth');
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
     Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
     Route::post('/subscription/update', 'SubscriptionServiceController@updateSubscriptionUsage');
+    Route::post('/subscription/updatetest', 'SubscriptionServiceController@updateSubscriptionUsageByType');
     Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
     Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');
     Route::post('/subscription/permissions', 'SubscriptionServiceController@getSubscriptionPermissions');

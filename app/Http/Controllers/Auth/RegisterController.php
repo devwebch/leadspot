@@ -79,10 +79,17 @@ class RegisterController extends Controller
         $admin  = User::find(1);
 
         // create a subscription usage entry for this new user
+        $default_quotas = [
+            'search'    => ['limit' => config('subscriptions.free.limit.search'), 'used' => 0],
+            'contacts'  => ['limit' => config('subscriptions.free.limit.contacts'), 'used' => 0]
+        ];
+        $default_quotas = json_encode($default_quotas);
+
         $usage = new SubscriptionsUsage();
         $usage->user_id     = $user->id;
-        $usage->limit       = config('subscriptions.free.limit');
+        $usage->limit       = 0;
         $usage->used        = 0;
+        $usage->quotas      = $default_quotas;
 
         $usage->save();
 

@@ -202,6 +202,8 @@ class LeadServiceController extends Controller
         $website    = $lead->url;
         $website    = parse_url($website)['host'];
         $domain     = preg_replace('/www\./', '', $website);
+        $user       = $request->user();
+        $usage      = $user->subscriptionUsage()->first();
 
         // if no website, exit
         if ( !$website ) {
@@ -238,6 +240,9 @@ class LeadServiceController extends Controller
                     $contact->save();
                 }
             }
+
+
+            $usage->increaseUseByType('contacts');
         }
 
         return back();

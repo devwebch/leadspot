@@ -115,7 +115,10 @@
                     <div class="panel-body">
                         <h2 class="semi-bold text-white">{{trans('home.daily_limit')}}</h2>
                         <h3 class="text-white">
-                            {{$usage->get()->first()->used}} / {{$usage->get()->first()->limit}}
+                            {{$usage->search->used}} / {{$usage->search->limit}}
+                        </h3>
+                        <h3 class="text-white">
+                            {{$usage->contacts->used}} / {{$usage->contacts->limit}}
                         </h3>
                     </div>
                 </div>

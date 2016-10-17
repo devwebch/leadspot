@@ -100,8 +100,10 @@ class SubscriptionServiceController extends Controller
      */
     public function checkSubscriptionUsage(Request $request)
     {
-        $user   = $request->user();
-        $usage  = $user->subscriptionUsage()->first();
+        $user       = $request->user();
+        $usage      = $user->subscriptionUsage()->first();
+        $update     = $request->input('update');
+        $type       = $request->input('type');
 
         // check subscription use
         if ( $usage->used >= $usage->limit ) {
@@ -111,8 +113,8 @@ class SubscriptionServiceController extends Controller
         }
 
         // if increment is asked, proceed
-        if ( $request->input('update') == true ) {
-            $usage->increaseUse();
+        if ( $update == true && $type ) {
+            $usage->increaseUseByType($type);
         }
 
         return response()->json($return);
@@ -127,6 +129,17 @@ class SubscriptionServiceController extends Controller
         $user   = $request->user();
         $usage  = $user->subscriptionUsage()->first();
         $usage->increaseUse();
+    }
+
+    public function updateSubscriptionUsageByType(Request $request)
+    {
+        $user   = $request->user();
+        $usage  = $user->subscriptionUsage()->first();
+        $type   = $request->input('type');
+
+        if ( $type ) {
+            $usage->increaseUseByType($type);
+        }
     }
 
     /**
