@@ -222,6 +222,7 @@ class LeadController extends Controller
         // check if the lead author is the authenticated user
         if ( $user->id == $lead->user_id ) {
             $lead->delete();
+            $lead->reports()->delete();
             return redirect('leads/list');
         } else {
             return view('shared.error_page');
