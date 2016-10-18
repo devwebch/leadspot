@@ -61,8 +61,9 @@
                                     <p>{{$user->company}}</p>
                                     @endif
 
-                                    <h3>Daily usage</h3>
-                                    <strong>{{$usage->used}} / {{$usage->limit}}</strong>
+                                    <h3>Monthly usage</h3>
+                                    <strong>Search: </strong> {{$usage->search->used}} / {{$usage->search->limit}}<br>
+                                    <strong>Contacts: </strong> {{$usage->contacts->used}} / {{$usage->contacts->limit}}
 
                                 </div>
                             </div>

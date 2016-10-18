@@ -23,13 +23,18 @@ class SubscriptionsUsage
         $quotas                 = json_decode($usage->quotas);
         $usage_diff             = $usage->updated_at->diffInHours(Carbon::now());
 
-        // if daily use exceeds the limit
-        if ( $usage->used >= $usage->limit ) {
-            return redirect('/subscription/error/limit');
+        // Usage type is Search
+        if ( $type == 'search' ) {
+            if ( $quotas->search->used >= $quotas->search->limit ) {
+                return redirect('/');
+            }
         }
 
-        if ( $quotas->search->used >= $quotas->search->limit ) {
-            return redirect('/subscription/error/limit');
+        // Usage type is Contacts
+        if ( $type == 'contacts' ) {
+            if ( $quotas->contacts->used >= $quotas->contacts->limit ) {
+                return redirect('/');
+            }
         }
 
         return $next($request);

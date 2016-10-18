@@ -42,11 +42,14 @@ class SubscriptionServiceController extends Controller
 
         // define Strip plan
         switch ($plan) {
-            case 'advanced':
-                $subscription_type  = 'leadspot_advanced';
+            case 'boutique':
+                $subscription_type  = 'leadspot_boutique';
                 break;
-            case 'pro':
-                $subscription_type  = 'leadspot_pro';
+            case 'company':
+                $subscription_type  = 'leadspot_company';
+                break;
+            case 'agency':
+                $subscription_type  = 'leadspot_agency';
                 break;
         }
 
@@ -61,12 +64,17 @@ class SubscriptionServiceController extends Controller
         $quotas = json_decode($usage->quotas);
 
         // define usage limit
-        if ( $subscription_type == 'leadspot_advanced' ) {
-            $quotas->search->limit      = config('subscriptions.advanced.limit.search');
-            $quotas->contacts->limit    = config('subscriptions.advanced.limit.contacts');
-        } elseif ( $subscription_type == 'leadspot_pro' ) {
-            $quotas->search->limit      = config('subscriptions.pro.limit.search');
-            $quotas->contacts->limit    = config('subscriptions.pro.limit.contacts');
+        if ( $subscription_type == 'leadspot_boutique' ) {
+            $quotas->search->limit      = config('subscriptions.boutique.limit.search');
+            $quotas->contacts->limit    = config('subscriptions.boutique.limit.contacts');
+        }
+        if ( $subscription_type == 'leadspot_company' ) {
+            $quotas->search->limit      = config('subscriptions.company.limit.search');
+            $quotas->contacts->limit    = config('subscriptions.company.limit.contacts');
+        }
+        if ( $subscription_type == 'leadspot_agency' ) {
+            $quotas->search->limit      = config('subscriptions.agency.limit.search');
+            $quotas->contacts->limit    = config('subscriptions.agency.limit.contacts');
         }
 
         $quotas = json_encode($quotas);
@@ -92,8 +100,19 @@ class SubscriptionServiceController extends Controller
         $user->subscription('main')->cancelNow();
 
         $usage  = $user->subscriptionUsage()->first();
-        $usage->limit = config('subscriptions.free.limit');
-        $usage->save();
+
+        $quotas = json_decode($usage->quotas);
+
+        if ( $quotas ) {
+            $quotas->search->limit      = config('subscriptions.free.limit.search');
+            $quotas->search->used       = 0;
+            $quotas->contacts->limit    = config('subscriptions.free.limit.contacts');
+            $quotas->contacts->used     = 0;
+
+            $quotas = json_encode($quotas);
+            $usage->quotas = $quotas;
+            $usage->save();
+        }
 
         return redirect('/account');
     }
@@ -165,7 +184,7 @@ class SubscriptionServiceController extends Controller
         ];
 
         if ( $user->subscribed('main') ) {
-            if ( $subscription->stripe_plan == 'leadspot_pro' ) {
+            if ( $subscription->stripe_plan == 'leadspot_boutique' ) {
                 $permissions = [
                     'cms'               => true,
                     'auto_geolocation'  => true,
@@ -173,12 +192,20 @@ class SubscriptionServiceController extends Controller
                     'manual_lead'       => true
                 ];
             }
-            if ( $subscription->stripe_plan == 'leadspot_advanced' ) {
+            if ( $subscription->stripe_plan == 'leadspot_company' ) {
                 $permissions = [
                     'cms'               => true,
                     'auto_geolocation'  => true,
-                    'report'            => false,
-                    'manual_lead'       => false
+                    'report'            => true,
+                    'manual_lead'       => true
+                ];
+            }
+            if ( $subscription->stripe_plan == 'leadspot_agency' ) {
+                $permissions = [
+                    'cms'               => true,
+                    'auto_geolocation'  => true,
+                    'report'            => true,
+                    'manual_lead'       => true
                 ];
             }
         }

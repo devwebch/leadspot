@@ -26,13 +26,17 @@ class SubscriptionController extends Controller
 
         // define plan ID and name
         switch ($plan) {
-            case 'advanced':
-                $planID     = 'leadspot_advanced';
-                $planName   = 'LeadSpot ADVANCED';
+            case 'boutique':
+                $planID     = 'leadspot_boutique';
+                $planName   = 'Boutique';
                 break;
-            case 'pro':
-                $planID     = 'leadspot_pro';
-                $planName   = 'LeadSpot PRO';
+            case 'company':
+                $planID     = 'leadspot_company';
+                $planName   = 'Company';
+                break;
+            case 'agency':
+                $planID     = 'leadspot_agency';
+                $planName   = 'Agency';
                 break;
         }
 

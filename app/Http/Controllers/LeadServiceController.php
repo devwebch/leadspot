@@ -218,7 +218,7 @@ class LeadServiceController extends Controller
 
         // query the mailhunter api
         $client = new Client();
-        $res    = $client->request('GET', 'https://api.emailhunter.co/v2/domain-search?domain=' . $domain . '&api_key=' . $this->EMAILHUNTER_API_KEY, ['verify' => false]);
+        $res    = $client->request('GET', 'https://api.hunter.io/v2/domain-search?domain=' . $domain . '&api_key=' . $this->EMAILHUNTER_API_KEY, ['verify' => false]);
 
         if ( $res->getStatusCode() == '200' ) {
             // decode json response
@@ -266,7 +266,7 @@ class LeadServiceController extends Controller
         }
 
         $client = new Client();
-        $res    = $client->request('GET', 'https://api.emailhunter.co/v2/email-count?domain=' . $domain, ['verify' => false]);
+        $res    = $client->request('GET', 'https://api.hunter.io/v2/email-count?domain=' . $domain, ['verify' => false]);
 
         if ( $res->getStatusCode() == '200' ) {
             $data = json_decode($res->getBody());

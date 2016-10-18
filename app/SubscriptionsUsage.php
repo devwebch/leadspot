@@ -18,6 +18,7 @@ class SubscriptionsUsage extends Model
     }
 
     /**
+     * Deprecated
      * Increases the stored used count
      */
     public function increaseUse()
@@ -28,12 +29,17 @@ class SubscriptionsUsage extends Model
         }
     }
 
+    /**
+     * Increases the stored used count
+     */
     public function increaseUseByType($type)
     {
         $quotas = json_decode($this->quotas);
 
         if ( $quotas ) {
-            $quotas->$type->used += 1;
+            if ( $quotas->$type->used < $quotas->$type->limit ) {
+                $quotas->$type->used += 1;
+            }
 
             $quotas = json_encode($quotas);
             $this->quotas = $quotas;
@@ -51,4 +57,40 @@ class SubscriptionsUsage extends Model
             $this->save();
         }
     }
+
+    /**
+     * Decreases the stored used count
+     */
+    public function decreaseUseByType($type)
+    {
+        $quotas = json_decode($this->quotas);
+
+        if ( $quotas ) {
+            if ($quotas->$type->used > 1) {
+                $quotas->$type->used -= 1;
+            }
+
+            $quotas = json_encode($quotas);
+            $this->quotas = $quotas;
+            $this->save();
+        }
+    }
+
+    /**
+     * Reset the used quota
+     */
+    public function resetUse()
+    {
+        $quotas = json_decode($this->quotas);
+
+        if ( $quotas ) {
+            $quotas->search->used   = 0;
+            $quotas->contacts->used = 0;
+
+            $quotas = json_encode($quotas);
+            $this->quotas = $quotas;
+            $this->save();
+        }
+    }
+
 }

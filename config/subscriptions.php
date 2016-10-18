@@ -8,13 +8,15 @@
 return [
     'types' => [
         'free',
-        'advanced',
-        'pro'
+        'boutique',
+        'company',
+        'agency'
     ],
     'label' => [
         'leadspot_free'      => 'LeadSpot Free',
-        'leadspot_advanced'  => 'LeadSpot Advanced',
-        'leadspot_pro'       => 'LeadSpot Pro'
+        'leadspot_boutique'  => 'LeadSpot Boutique',
+        'leadspot_company'   => 'LeadSpot Company',
+        'leadspot_agency'    => 'LeadSpot Agency'
     ],
 	'free' => [
 	    'price' => 0,
@@ -23,18 +25,25 @@ return [
             'contacts'  => 10
         ]
     ],
-    'advanced'  => [
-        'price' => 75,
+    'boutique'  => [
+        'price' => 49,
         'limit' => [
             'search'    => 200,
             'contacts'  => 100
         ]
     ],
-    'pro'       => [
-        'price' => 125,
+    'company'   => [
+        'price' => 129,
         'limit' => [
             'search'    => 1000,
             'contacts'  => 500
+        ]
+    ],
+    'agency'    => [
+        'price' => 499,
+        'limit' => [
+            'search'    => 2000,
+            'contacts'  => 1000
         ]
     ]
 ];

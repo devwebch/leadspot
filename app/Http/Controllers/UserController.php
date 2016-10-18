@@ -25,7 +25,8 @@ class UserController extends Controller
     public function account()
     {
         $user           = Auth::user();
-        $usage          = $user->usageSearch();
+        $usage          = $user->subscriptionUsage()->first();
+        $usage          = json_decode($usage->quotas);
         $subscription   = $user->subscriptions()->first();
         $invoices       = [];
 
