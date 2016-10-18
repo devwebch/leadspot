@@ -37,9 +37,7 @@ class SubscriptionsUsage extends Model
         $quotas = json_decode($this->quotas);
 
         if ( $quotas ) {
-            if ( $quotas->$type->used < $quotas->$type->limit ) {
-                $quotas->$type->used += 1;
-            }
+            $quotas->$type->used += 1;
 
             $quotas = json_encode($quotas);
             $this->quotas = $quotas;

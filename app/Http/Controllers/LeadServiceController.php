@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Lead;
+use App\User;
 use App\Library\DetectCMS\DetectCMS;
 use App\Report;
 use GuzzleHttp\Client;
@@ -38,6 +39,12 @@ class LeadServiceController extends Controller
     {
         // get the authenticated user
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
 
         $lead = new Lead();
         $lead->place_id         = $request->place_id;
@@ -199,11 +206,26 @@ class LeadServiceController extends Controller
      */
     public function getLeadEmails(Lead $lead, Request $request)
     {
-        $website    = $lead->url;
-        $website    = parse_url($website)['host'];
-        $domain     = preg_replace('/www\./', '', $website);
-        $user       = $request->user();
-        $usage      = $user->subscriptionUsage()->first();
+        $website        = $lead->url;
+        $website        = parse_url($website)['host'];
+        $domain         = preg_replace('/www\./', '', $website);
+        $user           = $request->user();
+        $user_parent    = $user->parent();
+
+        $usage          = $user->subscriptionUsage()->first();
+        $usage_parent   = $usage;
+
+        if ( $user_parent ) {
+            $usage_parent = $user_parent->subscriptionUsage()->first();
+        }
+
+        // retrieve the quotas
+        $quotas         = json_decode($usage_parent->quotas);
+
+        // if quotas are full, go back
+        if ( $quotas->contacts->used >= $quotas->contacts->limit ) {
+            return back();
+        }
 
         // if no website, exit
         if ( !$website ) {
@@ -241,8 +263,11 @@ class LeadServiceController extends Controller
                 }
             }
 
-
             $usage->increaseUseByType('contacts');
+
+            if ( $user_parent ) {
+                $usage_parent->increaseUseByType('contacts');
+            }
         }
 
         return back();

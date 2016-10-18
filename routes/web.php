@@ -44,8 +44,6 @@ Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
     Route::post('/leads/save', 'LeadServiceController@save');
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
     Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
-    Route::post('/subscription/update', 'SubscriptionServiceController@updateSubscriptionUsage');
-    Route::post('/subscription/updatetest', 'SubscriptionServiceController@updateSubscriptionUsageByType');
     Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
     Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');
     Route::post('/subscription/permissions', 'SubscriptionServiceController@getSubscriptionPermissions');
@@ -63,6 +61,8 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/edit', 'UserController@edit');
     Route::post('/save', 'UserController@save');
     Route::get('/invoice/{invoice}', 'UserController@downloadInvoice');
+    Route::get('/team/list', 'UserController@teamList');
+    Route::get('/team/edit/{user}', 'UserController@teamEdit');
 });
 
 // Admin

@@ -50,9 +50,23 @@ class User extends Authenticatable
         return $this->hasOne('App\SubscriptionsUsage');
     }
 
+    public function subscriptionParentUsage()
+    {
+        if ( $this->parent_id ) {
+            return SubscriptionsUsage::where('user_id', $this->parent_id);
+        } else {
+            return $this->hasOne('App\SubscriptionsUsage');
+        }
+    }
+
     public function usageSearch()
     {
-        $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        if ( $this->parent_id ) {
+            $usage = SubscriptionsUsage::where('user_id', $this->parent_id)->first();
+        } else {
+            $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        }
+
         $usage = json_decode($usage->quotas);
         $usage = $usage->search;
 
@@ -61,10 +75,25 @@ class User extends Authenticatable
 
     public function usageContacts()
     {
-        $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        if ( $this->parent_id ) {
+            $usage = SubscriptionsUsage::where('user_id', $this->parent_id)->first();
+        } else {
+            $usage = $this->hasOne('App\SubscriptionsUsage')->first();
+        }
+
         $usage = json_decode($usage->quotas);
         $usage = $usage->contacts;
 
         return $usage;
+    }
+
+    public function parent()
+    {
+        return $this->where('id', $this->parent_id)->first();
+    }
+
+    public function children()
+    {
+        return $this->where('parent_id', $this->id)->get();
     }
 }

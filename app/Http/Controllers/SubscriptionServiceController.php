@@ -39,6 +39,12 @@ class SubscriptionServiceController extends Controller
         // logged in user
         $user               = $request->user();
         $subscription_type  = null;
+        $parent             = $user->parent();
+
+        // if this user is a child account, abort
+        if ( $parent ) {
+            return redirect('/');
+        }
 
         // define Strip plan
         switch ($plan) {
@@ -125,21 +131,38 @@ class SubscriptionServiceController extends Controller
      */
     public function checkSubscriptionUsage(Request $request)
     {
-        $user       = $request->user();
-        $usage      = $user->subscriptionUsage()->first();
-        $update     = $request->input('update');
-        $type       = $request->input('type');
+        // get the current user
+        $user           = $request->user();
+        $user_parent    = $user->parent();
+
+        $usage          = $user->subscriptionUsage()->first();
+        $usage_parent   = $usage;
+        $update         = $request->input('update');
+        $type           = $request->input('type');
+
+        // if the user has a parent, store its usage
+        if ($user_parent) {
+            $usage_parent  = $user_parent->subscriptionUsage()->first();
+        }
+
+        // decode the quotas
+        $quotas   = json_decode($usage_parent->quotas);
 
         // check subscription use
-        if ( $usage->used >= $usage->limit ) {
+        if ( $quotas->$type->used >= $quotas->$type->limit ) {
             $return = false;
         } else {
             $return = true;
         }
 
         // if increment is asked, proceed
-        if ( $update == true && $type ) {
+        if ( $update == true && $type && $return == true ) {
             $usage->increaseUseByType($type);
+
+            // if the account is a child account, the target account is the parent
+            if ( $user_parent ) {
+                $usage_parent->increaseUseByType($type);
+            }
         }
 
         return response()->json($return);
@@ -152,18 +175,34 @@ class SubscriptionServiceController extends Controller
     public function updateSubscriptionUsage(Request $request)
     {
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
+
         $usage  = $user->subscriptionUsage()->first();
         $usage->increaseUse();
     }
 
     public function updateSubscriptionUsageByType(Request $request)
     {
-        $user   = $request->user();
-        $usage  = $user->subscriptionUsage()->first();
-        $type   = $request->input('type');
+        $user           = $request->user();
+        $parent         = $user->parent();
+        $usage          = $user->subscriptionUsage()->first();
+
+        $type           = $request->input('type');
 
         if ( $type ) {
             $usage->increaseUseByType($type);
+
+            // if the account is a child account, update the parent
+            if ( $parent ) {
+                $user   = User::find($parent->id);
+                $usage  = $user->subscriptionUsage()->first();
+                $usage->increaseUseByType($type);
+            }
         }
     }
 
@@ -175,6 +214,13 @@ class SubscriptionServiceController extends Controller
     public function getSubscriptionPermissions(Request $request)
     {
         $user           = $request->user();
+        $parent         = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
+
         $subscription   = $user->subscriptions()->get()->first();
         $permissions    = [
             'cms'               => true,

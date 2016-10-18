@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,12 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Download stripe generated invoice
+     * @param Request $request
+     * @param $invoiceId
+     * @return mixed
+     */
     public function downloadInvoice(Request $request, $invoiceId)
     {
         return $request->user()->downloadInvoice($invoiceId, [
@@ -50,6 +57,11 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Edit User
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Request $request)
     {
         $user = $request->user();
@@ -57,6 +69,11 @@ class UserController extends Controller
         return view('auth.account.form', ['user' => $user]);
     }
 
+    /**
+     * Save User
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function save(Request $request)
     {
         $user = $request->user();
@@ -75,6 +92,11 @@ class UserController extends Controller
         return redirect('/account');
     }
 
+    /**
+     * Retrieve User's preferences
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getPreferences(Request $request)
     {
         // get User
@@ -85,6 +107,10 @@ class UserController extends Controller
         return response($preferences);
     }
 
+    /**
+     * Save user's preferences
+     * @param Request $request
+     */
     public function savePreference(Request $request)
     {
         // get User
@@ -103,5 +129,77 @@ class UserController extends Controller
         // save
         $user->save();
     }
+
+    /**
+     * List team members
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function teamList(Request $request)
+    {
+        // get User
+        $user           = $request->user();
+        $team           = $user->children();
+
+        if ( $team ) {
+            return view('auth.team.list', [
+                'accounts'  => $team
+            ]);
+        }
+
+        return redirect('/');
+    }
+
+    /**
+     * Edit team member
+     * @param $userID
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View|void
+     */
+    public function teamEdit($userID, Request $request)
+    {
+        // get User
+        $user           = $request->user();
+        $user_edit      = User::find($userID);
+
+        if ( !$user_edit->parent() ) {
+            return;
+        }
+
+        if ( $user_edit ) {
+
+            if ( $user->id != $user_edit->parent()->id ){
+                return;
+            }
+
+            return view('auth.team.edit', [
+                'user'  => $user_edit
+            ]);
+        }
+
+        return redirect('/account/team/list');
+    }
+
+    /**
+     * Save team member
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function teamSave(Request $request)
+    {
+        $user = $request->user();
+
+        $this->validate($request, [
+            'inputFirstName'    => 'required',
+            'inputLastName'     => 'required'
+        ]);
+
+        $user->first_name       = $request->input('inputFirstName');
+        $user->last_name        = $request->input('inputLastName');
+        $user->save();
+
+        return redirect('/account');
+    }
+
 
 }

@@ -35,8 +35,19 @@
                 <div class="panel-body">
                     <strong>Sandbox</strong>
                     <p>User: {{$user->id}}</p>
-                    <p>Search limit: {{$quotas->search->limit}} | Search used: {{$quotas->search->used}}</p>
-                    <p>Contacts limit: {{$quotas->contacts->limit}} | Contacts used: {{$quotas->contacts->used}}</p>
+
+                    <h4>Children</h4>
+                    <ul>
+                        @foreach($children as $child)
+                            <li>{{$child->id}} - {{$child->email}}</li>
+                        @endforeach
+                    </ul>
+
+                    <h4>Parent</h4>
+                    @if ($parent)
+                    <p>{{$parent->id}} - {{$parent->email}}</p>
+                    @endif
+
 
                     <div>
                         {{ csrf_field() }}

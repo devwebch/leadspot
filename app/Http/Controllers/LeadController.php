@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Lead;
+use App\User;
 use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -84,6 +85,13 @@ class LeadController extends Controller
     {
         // get the authenticated user
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
+
 
         // retrieve lead status
         $status = config('constants.lead.status');
@@ -143,6 +151,12 @@ class LeadController extends Controller
     {
         // get the authenticated user
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
 
         // retrieve lead status
         $status = config('constants.lead.status');
@@ -177,6 +191,12 @@ class LeadController extends Controller
     {
         // get the authenticated user
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
 
         // set validation rules
         $this->validate($request, [
@@ -218,6 +238,12 @@ class LeadController extends Controller
     {
         // get the authenticated user
         $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
 
         // check if the lead author is the authenticated user
         if ( $user->id == $lead->user_id ) {

@@ -34,7 +34,13 @@ class Controller extends BaseController
     public function home(Request $request)
     {
         // get the authenticated user
-        $user = $request->user();
+        $user   = $request->user();
+        $parent = $user->parent();
+
+        $lead_author = $user->id;
+        if ( $parent ) {
+            $lead_author = $parent->id;
+        }
 
         // retrieve lead status
         $status = config('constants.lead.status');
@@ -46,12 +52,12 @@ class Controller extends BaseController
             3 => 'label-danger'
         ];
 
-        $leads = Lead::where('user_id', $user->id)
+        $leads = Lead::where('user_id', $lead_author)
             ->orderBy('created_at', 'desc')
             ->take(10)
             ->get();
 
-        $usage = $user->subscriptionUsage()->first();
+        $usage = $user->subscriptionParentUsage()->first();
         $usage = json_decode($usage->quotas);
 
         // get the tour param
@@ -71,12 +77,13 @@ class Controller extends BaseController
         // get the authenticated user
         $user = $request->user();
 
-        $usage  = $user->subscriptionUsage()->first();
-        $quotas = $usage->quotas ? json_decode($usage->quotas) : '';
+        $children   = $user->children();
+        $parent     = $user->parent();
 
         return view('sandbox', [
             'user'              => $user,
-            'quotas'            => $quotas,
+            'children'          => $children,
+            'parent'            => $parent,
         ]);
     }
 

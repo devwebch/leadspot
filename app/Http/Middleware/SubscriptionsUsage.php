@@ -19,7 +19,7 @@ class SubscriptionsUsage
     {
         // get authenticated user
         $user                   = $request->user();
-        $usage                  = $user->subscriptionUsage()->first();
+        $usage                  = $user->subscriptionParentUsage()->first();
         $quotas                 = json_decode($usage->quotas);
         $usage_diff             = $usage->updated_at->diffInHours(Carbon::now());
 
