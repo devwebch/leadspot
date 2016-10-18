@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class UserController extends Controller
     public function account()
     {
         $user           = Auth::user();
-        $usage          = $user->subscriptionUsage()->first();
+        $usage          = $user->subscriptionParentUsage()->first();
         $usage          = json_decode($usage->quotas);
         $subscription   = $user->subscriptions()->first();
         $invoices       = [];
@@ -141,7 +142,7 @@ class UserController extends Controller
         $user           = $request->user();
         $team           = $user->children();
 
-        if ( $team ) {
+        if ( count($team) ) {
             return view('auth.team.list', [
                 'accounts'  => $team
             ]);
@@ -169,7 +170,7 @@ class UserController extends Controller
         if ( $user_edit ) {
 
             if ( $user->id != $user_edit->parent()->id ){
-                return;
+                return redirect('/account/team');
             }
 
             return view('auth.team.edit', [
@@ -177,7 +178,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect('/account/team/list');
+        return redirect('/account/team');
     }
 
     /**
@@ -187,18 +188,26 @@ class UserController extends Controller
      */
     public function teamSave(Request $request)
     {
-        $user = $request->user();
+        $userID = $request->input('_id');
+        $user   = User::find($userID);
 
         $this->validate($request, [
             'inputFirstName'    => 'required',
-            'inputLastName'     => 'required'
+            'inputLastName'     => 'required',
+            'inputEmail'        => 'required|email',
         ]);
 
         $user->first_name       = $request->input('inputFirstName');
         $user->last_name        = $request->input('inputLastName');
+        $user->email            = $request->input('inputEmail');
         $user->save();
 
-        return redirect('/account');
+        return redirect('/account/team/list');
+    }
+
+    public function teamNew(Request $request)
+    {
+        return view('auth.team.new');
     }
 
 

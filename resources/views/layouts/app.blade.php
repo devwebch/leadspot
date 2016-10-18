@@ -52,6 +52,14 @@
                 </a>
                 <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'account') ? 'bg-danger' : ''; ?>"><i class="fa fa-user"></i></span>
             </li>
+            @if (count(Auth::user()->children()))
+            <li class="<?php echo (Route::current()->uri() == 'account/team') ? 'active' : ''; ?>">
+                <a href="/account/team">
+                    <span class="title">{{trans('menu.team')}}</span>
+                </a>
+                <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'account/team') ? 'bg-danger' : ''; ?>"><i class="fa fa-users"></i></span>
+            </li>
+            @endif
             <li class="visible-xs">
                 <a href="/logout">
                     <span class="title">{{trans('menu.logout')}}</span>

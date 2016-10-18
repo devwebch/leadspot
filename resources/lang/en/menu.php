@@ -4,6 +4,7 @@ return [
     'search_leads'  => 'Search leads',
     'my_leads'      => 'My Leads',
     'my_account'    => 'My account',
+    'team'          => 'Team',
     'logout'        => 'Logout',
     'user'          => [
         'account'       => 'My account',

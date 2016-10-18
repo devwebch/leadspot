@@ -31,7 +31,7 @@
                 "scrollCollapse": true,
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",
-                    "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                    "sInfo": "{{trans('pagination.showing')}} <b>_START_ {{trans('pagination.to')}} _END_</b> {{trans('pagination.of')}} _TOTAL_ {{trans('pagination.entries')}}"
                 },
                 "iDisplayLength": 10,
                 "aoColumnDefs": [
@@ -58,8 +58,8 @@
     <div class="panel">
         <div class="panel-heading">
             <div class="panel-title">Accounts</div>
-            <div class="pull-right hidden">
-                <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> New lead</a>
+            <div class="pull-right">
+                <a href="/account/team/new" class="btn btn-primary"><i class="pg-plus"></i> New team member</a>
             </div>
             <div class="clearfix"></div>
         </div>

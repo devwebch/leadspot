@@ -30,7 +30,7 @@
                 "scrollCollapse": true,
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",
-                    "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                    "sInfo": "{{trans('pagination.showing')}} <b>_START_ {{trans('pagination.to')}} _END_</b> {{trans('pagination.of')}} _TOTAL_ {{trans('pagination.entries')}}"
                 },
                 "iDisplayLength": 10,
                 "aoColumnDefs": [

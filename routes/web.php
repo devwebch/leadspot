@@ -61,8 +61,10 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/edit', 'UserController@edit');
     Route::post('/save', 'UserController@save');
     Route::get('/invoice/{invoice}', 'UserController@downloadInvoice');
-    Route::get('/team/list', 'UserController@teamList');
+    Route::get('/team', 'UserController@teamList');
     Route::get('/team/edit/{user}', 'UserController@teamEdit');
+    Route::get('/team/new', 'UserController@teamNew');
+    Route::post('/team/save', 'UserController@teamSave');
 });
 
 // Admin

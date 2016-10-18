@@ -31,11 +31,11 @@
                 "scrollCollapse": true,
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",
-                    "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                    "sInfo": "{{trans('pagination.showing')}} <b>_START_ {{trans('pagination.to')}} _END_</b> {{trans('pagination.of')}} _TOTAL_ {{trans('pagination.entries')}}"
                 },
                 "iDisplayLength": 10,
                 "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [ 7 ] }
+                    { 'bSortable': false, 'aTargets': [ 6 ] }
                 ]
             };
 
@@ -72,7 +72,6 @@
                 <thead>
                     <tr>
                         <th>User</th>
-                        <th>Name</th>
                         <th>Stripe plan</th>
                         <th>Quantity</th>
                         <th>Ends at</th>
@@ -84,8 +83,7 @@
                 <tbody>
                     @foreach($subscriptions as $subscription)
                     <tr>
-                        <td>{{$subscription->user()->first()->first_name}} {{$subscription->user()->first()->last_name}}</td>
-                        <td>{{$subscription->name}}</td>
+                        <td>({{$subscription->user()->first()->id}}) {{$subscription->user()->first()->first_name}} {{$subscription->user()->first()->last_name}}</td>
                         <td>{{$subscription->plan()}}</td>
                         <td>{{$subscription->quantity}}</td>
                         <td>{{date('d.m.Y', strtotime($subscription->ends_at))}}</td>
