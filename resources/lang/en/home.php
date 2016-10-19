@@ -12,4 +12,6 @@ return [
     'opinion_title'     => 'Your opinion matters',
     'opinion_desc'      => 'Please let us know what you think of LeadSpot and help us improve.',
     'opinion_action'    => 'Contact LeadSpot',
+    'limit_search'      => 'Search',
+    'limit_contacts'    => 'Contacts',
 ];

@@ -12,4 +12,6 @@ return [
     'opinion_title'     => 'Votre avis compte',
     'opinion_desc'      => "Partagez votre avis pour nous permettre d'améliorer LeadSpot.",
     'opinion_action'    => 'Contacter LeadSpot',
+    'limit_search'      => 'Recherches',
+    'limit_contacts'    => 'Contacts',
 ];

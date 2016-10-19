@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'List of leads')
+@section('title', trans('breadcrumbs.leads_list'))
 
 @section('breadcrumb')
     <li><a href="/leads/list" class="active">{{trans('breadcrumbs.leads_list')}}</a></li>
@@ -58,13 +58,13 @@
 @section('content')
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Leads list</div>
+            <div class="panel-title">{{trans('breadcrumbs.leads_list')}}</div>
             <div class="pull-right hidden">
-                <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> New lead</a>
+                <a href="/leads/new" class="btn btn-primary"><i class="pg-plus"></i> {{trans('lead.new_lead')}}</a>
             </div>
             <div class="pull-right">
                 <div class="col-xs-12">
-                    <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                    <input type="text" id="search-table" class="form-control pull-right" placeholder="{{trans('lead.search')}}">
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -77,12 +77,12 @@
             <table id="leadsTable" class="table dataTable">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>URL</th>
-                        <th>Notes</th>
-                        <th>Status</th>
-                        <th>Date</th>
+                        <th>{{trans('lead.name')}}</th>
+                        <th>{{trans('lead.address')}}</th>
+                        <th>{{trans('lead.url')}}</th>
+                        <th>{{trans('lead.notes')}}</th>
+                        <th>{{trans('lead.status_title')}}</th>
+                        <th>{{trans('lead.date')}}</th>
                         <th width="120">&nbsp;</th>
                     </tr>
                 </thead>
@@ -100,7 +100,7 @@
                         </td>
                         <td>
                             @if($lead->notes)
-                            <a href="#" class="text-success" data-toggle="popover" data-placement="top" title="Notes" data-content="{{$lead->notes}}">
+                            <a href="#" class="text-success" data-toggle="popover" data-placement="top" title="{{trans('lead.notes')}}" data-content="{{$lead->notes}}">
                                 <i class="fa fa-comment"></i>
                             </a>
                             @endif
@@ -109,9 +109,9 @@
                         <td>{{date('d.m.Y', strtotime($lead->created_at))}}</td>
                         <td>
                             <div class="btn-group pull-right" role="group" aria-label="...">
-                                <a href="/leads/view/{{$lead->id}}" class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>
-                                <a href="/leads/edit/{{$lead->id}}" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>&nbsp;
-                                <a href="/leads/delete/{{$lead->id}}" class="btn btn-default btn-xs delete"><i class="fa fa-times text-danger"></i></a>
+                                <a href="/leads/view/{{$lead->id}}" class="btn btn-default btn-xs" title="{{trans('lead.view_lead')}}"><i class="fa fa-eye"></i></a>
+                                <a href="/leads/edit/{{$lead->id}}" class="btn btn-default btn-xs" title="{{trans('lead.edit_lead')}}"><i class="fa fa-pencil"></i></a>&nbsp;
+                                <a href="/leads/delete/{{$lead->id}}" class="btn btn-default btn-xs delete" title="{{trans('lead.delete_lead')}}"><i class="fa fa-times text-danger"></i></a>
                             </div>
                             <div class="clearfix"></div>
                         </td>
@@ -130,14 +130,14 @@
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Delete this entry</h5>
+                        <h5>{{trans('lead.delete_lead')}}</h5>
                     </div>
                     <div class="modal-body">
-                        <p class="no-margin">This action will delete this entry for ever.</p>
+                        <p class="no-margin">{{trans('lead.delete_lead_warning')}}</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">Delete</a>
-                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
+                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">{{trans('lead.delete')}}</a>
+                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">{{trans('lead.cancel')}}</button>
                     </div>
                 </div>
             </div>

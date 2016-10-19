@@ -13,6 +13,7 @@ use App\SubscriptionsUsage;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends RegisterController
 {
@@ -36,6 +37,8 @@ class UserController extends RegisterController
         if ( $user->subscribed('main') ){
             $invoices = $user->invoicesIncludingPending();
         }
+
+        Log::info('Showing user account for user ID: ' . $user->id);
 
         return view('auth.account.user', [
             'user'              => $user,
@@ -67,6 +70,7 @@ class UserController extends RegisterController
     public function edit(Request $request)
     {
         $user = $request->user();
+        Log::info('Editing user with ID: ' . $user->id);
 
         return view('auth.account.form', ['user' => $user]);
     }
@@ -147,6 +151,8 @@ class UserController extends RegisterController
         $slots_open     = $user->teamSlotsAvailable();
 
         if ( count($team) ) {
+            Log::info(' ID: ' . $user->id);
+
             return view('auth.team.list', [
                 'accounts'      => $team,
                 'slots_open'    => $slots_open

@@ -117,11 +117,11 @@
 
                         <div class="row">
                             <div class="col-xs-6 text-white">
-                                <strong>Search</strong><br>
+                                <strong>{{trans('home.limit_search')}}</strong><br>
                                 {{$usage->search->used}} / {{$usage->search->limit}}
                             </div>
                             <div class="col-xs-6 text-white">
-                                <strong>Contacts</strong><br>
+                                <strong>{{trans('home.limit_contacts')}}</strong><br>
                                 {{$usage->contacts->used}} / {{$usage->contacts->limit}}
                             </div>
                         </div>

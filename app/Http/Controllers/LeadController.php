@@ -271,13 +271,13 @@ class LeadController extends Controller
         $website        = !empty($report->website) ? json_decode($report->website) : '';
 
         $indicators_labels = [
-            'viewport'          => 'Viewport',
-            'gzip'              => 'GZIP compression',
-            'minifyCss'         => 'Minified CSS',
-            'minifyJs'          => 'Minified JS',
-            'minifyHTML'        => 'Minified HTML',
-            'optimizeImages'    => 'Optimized images',
-            'fontSize'          => 'Font size adapted to screen size',
+            'viewport'          => trans('report.indicators.viewport'),
+            'gzip'              => trans('report.indicators.gzip'),
+            'minifyCss'         => trans('report.indicators.minifyCss'),
+            'minifyJs'          => trans('report.indicators.minifyJs'),
+            'minifyHTML'        => trans('report.indicators.minifyHTML'),
+            'optimizeImages'    => trans('report.indicators.optimizeImages'),
+            'fontSize'          => trans('report.indicators.fontSize'),
         ];
 
         // store view
