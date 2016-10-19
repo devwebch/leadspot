@@ -15,10 +15,12 @@ class MigrateUsageQuotas extends Migration
     {
         Schema::table('subscriptions_usage', function (Blueprint $table) {
             $usages = DB::table('subscriptions_usage')->get();
+            $search_free_limit = config('subscriptions.free.limit.search');
 
             foreach ($usages as $item) {
+                $limit = ($item->limit < $search_free_limit) ? $search_free_limit : $item->limit;
                 $quotas = [
-                    'search'    => ['limit' => $item->limit, 'used' => $item->used],
+                    'search'    => ['limit' => $limit, 'used' => 0],
                     'contacts'  => ['limit' => config('subscriptions.free.limit.contacts'), 'used' => 0]
                 ];
                 $quotas = json_encode($quotas);
