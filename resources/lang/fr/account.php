@@ -1,0 +1,20 @@
+<?php
+return [
+    'greetings'             => 'Bonjour :Firstname',
+    'edit_informations'     => 'Editer informations',
+    'your_informations'     => 'Vos informations',
+    'subscriptions'         => 'Souscriptions',
+    'invoices'              => 'Factures',
+    'no_invoices'           => 'Pas de facture',
+    'download'              => 'Télécharger',
+    'my_account'            => 'Mon compte',
+    'first_name'            => 'Prénom',
+    'last_name'             => 'Nom de famille',
+    'email'                 => 'E-mail',
+    'company'               => 'Entreprise',
+    'monthly_usage'         => 'Quotas mensuel',
+    'search'                => 'Recherches :',
+    'contacts'              => 'Contacts :',
+    'free_plan_msg'         => 'Vous utilisez actuellement la version gratuite.',
+    'free_plan_upsell'      => 'Jetez un oeil à nos plans ci-dessous.',
+];

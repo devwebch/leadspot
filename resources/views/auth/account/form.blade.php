@@ -23,16 +23,16 @@
                     <form action="/account/save" class="form" method="post">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="form-group">
-                            <label for="inputFirstName">First name:</label>
-                            <input type="text" id="inputFirstName" name="inputFirstName" value="{{old('inputFirstName', $user->first_name)}}" class="form-control">
+                            <label for="first_name">First name:</label>
+                            <input type="text" id="first_name" name="first_name" value="{{old('first_name', $user->first_name)}}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="inputLastName">Last name:</label>
-                            <input type="text" id="inputLastName" name="inputLastName" value="{{old('inputLastName', $user->last_name)}}" class="form-control">
+                            <label for="last_name">Last name:</label>
+                            <input type="text" id="last_name" name="last_name" value="{{old('last_name', $user->last_name)}}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="inputCompany">Company:</label>
-                            <input type="text" id="inputCompany" name="inputCompany" value="{{old('inputCompany', $user->company)}}" class="form-control">
+                            <label for="company">Company:</label>
+                            <input type="text" id="company" name="company" value="{{old('company', $user->company)}}" class="form-control">
                         </div>
                         <a href="/account" class="btn btn-danger">Cancel</a>
                         <button type="submit" class="btn btn-success">Save</button>

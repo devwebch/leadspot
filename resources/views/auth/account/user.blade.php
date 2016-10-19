@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', trans('breadcrumbs.my_account'))
 
 @section('breadcrumb')
     <li><a href="/account" class="active">{{trans('breadcrumbs.my_account')}}</a></li>
@@ -22,22 +22,22 @@
         <div class="col-md-12 m-b-10">
             <div class="panel">
                 <div class="panel-body">
-                    <h3>Hi there {{$user->first_name}}</h3>
+                    <h3>{{trans('account.greetings', ['firstname' => $user->first_name])}}</h3>
 
-                    <a href="/account/edit" class="btn btn-complete pull-right">Edit informations</a>
+                    <a href="/account/edit" class="btn btn-complete pull-right">{{trans('account.edit_informations')}}</a>
 
                     <ul class="nav nav-tabs nav-tabs-top nav-tabs-simple">
                         <li class="active">
-                            <a data-toggle="tab" href="#tabInfos">Your infos</a>
+                            <a data-toggle="tab" href="#tabInfos">{{trans('account.your_informations')}}</a>
                         </li>
                         @if (Auth::user()->id == 1)
                         <li class="">
-                            <a data-toggle="tab" href="#tabSubscription">Subscription</a>
+                            <a data-toggle="tab" href="#tabSubscription">{{trans('account.subscriptions')}}</a>
                         </li>
                         @endif
                         @if (Auth::user()->id == 1)
                         <li class="">
-                            <a data-toggle="tab" href="#tabInvoices">Invoices</a>
+                            <a data-toggle="tab" href="#tabInvoices">{{trans('account.invoices')}}</a>
                         </li>
                         @endif
                     </ul>
@@ -45,25 +45,25 @@
                         <div class="tab-pane active" id="tabInfos">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="m-t-0">Your account</h3>
+                                    <h3 class="m-t-0">{{trans('account.my_account')}}</h3>
 
-                                    <strong>First name</strong>
+                                    <strong>{{trans('account.first_name')}}</strong>
                                     <p>{{$user->first_name}}</p>
 
-                                    <strong>Last name</strong>
+                                    <strong>{{trans('account.last_name')}}</strong>
                                     <p>{{$user->last_name}}</p>
 
-                                    <strong>E-mail</strong>
+                                    <strong>{{trans('account.email')}}</strong>
                                     <p>{{$user->email}}</p>
 
                                     @if( $user->company)
-                                    <strong>Company</strong>
+                                    <strong>{{trans('account.company')}}</strong>
                                     <p>{{$user->company}}</p>
                                     @endif
 
-                                    <h3>Monthly usage</h3>
-                                    <strong>Search: </strong> {{$usage->search->used}} / {{$usage->search->limit}}<br>
-                                    <strong>Contacts: </strong> {{$usage->contacts->used}} / {{$usage->contacts->limit}}
+                                    <h3>{{trans('account.monthly_usage')}}</h3>
+                                    <strong>{{trans('account.search')}} </strong> {{$usage->search->used}} / {{$usage->search->limit}}<br>
+                                    <strong>{{trans('account.contacts')}} </strong> {{$usage->contacts->used}} / {{$usage->contacts->limit}}
 
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                         <div class="tab-pane" id="tabSubscription">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="m-t-0">Subscription</h3>
+                                    <h3 class="m-t-0">{{trans('account.subscriptions')}}</h3>
 
                                     @if ( $user->subscribed('main') )
                                         <div class="alert alert-info" style="max-width: 400px">
@@ -80,8 +80,8 @@
                                         </div>
                                         <p><a href="/service/subscription/cancel" class="btn btn-danger">Cancel subscription</a></p>
                                     @else
-                                        <p>You are currently using the LeadSpot free plan.</p>
-                                        <p>Take a look at our extended plans below.</p>
+                                        <p>{{trans('account.free_plan_msg')}}</p>
+                                        <p>{{trans('account.free_plan_upsell')}}</p>
                                     @endif
 
                                     @if ( !$user->subscribed('main') )
@@ -259,12 +259,12 @@
                         <div class="tab-pane" id="tabInvoices">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="m-t-0">Your invoices</h3>
+                                    <h3 class="m-t-0">{{trans('account.invoices')}}</h3>
                                     <ul>
                                         @forelse($invoices as $invoice)
-                                        <li>{{$invoice->date()->toFormattedDateString()}} - {{($invoice->total/100)}}$ | <a href="/account/invoice/{{$invoice->id}}" target="_blank">Download</a></li>
+                                        <li>{{$invoice->date()->toFormattedDateString()}} - {{($invoice->total/100)}}$ | <a href="/account/invoice/{{$invoice->id}}" target="_blank">{{trans('account.download')}}</a></li>
                                         @empty
-                                        <li>No invoices</li>
+                                        <li>{{trans('account.no_invoices')}}</li>
                                         @endforelse
                                     </ul>
                                 </div>

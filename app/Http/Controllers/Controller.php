@@ -80,6 +80,8 @@ class Controller extends BaseController
         $children   = $user->children();
         $parent     = $user->parent();
 
+        var_dump($user->teamSlotsAvailable());
+
         return view('sandbox', [
             'user'              => $user,
             'children'          => $children,

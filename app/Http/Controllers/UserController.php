@@ -9,11 +9,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\SubscriptionsUsage;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends RegisterController
 {
     public function __construct()
     {
@@ -80,14 +81,14 @@ class UserController extends Controller
         $user = $request->user();
 
         $this->validate($request, [
-            'inputFirstName'    => 'required',
-            'inputLastName'     => 'required',
-            'inputCompany'      => 'max:255'
+            'first_name'    => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'company'       => 'max:255'
         ]);
 
-        $user->first_name       = $request->input('inputFirstName');
-        $user->last_name        = $request->input('inputLastName');
-        $user->company          = $request->input('inputCompany');
+        $user->first_name       = $request->input('first_name');
+        $user->last_name        = $request->input('last_name');
+        $user->company          = $request->input('company');
         $user->save();
 
         return redirect('/account');
@@ -140,11 +141,15 @@ class UserController extends Controller
     {
         // get User
         $user           = $request->user();
+        if ( $user->parent() ) { return back(); }
+
         $team           = $user->children();
+        $slots_open     = $user->teamSlotsAvailable();
 
         if ( count($team) ) {
             return view('auth.team.list', [
-                'accounts'  => $team
+                'accounts'      => $team,
+                'slots_open'    => $slots_open
             ]);
         }
 
@@ -164,7 +169,7 @@ class UserController extends Controller
         $user_edit      = User::find($userID);
 
         if ( !$user_edit->parent() ) {
-            return;
+            return redirect('/');
         }
 
         if ( $user_edit ) {
@@ -182,7 +187,7 @@ class UserController extends Controller
     }
 
     /**
-     * Save team member
+     * Save team member after edit
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -192,22 +197,80 @@ class UserController extends Controller
         $user   = User::find($userID);
 
         $this->validate($request, [
-            'inputFirstName'    => 'required',
-            'inputLastName'     => 'required',
-            'inputEmail'        => 'required|email',
+            'first_name'    => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'email'         => 'required|email|max:255',
         ]);
 
-        $user->first_name       = $request->input('inputFirstName');
-        $user->last_name        = $request->input('inputLastName');
-        $user->email            = $request->input('inputEmail');
+        $user->first_name       = $request->input('first_name');
+        $user->last_name        = $request->input('last_name');
+        $user->email            = $request->input('email');
         $user->save();
 
-        return redirect('/account/team/list');
+        return redirect('/account/team');
     }
 
+    /**
+     * Add a new team member
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function teamNew(Request $request)
     {
+        // get User
+        $user           = $request->user();
+        if ( $user->parent() || !$user->teamSlotsAvailable() ) { return redirect('/'); }
+
+
         return view('auth.team.new');
+    }
+
+    /**
+     * Save a new user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function teamNewSave(Request $request)
+    {
+        $parent_user = $request->user();
+
+        $new_user = $this->create([
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
+            'email'         => $request->input('email'),
+            'password'      => bcrypt($request->input('password')),
+            'company'       => ''
+        ]);
+
+        $new_user->parent_id = $parent_user->id;
+        $new_user->save();
+
+        return redirect('/account/team');
+    }
+
+    /**
+     * Delete team member
+     * @param $userID
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     */
+    public function teamDelete($userID, Request $request)
+    {
+        // get User
+        $current_user           = $request->user();
+        $user                   = User::find($userID);
+
+        // if it has a parent, return
+        if ( $current_user->parent() ) { return; }
+        // if it is not the parent, return
+        if ( $current_user->id != $user->parent_id ) { return; };
+
+        // delete usage
+        $user->subscriptionUsage()->delete();
+        // delete user
+        $user->delete();
+
+        return redirect('/account/team');
     }
 
 

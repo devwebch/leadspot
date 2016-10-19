@@ -22,28 +22,32 @@ return [
 	    'price' => 0,
         'limit' => [
             'search'    => 50,
-            'contacts'  => 10
+            'contacts'  => 10,
+            'teamsize'  => 0
         ]
     ],
     'boutique'  => [
         'price' => 49,
         'limit' => [
             'search'    => 200,
-            'contacts'  => 100
+            'contacts'  => 100,
+            'teamsize'  => 1
         ]
     ],
     'company'   => [
         'price' => 129,
         'limit' => [
             'search'    => 1000,
-            'contacts'  => 500
+            'contacts'  => 500,
+            'teamsize'  => 3
         ]
     ],
     'agency'    => [
         'price' => 499,
         'limit' => [
             'search'    => 2000,
-            'contacts'  => 1000
+            'contacts'  => 1000,
+            'teamsize'  => 1000
         ]
     ]
 ];

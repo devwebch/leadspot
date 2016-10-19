@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @include('shared.errors');
-
     <div class="text-center">
         <img src="{{asset('img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
         <h3>{{trans('register.title')}}</h3>
@@ -67,7 +65,7 @@
             @endif
         </div>
 
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('terms_agree') ? ' has-error' : '' }}">
             <div class="checkbox">
                 <input type="checkbox" value="agreed" name="terms_agree" id="terms_agree">
                 <label for="terms_agree">{!! trans('register.terms_conditions', ['url' => 'http://leadspotapp.com/terms-and-conditions']) !!}</label>

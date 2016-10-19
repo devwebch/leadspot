@@ -3,8 +3,7 @@
 @section('title', 'Accounts')
 
 @section('breadcrumb')
-    <li><a href="/admin">Team</a></li>
-    <li><a href="/admin/accounts" class="active">Accounts</a></li>
+    <li><a href="/account/team" class="active">{{trans('breadcrumbs.team')}}</a></li>
 @endsection
 
 @section('styles')
@@ -57,10 +56,12 @@
 @section('content')
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Accounts</div>
+            <div class="panel-title">{{trans('team.accounts')}}</div>
+            @if($slots_open)
             <div class="pull-right">
-                <a href="/account/team/new" class="btn btn-primary"><i class="pg-plus"></i> New team member</a>
+                <a href="/account/team/new" class="btn btn-complete"><i class="pg-plus"></i> {{trans('team.new_team_member')}}</a>
             </div>
+            @endif
             <div class="clearfix"></div>
         </div>
         <div class="panel-body">
@@ -71,11 +72,11 @@
             <table id="leadsTable" class="table dataTable">
                 <thead>
                     <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>E-mail</th>
-                        <th>Created at</th>
-                        <th>Action</th>
+                        <th>{{trans('team.first_name')}}</th>
+                        <th>{{trans('team.last_name')}}</th>
+                        <th>{{trans('team.email')}}</th>
+                        <th>{{trans('team.created_at')}}</th>
+                        <th>{{trans('team.actions')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,8 +89,8 @@
                         <td>
                             <div class="btn-group" role="group">
                                 @if ($account->id != 1)
-                                    <a href="/account/team/edit/{{$account->id}}" class="btn btn-default btn-xs" title="Edit this user"><i class="fa fa-pencil"></i></a>
-                                    <a href="/admin/accounts/delete/{{$account->id}}" class="btn btn-danger btn-xs delete" title="Delete"><i class="fa fa-times"></i></a>
+                                    <a href="/account/team/edit/{{$account->id}}" class="btn btn-default btn-xs" title="{{trans('team.edit_user')}}"><i class="fa fa-pencil"></i></a>
+                                    <a href="/account/team/delete/{{$account->id}}" class="btn btn-danger btn-xs delete" title="{{trans('team.delete_user')}}"><i class="fa fa-times"></i></a>
                                 @endif
                             </div>
                         </td>
@@ -108,14 +109,14 @@
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Delete this entry</h5>
+                        <h5>{{trans('team.delete_user')}}</h5>
                     </div>
                     <div class="modal-body">
-                        <p class="no-margin">This action will delete this entry for ever.</p>
+                        <p class="no-margin">{{trans('team.delete_warning')}}</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">Delete</a>
-                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
+                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">{{trans('team.delete')}}</a>
+                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">{{trans('team.cancel')}}</button>
                     </div>
                 </div>
             </div>

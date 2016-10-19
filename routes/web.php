@@ -64,7 +64,9 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/team', 'UserController@teamList');
     Route::get('/team/edit/{user}', 'UserController@teamEdit');
     Route::get('/team/new', 'UserController@teamNew');
+    Route::get('/team/delete/{user}', 'UserController@teamDelete');
     Route::post('/team/save', 'UserController@teamSave');
+    Route::post('/team/new/save', 'UserController@teamNewSave');
 });
 
 // Admin

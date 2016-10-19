@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'company'
+        'first_name', 'last_name', 'email', 'password', 'company', 'parent_id'
     ];
 
     /**
@@ -85,6 +85,35 @@ class User extends Authenticatable
         $usage = $usage->contacts;
 
         return $usage;
+    }
+
+    public function teamSlotsAvailable()
+    {
+        if ( $this->parent_id ) { return 0; }
+
+        $subscription   = $this->hasOne('App\Subscription')->first();
+        $plan           = $subscription->stripe_plan;
+        $team           = User::where('parent_id', 1)->count();
+        $team_size      = 0;
+        $free_spots     = 0;
+
+        switch ($plan) {
+            case 'leadspot_boutique':
+                $team_size = config('subscriptions.boutique.limit.teamsize');
+                break;
+            case 'leadspot_company':
+                $team_size = config('subscriptions.company.limit.teamsize');
+                break;
+            case 'leadspot_agency':
+                $team_size = config('subscriptions.agency.limit.teamsize');
+                break;
+        }
+
+        $free_spots      = $team_size - $team;
+        if ( $free_spots < 0 ) { $free_spots = 0; }
+        if ( $free_spots > $team_size ) { $free_spots = $team_size; }
+
+        return $free_spots;
     }
 
     public function parent()

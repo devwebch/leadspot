@@ -5,4 +5,5 @@ return [
     'leads_list'            => 'Liste de prospects',
     'my_account'            => 'Mon compte',
     'help'                  => 'Aide',
+    'team'                  => 'Équipe',
 ];
