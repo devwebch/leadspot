@@ -2,6 +2,10 @@
 
 @section('content')
 
+    <div class="text-right hint-text m-b-20 ">
+        <a href="/login">I already have an account.</a>
+    </div>
+
     <div class="text-center">
         <img src="{{asset('img/logo-leadspot.png')}}" alt="logo" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
         <h3>{{trans('register.title')}}</h3>
@@ -73,8 +77,8 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+            <div class="col-md-6 col-md-offset-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-block m-t-10">
                     <i class="fa fa-btn fa-user"></i> {{trans('register.register')}}
                 </button>
             </div>

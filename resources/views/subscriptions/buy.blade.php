@@ -93,10 +93,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class=" col-md-3 text-right">
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="col-md-3"><strong>{{trans('payment.total_label')}}</strong></td>
                         <td class="col-md-9 text-right">
                             <h4 class="text-primary no-margin font-montserrat">${{config('subscriptions.' . $plan . '.price')}} / {{trans('payment.month')}}</h4>
