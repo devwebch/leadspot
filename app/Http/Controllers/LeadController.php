@@ -13,6 +13,7 @@ use App\Lead;
 use App\User;
 use App\Library\DetectCMS\DetectCMS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use League\Flysystem\Config;
 use Dompdf\Dompdf;
@@ -48,6 +49,9 @@ class LeadController extends Controller
      */
     public function viewLead(Lead $lead, Request $request)
     {
+        $user = $request->user();
+        if ( $lead->user_id != $user->id ) { return redirect('/'); }
+
         // retrieve lead status
         $status = config('constants.lead.status');
 
@@ -91,7 +95,6 @@ class LeadController extends Controller
         if ( $parent ) {
             $user = User::find($parent->id);
         }
-
 
         // retrieve lead status
         $status = config('constants.lead.status');
@@ -192,6 +195,7 @@ class LeadController extends Controller
         // get the authenticated user
         $user   = $request->user();
         $parent = $user->parent();
+        $mode   = 'add';
 
         // if the account is a child account, the target account is the parent
         if ( $parent ) {
@@ -207,6 +211,7 @@ class LeadController extends Controller
         // if it is an update, we retrieve the Lead object
         if ($request->_id) {
             $lead = Lead::find($request->_id);
+            $mode = 'edit';
         } else {
             $lead   = new Lead;
         }
@@ -223,6 +228,10 @@ class LeadController extends Controller
 
         // insert the model in DB
         $lead->save();
+
+        if ( $mode == 'edit' ) {
+            return redirect('leads/view/' . $lead->id);
+        }
 
         // redirect to Leads list
         return redirect('/leads/list');
@@ -257,6 +266,9 @@ class LeadController extends Controller
 
     public function report(Lead $lead)
     {
+        $user = Auth::user();
+        if ( $lead->user_id != $user->id ) { return; }
+
         // get the first report
         $report     = $lead->reports()->first();
 

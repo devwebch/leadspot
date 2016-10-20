@@ -6,4 +6,5 @@ return [
     'my_account'            => 'My account',
     'help'                  => 'Help',
     'team'                  => 'Team',
+    'subscribe'             => 'Subscribe',
 ];

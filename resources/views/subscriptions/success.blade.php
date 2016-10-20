@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Success')
+@section('title', 'Thank you')
 
 @section('breadcrumb')
-    <li><a href="/account" class="active">My account</a></li>
+    <li><a href="/account" class="active">{{trans('breadcrumbs.my_account')}}</a></li>
 @endsection
 
 @section('styles')
@@ -20,5 +20,4 @@
             <p><a href="/" class="btn btn-success">Go to my Dashboard</a></p>
         </div>
     </div>
-
 @endsection

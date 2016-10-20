@@ -17,6 +17,7 @@ class WebhookController extends CashierController
 
     /**
      * @param $payload
+     * @return Response
      */
     public function handleInvoicePaymentSucceeded($payload)
     {

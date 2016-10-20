@@ -46,7 +46,7 @@ class InvoicePaid extends Notification
                     ->greeting('Hi there ' . $this->user->first_name)
                     ->line('Thank you for your subscription, your payment was successfully received.')
                     ->action('View invoices', 'https://go.leadspotapp.com/account')
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using LeadSpot!');
     }
 
     /**

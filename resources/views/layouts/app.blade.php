@@ -170,7 +170,7 @@
                         </span>
                 </p>
                 <p class="small no-margin pull-right sm-pull-reset p-l-20">
-                    <span class="hint-text">V 0.5</span>
+                    <span class="hint-text">V 1.0</span>
                 </p>
                 <p class="small no-margin pull-right sm-pull-reset">
                     <span>Made in </span>

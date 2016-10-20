@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Subscription')
+@section('title', trans('breadcrumbs.subscribe'))
 
 @section('breadcrumb')
-    <li><a href="/account" class="active">My account</a></li>
+    <li><a href="/account" class="active">{{trans('breadcrumbs.subscribe')}}</a></li>
 @endsection
 
 @section('styles')
@@ -79,9 +79,38 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
+            <div class="padding-20">
+                <h2>{{trans('payment.your_subscription')}}</h2>
+                <p>{{trans('payment.subscriptions_details')}}</p>
+                <table class="table table-condensed">
+                    <tbody><tr>
+                        <td class="col-md-2">
+                            <span>1x</span>
+                        </td>
+                        <td class="col-md-10">
+                            <span class="m-l-10 font-montserrat fs-18 all-caps">{{$planName}}</span>
+                            <span class="m-l-10 ">{{trans('payment.monthly_subscription')}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class=" col-md-3 text-right">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-3"><strong>{{trans('payment.total_label')}}</strong></td>
+                        <td class="col-md-9 text-right">
+                            <h4 class="text-primary no-margin font-montserrat">${{config('subscriptions.' . $plan . '.price')}} / {{trans('payment.month')}}</h4>
+                        </td>
+                    </tr>
+                    </tbody></table>
+                <p class="small">{{trans('payment.invoices_msg')}}</p>
+                <p class="small">{!! trans('payment.pay_conditions_msg') !!}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
             <form role="form" class="cc-form">
                 <div class="bg-master-light padding-30 m-b-20 b-rad-sm">
-                    <h2 class="pull-left no-margin">Credit Card</h2>
+                    <h2 class="pull-left no-margin">{{trans('payment.credit_card')}}</h2>
                     <ul class="list-unstyled pull-right list-inline no-margin">
                         <li>
                             <a href="#">
@@ -101,58 +130,54 @@
                     </ul>
                     <div class="clearfix"></div>
                     <div class="form-group form-group-default required m-t-25">
-                        <label>Card holder's name</label>
-                        <input type="text" class="form-control" name="inputName" placeholder="Name on the card" required>
+                        <label>{{trans('payment.card_holder')}}</label>
+                        <input type="text" class="form-control" name="inputName" placeholder="{{trans('payment.card_holder_label')}}" required>
                     </div>
                     <div class="form-group form-group-default required">
-                        <label>Card number</label>
+                        <label>{{trans('payment.card_number')}}</label>
                         <input type="text" class="form-control" name="inputCc" placeholder="8888-8888-8888-8888" required>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Expiration</label>
+                            <label>{{trans('payment.expiration')}}</label>
                             <br>
                             <select class="form-control pull-left m-r-20" name="inputMonth" style="width: 100px;">
-                                <option value="1" selected>Jan (01)</option>
-                                <option value="2">Feb (02)</option>
-                                <option value="3">Mar (03)</option>
-                                <option value="4">Apr (04)</option>
-                                <option value="5">May (05)</option>
-                                <option value="6">Jun (06)</option>
-                                <option value="7">Jul (07)</option>
-                                <option value="8">Aug (08)</option>
-                                <option value="9">Sep (09)</option>
-                                <option value="10">Oct (10)</option>
-                                <option value="11">Nov (11)</option>
-                                <option value="12">Dec (12)</option>
+                                <option value="1" selected>{{trans('payment.expiration_months.jan')}}</option>
+                                <option value="2">{{trans('payment.expiration_months.feb')}}</option>
+                                <option value="3">{{trans('payment.expiration_months.mar')}}</option>
+                                <option value="4">{{trans('payment.expiration_months.apr')}}</option>
+                                <option value="5">{{trans('payment.expiration_months.may')}}</option>
+                                <option value="6">{{trans('payment.expiration_months.jun')}}</option>
+                                <option value="7">{{trans('payment.expiration_months.jul')}}</option>
+                                <option value="8">{{trans('payment.expiration_months.aug')}}</option>
+                                <option value="9">{{trans('payment.expiration_months.sep')}}</option>
+                                <option value="10">{{trans('payment.expiration_months.oct')}}</option>
+                                <option value="11">{{trans('payment.expiration_months.nov')}}</option>
+                                <option value="12">{{trans('payment.expiration_months.dec')}}</option>
                             </select>
                             <select class="form-control" name="inputYear" style="width: 100px;">
                                 <?php $year = (int) date('Y'); ?>
-                                <?php for( $i=$year; $i < ($year + 20); $i++ ): ?>
+                                <?php for( $i=$year; $i < ($year + 10); $i++ ): ?>
                                 <option value="{{$i}}">{{$i}}</option>
                                 <?php endfor; ?>
                             </select>
                         </div>
                         <div class="col-md-2 col-md-offset-4">
                             <div class="form-group required">
-                                <label>CVC Code</label>
+                                <label>{{trans('payment.cvc_code')}}</label>
                                 <input type="text" class="form-control" name="inputCvc" placeholder="000" required>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" id="btn-validate-cc" type="submit"><i class="fa fa-refresh fa-spin hidden"></i> Check my informations</button>
+                <button class="btn btn-complete btn-block btn-lg" id="btn-validate-cc" type="submit"><i class="fa fa-refresh fa-spin hidden"></i> {{trans('payment.verify_infos')}}</button>
             </form>
-        </div>
-        <div class="col-md-5 col-md-push-1">
-            <h2>{{$planName}}</h2>
-            <h4>Subscribe now for: <strong>${{config('subscriptions.' . $plan . '.price')}} / month</strong></h4>
             <form action="/service/subscription/new/{{$plan}}" id="buy-form" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="token" value="">
-                <button class="btn btn-success btn-lg btn-block hidden" id="btn-buy-now"><i class="fa fa-refresh fa-spin hidden"></i> Buy now</button>
+                <button class="btn btn-success btn-lg btn-block hidden" id="btn-buy-now"><i class="fa fa-refresh fa-spin hidden"></i> {{trans('payment.pay_now')}}</button>
             </form>
         </div>
-    </div>
+    <div>
 
 @endsection

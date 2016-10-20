@@ -55,14 +55,14 @@
 
     <div class="panel">
         <div class="panel-heading">
-            <div class="panel-title">Details</div>
+            <div class="panel-title">{{trans('lead.details')}}</div>
             <div class="btn-group pull-right m-b-10">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Action <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="/leads/edit/{{$lead->id}}">Edit</a></li>
-                    <li><a href="/leads/delete/{{$lead->id}}" class="delete">Delete</a></li>
+                    <li><a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit')}}</a></li>
+                    <li><a href="/leads/delete/{{$lead->id}}" class="delete">{{trans('lead.delete')}}</a></li>
                 </ul>
             </div>
         </div>
@@ -79,42 +79,42 @@
                     @endif
                 </div>
                 <div class="col-md-4">
-                    <h4>Details</h4>
-                    <p>Status: <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span></p>
+                    <h4>{{trans('lead.details')}}</h4>
+                    <p>{{trans('lead.status_label')}} <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span></p>
                     @if($lead->url)
-                        <p>Website: <a href="{{$lead->url}}">{{$lead->url}}</a></p>
+                        <p>{{trans('lead.website_label')}} <a href="{{$lead->url}}">{{$lead->url}}</a></p>
                     @endif
                     @if($lead->cms)
-                        <p>CMS: {{config('constants.cms.' . $lead->cms)}}</p>
+                        <p>{{trans('lead.cms_label')}} {{config('constants.cms.' . $lead->cms)}}</p>
                     @endif
                     @if($lead->phone_number)
-                        <p>Phone: {{$lead->phone_number}}</p>
+                        <p>{{trans('lead.phone_label')}} {{$lead->phone_number}}</p>
                     @endif
                     <hr>
-                    <h4>Notes</h4>
+                    <h4>{{trans('lead.notes')}}</h4>
                     @if($lead->notes)
                         {{$lead->notes}}
                     @else
-                        <a href="/leads/edit/{{$lead->id}}">Edit and add notes</a>
+                        <a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit_add_notes')}}</a>
                     @endif
                     <hr>
-                    <h4>Report</h4>
+                    <h4>{{trans('lead.report')}}</h4>
                     <ul class="list-unstyled">
                     @forelse($lead->reports()->get() as $report)
-                        <li><a href="/leads/report/{{$lead->id}}" target="_blank">Download PDF report ({{date('d.m.Y', strtotime($report->created_at))}})</a></li>
+                        <li><a href="/leads/report/{{$lead->id}}" target="_blank">{{trans('lead.download_report')}} ({{date('d.m.Y', strtotime($report->created_at))}})</a></li>
                     @empty
-                        <li>No reports available</li>
+                        <li>{{trans('lead.no_reports')}}</li>
                     @endforelse
                     </ul>
                     <hr>
-                    <h4>Contacts</h4>
+                    <h4>{{trans('lead.contacts')}}</h4>
                     @if ($stored_contacts)
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="70%">E-mail</th>
-                                <th>Type</th>
-                                <th>Trust</th>
+                                <th width="70%">{{trans('lead.email')}}</th>
+                                <th>{{trans('lead.type')}}</th>
+                                <th>{{trans('lead.viability')}}</th>
                             </tr>
                         </thead>
                     @foreach($lead->contacts as $contact)
@@ -135,12 +135,12 @@
                     @endif
 
                     @if(!$stored_contacts && ($available_contacts > 0))
-                        <p class="hint-text">Contacts may be available ({{$available_contacts}}), only relevant contact informations will be retrieved.</p>
-                        <a href="/leads/getcontacts/{{$lead->id}}" class="btn btn-success">Fetch contacts</a>
+                        <p class="hint-text">{{trans('lead.contacts_may_available')}}</p>
+                        <a href="/leads/getcontacts/{{$lead->id}}" class="btn btn-success">{{trans('lead.fetch_contacts')}}</a>
                     @endif
 
                     @if(!$stored_contacts && ($available_contacts <=0))
-                        <p class="hint-text">No contacts informations were found for this website.</p>
+                        <p class="hint-text">{{trans('lead.no_contacts_infos')}}</p>
                     @endif
 
                 </div>
@@ -156,14 +156,14 @@
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Delete this entry</h5>
+                        <h5>{{trans('lead.delete_lead')}}</h5>
                     </div>
                     <div class="modal-body">
-                        <p class="no-margin">This action will delete this entry for ever.</p>
+                        <p class="no-margin">{{trans('lead.delete_lead_warning')}}</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">Delete</a>
-                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Cancel</button>
+                        <a href="#" class="btn btn-danger btn-cons pull-left inline continue">{{trans('lead.delete')}}</a>
+                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">{{trans('lead.cancel')}}</button>
                     </div>
                 </div>
             </div>

@@ -174,12 +174,14 @@ class UserController extends RegisterController
         $user           = $request->user();
         $user_edit      = User::find($userID);
 
+        // a child account cannot edit
         if ( !$user_edit->parent() ) {
             return redirect('/');
         }
 
         if ( $user_edit ) {
 
+            // if the child doesn't belong to the account
             if ( $user->id != $user_edit->parent()->id ){
                 return redirect('/account/team');
             }
