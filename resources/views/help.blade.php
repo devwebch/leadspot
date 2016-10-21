@@ -29,7 +29,7 @@
                             <div class="m-b-20">
                                 <h4>Is this a paid service?</h4>
                                 <p>LeadSpot is open to everyone through our free plan, no credit cards are required to open a free account.</p>
-                                <p>Paid subscriptions are available, unlocking advanced features and increasing your daily limits.</p>
+                                <p>Paid subscriptions are available, unlocking advanced features and increasing your monthly limits.</p>
                             </div>
                             <div class="m-b-20">
                                 <h4>I would like to cancel my subscriptions</h4>

@@ -92,6 +92,8 @@ class User extends Authenticatable
         if ( $this->parent_id ) { return 0; }
 
         $subscription   = $this->hasOne('App\Subscription')->first();
+        if ( !$subscription ) { return 0; }
+
         $plan           = $subscription->stripe_plan;
         $team           = User::where('parent_id', 1)->count();
         $team_size      = 0;

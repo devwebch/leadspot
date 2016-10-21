@@ -94,8 +94,8 @@ class RegisterController extends Controller
         $usage->save();
 
         // send notification to user
-        //$user->notify(new Welcome($user));
-        //$admin->notify(new NewUser($user));
+        $user->notify(new Welcome($user));
+        $admin->notify(new NewUser($user));
 
         return $user;
     }

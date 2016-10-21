@@ -313,7 +313,7 @@ class LeadController extends Controller
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream();
+        $dompdf->stream('report');
 
         // return view (for testing purposes)
         return view('leads.report', [

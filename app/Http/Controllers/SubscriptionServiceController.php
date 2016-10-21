@@ -227,6 +227,7 @@ class SubscriptionServiceController extends Controller
             'auto_geolocation'  => false,
             'report'            => false,
             'manual_lead'       => false,
+            'team_management'   => false,
         ];
 
         if ( $user->subscribed('main') ) {
@@ -243,7 +244,8 @@ class SubscriptionServiceController extends Controller
                     'cms'               => true,
                     'auto_geolocation'  => true,
                     'report'            => true,
-                    'manual_lead'       => true
+                    'manual_lead'       => true,
+                    'team_management'   => false,
                 ];
             }
             if ( $subscription->stripe_plan == 'leadspot_agency' ) {
@@ -251,7 +253,8 @@ class SubscriptionServiceController extends Controller
                     'cms'               => true,
                     'auto_geolocation'  => true,
                     'report'            => true,
-                    'manual_lead'       => true
+                    'manual_lead'       => true,
+                    'team_management'   => false,
                 ];
             }
         }

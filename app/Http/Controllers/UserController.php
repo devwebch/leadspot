@@ -150,7 +150,7 @@ class UserController extends RegisterController
         $team           = $user->children();
         $slots_open     = $user->teamSlotsAvailable();
 
-        if ( count($team) ) {
+        if ( $slots_open ) {
             Log::info(' ID: ' . $user->id);
 
             return view('auth.team.list', [
