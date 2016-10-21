@@ -78,8 +78,8 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="panel no-border">
-                    <div class="padding-15">
+                <div class="panel no-border p-l-25 p-r-25 p-b-25">
+                    <div class="p-b-10">
                         <div class="item-header clearfix">
                             <div class="inline">
                                 <p class="no-margin"><strong>LeadSpot team</strong></p>
@@ -87,11 +87,11 @@
                         </div>
                     </div>
                     <hr class="no-margin">
-                    <div class="padding-15">
+                    <div class="p-t-10">
                         <p>The beta is now open to everyone!</p>
                         <div class="hint-text">12.09.2016</div>
                     </div>
-                </div><!-- /.panel -->
+                </div>
             </div>
         </div>
         <div class="col-md-3">
@@ -103,7 +103,7 @@
 
             @if ( Auth::user()->subscribed('main') )
             <div class="m-b-20">
-                <div class="panel widget panel-account text-center" style="background-color: #b94a67;">
+                <div class="panel widget panel-gopro text-center" style="background-color: #b94a67;">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account/pricing" class="text-white">{{trans('home.go_pro_title')}}</a></h2>
                         <p class=""><a href="/account/pricing" class="btn btn-info-light">{{trans('home.go_pro_label')}}</a></p>

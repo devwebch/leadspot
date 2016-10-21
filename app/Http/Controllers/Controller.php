@@ -34,8 +34,8 @@ class Controller extends BaseController
     public function home(Request $request)
     {
         // get the authenticated user
-        $user   = $request->user();
-        $parent = $user->parent();
+        $user                   = $request->user();
+        $parent                 = $user->parent();
 
         $lead_author = $user->id;
         if ( $parent ) {

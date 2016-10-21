@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\SubscriptionServiceController;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
@@ -57,6 +58,15 @@ class User extends Authenticatable
         } else {
             return $this->hasOne('App\SubscriptionsUsage');
         }
+    }
+
+    public function permissions()
+    {
+        $subscription_service   = new SubscriptionServiceController();
+        $permissions            = $subscription_service->getSubscriptionPermissions();
+        $permissions            = json_decode($permissions->content());
+
+        return $permissions;
     }
 
     public function usageSearch()

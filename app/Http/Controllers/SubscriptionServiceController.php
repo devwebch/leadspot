@@ -211,9 +211,9 @@ class SubscriptionServiceController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getSubscriptionPermissions(Request $request)
+    public function getSubscriptionPermissions()
     {
-        $user           = $request->user();
+        $user           = Auth::user();
         $parent         = $user->parent();
 
         // if the account is a child account, the target account is the parent
@@ -221,6 +221,7 @@ class SubscriptionServiceController extends Controller
             $user = User::find($parent->id);
         }
 
+        // free subscription
         $subscription   = $user->subscriptions()->get()->first();
         $permissions    = [
             'cms'               => true,
@@ -245,7 +246,7 @@ class SubscriptionServiceController extends Controller
                     'auto_geolocation'  => true,
                     'report'            => true,
                     'manual_lead'       => true,
-                    'team_management'   => false,
+                    'team_management'   => true,
                 ];
             }
             if ( $subscription->stripe_plan == 'leadspot_agency' ) {
@@ -254,7 +255,7 @@ class SubscriptionServiceController extends Controller
                     'auto_geolocation'  => true,
                     'report'            => true,
                     'manual_lead'       => true,
-                    'team_management'   => false,
+                    'team_management'   => true,
                 ];
             }
         }

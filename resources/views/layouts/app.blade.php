@@ -52,7 +52,7 @@
                 </a>
                 <span class="icon-thumbnail <?php echo (Route::current()->uri() == 'account') ? 'bg-danger' : ''; ?>"><i class="fa fa-user"></i></span>
             </li>
-            @if (Auth::user()->subscribedToPlan('leadspot_company', 'main') || Auth::user()->subscribedToPlan('leadspot_agency', 'main'))
+            @if (Auth::user()->permissions()->team_management)
             <li class="<?php echo (Route::current()->uri() == 'account/team') ? 'active' : ''; ?>">
                 <a href="/account/team">
                     <span class="title">{{trans('menu.team')}}</span>

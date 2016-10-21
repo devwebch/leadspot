@@ -98,6 +98,7 @@
                         <a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit_add_notes')}}</a>
                     @endif
                     <hr>
+                    @if (Auth::user()->permissions()->report)
                     <h4>{{trans('lead.report')}}</h4>
                     <ul class="list-unstyled">
                     @forelse($lead->reports()->get() as $report)
@@ -107,6 +108,7 @@
                     @endforelse
                     </ul>
                     <hr>
+                    @endif
                     <h4>{{trans('lead.contacts')}}</h4>
                     @if ($stored_contacts)
                     <table class="table">

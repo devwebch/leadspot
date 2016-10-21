@@ -24,7 +24,7 @@
                 <div class="panel-body">
                     <h3>{{trans('account.greetings', ['firstname' => $user->first_name])}}</h3>
 
-                    <a href="/account/edit" class="btn btn-complete pull-right">{{trans('account.edit_informations')}}</a>
+                    <a href="/account/edit" class="btn btn-default pull-right"><i class="fa fa-cog"></i></a>
 
                     <ul class="nav nav-tabs nav-tabs-top nav-tabs-simple">
                         <li class="active">
