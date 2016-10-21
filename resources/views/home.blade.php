@@ -101,6 +101,17 @@
                 </div>
             @endif
 
+            @if ( Auth::user()->subscribed('main') )
+            <div class="m-b-20">
+                <div class="panel widget panel-account text-center" style="background-color: #b94a67;">
+                    <div class="panel-body">
+                        <h2 class="semi-bold"><a href="/account/pricing" class="text-white">{{trans('home.go_pro_title')}}</a></h2>
+                        <p class=""><a href="/account/pricing" class="btn btn-info-light">{{trans('home.go_pro_label')}}</a></p>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="m-b-20">
                 <div class="panel bg-master-dark widget panel-account text-center">
                     <div class="panel-body">

@@ -6,6 +6,8 @@ return [
     'your_leads'        => 'Your leads',
     'no_leads'          => 'You do not have any leads',
     'news'              => 'News from LeadSpot',
+    'go_pro_title'      => 'Go pro',
+    'go_pro_label'      => 'Upgrade my account',
     'my_account'        => 'My account',
     'manage_options'    => 'Manage options',
     'monthly_limit'     => 'Monthly limits',

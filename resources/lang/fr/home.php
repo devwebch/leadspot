@@ -6,6 +6,8 @@ return [
     'your_leads'        => 'Vos prospects',
     'no_leads'          => "Vous n'avez pas de prospects",
     'news'              => 'Nouvelles de LeadSpot',
+    'go_pro_title'      => 'Devenir pro',
+    'go_pro_label'      => 'Mettre mon compte à niveau',
     'my_account'        => 'Mon compte',
     'manage_options'    => 'Gérer mes options',
     'monthly_limit'     => 'Limites mensuelle',
