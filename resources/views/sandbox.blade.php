@@ -36,18 +36,9 @@
                     <strong>Sandbox</strong>
                     <p>User: {{$user->id}}</p>
 
-                    <h4>Children</h4>
-                    <ul>
-                        @foreach($children as $child)
-                            <li>{{$child->id}} - {{$child->email}}</li>
-                        @endforeach
-                    </ul>
-
-                    <h4>Parent</h4>
-                    @if ($parent)
-                    <p>{{$parent->id}} - {{$parent->email}}</p>
-                    @endif
-
+                    @foreach( $categories as $key => $value)
+                        {{$key}} - {{$value}}<br>
+                    @endforeach
 
                     <div>
                         {{ csrf_field() }}

@@ -34,7 +34,8 @@ return [
         'adapted_font_size'         => 'Adapted font size',
         'adapted_font_size_desc'    => 'Font size is optimized for readability',
         'save_lead'                 => 'Save this lead',
-        'no_website'                => "This business doesn't seems to have a website."
+        'no_website'                => "This business doesn't seems to have a website.",
+        'run_analysis'              => 'Run analysis',
     ],
     'categories' => [
         'accounting'                => 'Accounting',
@@ -117,7 +118,7 @@ return [
         'default_location_set'  => "Default location set.",
         'lead_added'            => "The lead was added to your list.",
         'no_results_msg'        => "Sorry but we did not find any results.",
-        'daily_limit'           => "You have reached the daily limit of your subscription.",
+        'monthly_limit'         => "You've been so active lately that unfortunately you have reached your subscription's limit.",
         'analysis_error'        => "Something went wrong during the analysis, please try again later."
     ],
 ];

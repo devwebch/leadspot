@@ -91,4 +91,8 @@ class SubscriptionsUsage extends Model
         }
     }
 
+    public function getQuotas()
+    {
+        return 'hello';
+    }
 }

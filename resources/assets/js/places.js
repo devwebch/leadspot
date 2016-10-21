@@ -25,6 +25,13 @@ var analyzeModule = new Vue({
 });
 
 (function () {
+    // init Sentry
+    Raven.config('https://ce40a20f41eb46c5b77053ac86ec120e@sentry.io/107497').install();
+    Raven.setUserContext({
+        id: user.id,
+        email: user.email
+    });
+
     var API_KEY             = 'AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
     var API_PAGESPEED       = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed';
 
@@ -81,8 +88,11 @@ var analyzeModule = new Vue({
                         $('.wbf-search-form .btn .fa').removeClass('hidden'); // show loading icon
                         mapSearch();
                     } else {
-                        swal(translations.swal.error, translations.swal.daily_limit, "error");
+                        swal(translations.swal.error, translations.swal.monthly_limit, "error");
+                        Raven.captureMessage('User reached his monthly limit.', {level: 'error'});
                     }
+                }).fail(function (jqXHR, textStatus, error) {
+                    Raven.captureMessage('Unable to retrieve user quotas.', {level: 'error'});
                 });
             }
         });
@@ -132,6 +142,8 @@ var analyzeModule = new Vue({
                 error: function (jqXHR, textStatus) {
                     swal({ title: translations.swal.error, text: translations.swal.generic_error, type: "error", timer: 3000 });
                 }
+            }).fail(function (jqXHR, textStatus, error) {
+                Raven.captureMessage('Unable to define user preferences.', {level: 'error'});
             });
 
         });
@@ -150,7 +162,9 @@ var analyzeModule = new Vue({
                 error: function (jqXHR, textStatus) {
                     swal({ title: translations.swal.error, text: translations.swal.generic_error, type: "error", timer: 3000 });
                 }
-            });
+            }).fail(function (jqXHR, textStatus, error) {
+                Raven.captureMessage('Unable to save lead.', {level: 'error'});
+            });;
         });
 
         // retrieve permissions
@@ -161,6 +175,8 @@ var analyzeModule = new Vue({
                 permissions = data;
                 analyzeModuleData.permissions = permissions;
             }
+        }).fail(function (jqXHR, textStatus, error) {
+            Raven.captureMessage('Unable to retrieve permissions.', {level: 'error'});
         });
 
         // retrieve preferences
@@ -175,6 +191,8 @@ var analyzeModule = new Vue({
                     addSearchMarker(defaultLocation);
                 }
             }
+        }).fail(function (jqXHR, textStatus, error) {
+            Raven.captureMessage('Unable to retrieve user preferences.', {level: 'error'});
         });
 
     });
@@ -307,7 +325,7 @@ var analyzeModule = new Vue({
                     '<h3 id="firstHeading" class="firstHeading">' + result.name + '</h3>'+
                     '<div id="bodyContent">'+
                     '<p>' + result.formatted_address + '</p>'+
-                    '<p><a href="#" class="btn btn-primary btn-analyze" data-id="' + result.place_id + '">Run analysis</a></p>'+
+                    '<p><a href="#" class="btn btn-primary btn-analyze" data-id="' + result.place_id + '">' + translations.general.run_analysis + '</a></p>'+
                     '</div>'+
                     '</div>');
 
@@ -431,7 +449,9 @@ var analyzeModule = new Vue({
                         currentPlace.cms    = cms;
                         currentPlace.cmsID  = cmsID;
                     }
-                });
+                }).fail(function (jqXHR, textStatus, error) {
+                    Raven.captureMessage('Unable to retrieve lead CMS.', {level: 'error'});
+                });;
             }
 
         } else {
@@ -537,7 +557,7 @@ var analyzeModule = new Vue({
 
                     $('#wbfInputAddress').val(formatted_address);
                 } else {
-                    console.log('Geocode was unable to geocode: ' + status);
+                    Raven.captureMessage('Unable to geocode address.', {level: 'error', message: status});
                 }
             });
         }

@@ -79,13 +79,14 @@ class Controller extends BaseController
 
         $children   = $user->children();
         $parent     = $user->parent();
-
-        var_dump($user->teamSlotsAvailable());
+        $categories = trans('search.categories');
+        asort($categories);
 
         return view('sandbox', [
             'user'              => $user,
             'children'          => $children,
             'parent'            => $parent,
+            'categories'        => $categories
         ]);
     }
 

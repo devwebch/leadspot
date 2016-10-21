@@ -22,6 +22,9 @@
             }
         };
         var translations = {
+            general: {
+                run_analysis: "{!! trans('search.general.run_analysis') !!}"
+            },
             swal: {
                 saved: "{!! trans('search.swal.saved') !!}",
                 error: "{!! trans('search.swal.error') !!}",
@@ -31,14 +34,19 @@
                 default_location_set: "{!! trans('search.swal.default_location_set') !!}",
                 lead_added: "{!! trans('search.swal.lead_added') !!}",
                 no_results_msg: "{!! trans('search.swal.no_results_msg') !!}",
-                daily_limit: "{!! trans('search.swal.daily_limit') !!}",
+                monthly_limit: "{!! trans('search.swal.monthly_limit') !!}",
                 analysis_error: "{!! trans('search.swal.analysis_error') !!}"
             }
+        };
+        var user = {
+            id: "{{Auth::user()->id}}",
+            email: "{{Auth::user()->email}}"
         };
     </script>
     <script src="{{asset('plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA&signed_in=true&libraries=places"></script>
     <script src="{{asset('js/map-icons.js')}}"></script>
+    <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
     <script src="{{elixir('js/places.js')}}"></script>
     @if( $tour )
         <script>
@@ -101,70 +109,9 @@
                                     <label for="wbfInputCategory">{{trans('search.general.category')}}</label>
                                     <select name="wbfInputCategory" id="wbfInputCategory" class="full-width"  data-init-plugin="select2">
                                         <option value="">{{trans('search.general.select_category')}}</option>
-                                        <option value="accounting">{{trans('search.categories.accounting')}}</option>
-                                        <option value="airport">{{trans('search.categories.airport')}}</option>
-                                        <option value="art_gallery">{{trans('search.categories.art_gallery')}}</option>
-                                        <option value="bakery">{{trans('search.categories.bakery')}}</option>
-                                        <option value="bar">{{trans('search.categories.bar')}}</option>
-                                        <option value="beauty_salon">{{trans('search.categories.beauty_salon')}}</option>
-                                        <option value="bicycle_store">{{trans('search.categories.bicycle_store')}}</option>
-                                        <option value="book_store">{{trans('search.categories.book_store')}}</option>
-                                        <option value="bowling_alley">{{trans('search.categories.bowling_alley')}}</option>
-                                        <option value="cafe">{{trans('search.categories.cafe')}}</option>
-                                        <option value="car_dealer">{{trans('search.categories.car_dealer')}}</option>
-                                        <option value="car_rental">{{trans('search.categories.car_rental')}}</option>
-                                        <option value="car_repair">{{trans('search.categories.car_repair')}}</option>
-                                        <option value="casino">{{trans('search.categories.casino')}}</option>
-                                        <option value="church">{{trans('search.categories.church')}}</option>
-                                        <option value="clothing_store">{{trans('search.categories.clothing_store')}}</option>
-                                        <option value="convenience_store">{{trans('search.categories.convenience_store')}}</option>
-                                        <option value="dentist">{{trans('search.categories.dentist')}}</option>
-                                        <option value="electrician">{{trans('search.categories.electrician')}}</option>
-                                        <option value="electronics_store">{{trans('search.categories.electronics_store')}}</option>
-                                        <option value="establishment">{{trans('search.categories.establishment')}}</option>
-                                        <option value="finance">{{trans('search.categories.finance')}}</option>
-                                        <option value="florist">{{trans('search.categories.florist')}}</option>
-                                        <option value="food">{{trans('search.categories.food')}}</option>
-                                        <option value="funeral_home">{{trans('search.categories.funeral_home')}}</option>
-                                        <option value="furniture_store">{{trans('search.categories.furniture_store')}}</option>
-                                        <option value="general_contractor">{{trans('search.categories.general_contractor')}}</option>
-                                        <option value="grocery_or_supermarket">{{trans('search.categories.grocery_or_supermarket')}}</option>
-                                        <option value="gym">{{trans('search.categories.gym')}}</option>
-                                        <option value="hair_care">{{trans('search.categories.hair_care')}}</option>
-                                        <option value="hardware_store">{{trans('search.categories.hardware_store')}}</option>
-                                        <option value="health">{{trans('search.categories.health')}}</option>
-                                        <option value="home_goods_store">{{trans('search.categories.home_goods_store')}}</option>
-                                        <option value="insurance_agency">{{trans('search.categories.insurance_agency')}}</option>
-                                        <option value="jewelry_store">{{trans('search.categories.jewelry_store')}}</option>
-                                        <option value="laundry">{{trans('search.categories.laundry')}}</option>
-                                        <option value="lawyer">{{trans('search.categories.lawyer')}}</option>
-                                        <option value="library">{{trans('search.categories.library')}}</option>
-                                        <option value="liquor_store">{{trans('search.categories.liquor_store')}}</option>
-                                        <option value="locksmith">{{trans('search.categories.locksmith')}}</option>
-                                        <option value="lodging">{{trans('search.categories.lodging')}}</option>
-                                        <option value="meal_delivery">{{trans('search.categories.meal_delivery')}}</option>
-                                        <option value="meal_takeaway">{{trans('search.categories.meal_takeaway')}}</option>
-                                        <option value="movie_theater">{{trans('search.categories.movie_theater')}}</option>
-                                        <option value="moving_company">{{trans('search.categories.moving_company')}}</option>
-                                        <option value="museum">{{trans('search.categories.museum')}}</option>
-                                        <option value="night_club">{{trans('search.categories.night_club')}}</option>
-                                        <option value="painter">{{trans('search.categories.painter')}}</option>
-                                        <option value="pet_store">{{trans('search.categories.pet_store')}}</option>
-                                        <option value="pharmacy">{{trans('search.categories.pharmacy')}}</option>
-                                        <option value="physiotherapist">{{trans('search.categories.physiotherapist')}}</option>
-                                        <option value="plumber">{{trans('search.categories.plumber')}}</option>
-                                        <option value="real_estate_agency">{{trans('search.categories.real_estate_agency')}}</option>
-                                        <option value="restaurant">{{trans('search.categories.restaurant')}}</option>
-                                        <option value="roofing_contractor">{{trans('search.categories.roofing_contractor')}}</option>
-                                        <option value="school">{{trans('search.categories.school')}}</option>
-                                        <option value="shoe_store">{{trans('search.categories.shoe_store')}}</option>
-                                        <option value="spa">{{trans('search.categories.spa')}}</option>
-                                        <option value="storage">{{trans('search.categories.storage')}}</option>
-                                        <option value="store">{{trans('search.categories.store')}}</option>
-                                        <option value="travel_agency">{{trans('search.categories.travel_agency')}}</option>
-                                        <option value="university">{{trans('search.categories.university')}}</option>
-                                        <option value="veterinary_care">{{trans('search.categories.veterinary_care')}}</option>
-                                        <option value="zoo">{{trans('search.categories.zoo')}}</option>
+                                        @foreach( $categories as $key => $value)
+                                            <option value="{{$key}}">{{$value}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

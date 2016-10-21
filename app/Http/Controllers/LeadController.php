@@ -36,8 +36,13 @@ class LeadController extends Controller
         // get the tour param
         $tour = $request->input('tour');
 
+        // get search categories
+        $categories = trans('search.categories');
+        asort($categories);
+
         return view('leads.search', [
-            'tour'      => $tour
+            'tour'          => $tour,
+            'categories'    => $categories
         ]);
     }
 

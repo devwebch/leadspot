@@ -34,7 +34,8 @@ return [
         'adapted_font_size'         => 'La police de texte est optimisée',
         'adapted_font_size_desc'    => 'La police de texte est adaptée à la lisibilité',
         'save_lead'                 => 'Sauvegarder ce prospect',
-        'no_website'                => "Ce business ne semble pas avoir de site web."
+        'no_website'                => "Ce business ne semble pas avoir de site web.",
+        'run_analysis'              => 'Lancer analyse',
     ],
     'categories' => [
         'accounting'                => 'Comptabilité',
@@ -117,7 +118,7 @@ return [
         'default_location_set'  => "Emplacement par défaut défini.",
         'lead_added'            => "Le prospect a bien été ajouté à votre liste.",
         'no_results_msg'        => "Désolé mais nous n\'avons pas trouvé de résultats.",
-        'daily_limit'           => "Vous avez atteint la limite journalière de votre souscription.",
+        'monthly_limit'         => "Vous avez été tellement actif ces derniers temps que malheureusement vous avez atteint le quota de votre souscription.",
         'analysis_error'        => "Quelque chose s\'est mal passé durant l\'analyse, veuillez réessayer plus tard."
     ],
 ];
