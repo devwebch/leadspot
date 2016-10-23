@@ -54,7 +54,14 @@ class LeadController extends Controller
      */
     public function viewLead(Lead $lead, Request $request)
     {
-        $user = $request->user();
+        $user   = $request->user();
+        $parent = $user->parent();
+
+        // if the account is a child account, the target account is the parent
+        if ( $parent ) {
+            $user = User::find($parent->id);
+        }
+
         if ( $lead->user_id != $user->id ) { return redirect('/'); }
 
         // retrieve lead status
