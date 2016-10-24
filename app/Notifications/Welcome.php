@@ -43,12 +43,12 @@ class Welcome extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject("Let's get you started [LeadSpot]")
-            ->greeting('Hello ' . $this->user->first_name)
-            ->line("Welcome to LeadSpot, your account has been successfully created!")
-            ->line("Friendly reminder: LeadSpot is an online tool that aim to help IT services providers to find local business opportunities.")
-            ->action('Go to my dashboard', 'https://go.leadspotapp.com')
-            ->line('Thank you for using our application!');
+            ->subject(trans('notifications.welcome.subject') . " [LeadSpot]")
+            ->greeting(trans('notifications.welcome.greetings', ['firstname' => $this->user->first_name]))
+            ->line(trans('notifications.welcome.welcome'))
+            ->line(trans('notifications.welcome.reminder'))
+            ->action(trans('notifications.welcome.action'), 'https://go.leadspotapp.com')
+            ->line(trans('notifications.welcome.thank_you'));
     }
 
     /**
