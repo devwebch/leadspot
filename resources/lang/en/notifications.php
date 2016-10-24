@@ -1,5 +1,8 @@
 <?php
 return [
+    'template' => [
+        'regards'       => 'Regards',
+    ],
     'welcome' => [
         'subject'       => "Let's get you started",
         'greetings'     => 'Hello :firstname',

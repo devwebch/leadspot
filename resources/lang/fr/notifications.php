@@ -1,5 +1,8 @@
 <?php
 return [
+    'template' => [
+        'regards'       => 'Avec nos meilleures salutations',
+    ],
     'welcome' => [
         'subject'       => "Démarrons",
         'greetings'     => 'Bonjour :firstname',
