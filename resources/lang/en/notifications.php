@@ -1,7 +1,9 @@
 <?php
 return [
     'template' => [
-        'regards'       => 'Regards',
+        'regards'           => 'Regards',
+        'copyright'         => 'All rights reserved.',
+        'trouble_action'    => 'If you’re having trouble clicking the ":actiontext" button, copy and paste the URL below into your web browser:',
     ],
     'welcome' => [
         'subject'       => "Let's get you started",

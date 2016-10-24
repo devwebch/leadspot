@@ -1,7 +1,9 @@
 <?php
 return [
     'template' => [
-        'regards'       => 'Avec nos meilleures salutations',
+        'regards'           => 'Avec nos meilleures salutations',
+        'copyright'         => 'Tous droits réservés.',
+        'trouble_action'    => 'If you’re having trouble clicking the ":actiontext" button, copy and paste the URL below into your web browser:',
     ],
     'welcome' => [
         'subject'       => "Démarrons",
