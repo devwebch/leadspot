@@ -7,5 +7,6 @@ return [
     'password'          => 'Mot de passe',
     'confirm_password'  => 'Confirmez le mot de passe',
     'terms_conditions'  => 'J\'ai lu et compris les <a href=":url" target="_blank">conditions générales</a>.',
-    'register'          => 'Inscription'
+    'register'          => 'Inscription',
+    'already_account'   => 'Je possède déjà un compte'
 ];

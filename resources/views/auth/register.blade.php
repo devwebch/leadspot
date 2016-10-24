@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="text-right hint-text m-b-20 ">
-        <a href="/login">I already have an account.</a>
+        <a href="/login">{{trans('register.already_account')}}</a>
     </div>
 
     <div class="text-center">

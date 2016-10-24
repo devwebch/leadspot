@@ -7,5 +7,6 @@ return [
     'password'          => 'Password',
     'confirm_password'  => 'Confirm password',
     'terms_conditions'  => 'I have read and agree to the <a href=":url" target="_blank">terms and conditions</a>.',
-    'register'          => 'Register'
+    'register'          => 'Register',
+    'already_account'   => 'I already have an account'
 ];
