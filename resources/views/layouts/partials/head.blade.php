@@ -38,16 +38,22 @@
             document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="{{asset('pages/css/windows.chrome.fix.css')}}" />'
     }
 </script>
+
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "url": "https://go.leadspotapp.com",
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "email": "contact@leadspotapp.com",
-    "contactType": "customer service",
-    "url": "https://leadspotapp.com/contact"
-  }]
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "LeadSpot",
+        "url": "https://go.leadspotapp.com",
+        "logo": "https://leadspotapp.com/images/icn_152x152.png",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "email": "contact@leadspotapp.com",
+            "contactType": "customer service",
+            "url": "https://leadspotapp.com"
+        }],
+        "sameAs": [
+            "https://plus.google.com/+leadspotapp"
+        ]
 }
 </script>
