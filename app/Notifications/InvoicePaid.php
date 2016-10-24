@@ -43,10 +43,11 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi there ' . $this->user->first_name)
-                    ->line('Thank you for your subscription, your payment was successfully received.')
-                    ->action('View invoices', 'https://go.leadspotapp.com/account')
-                    ->line('Thank you for using LeadSpot!');
+            ->subject(trans('notifications.invoice_paid.subject') . " [LeadSpot]")
+            ->greeting(trans('notifications.invoice_paid.greetings', ['firstname' => $this->user->first_name]))
+            ->line(trans('notifications.invoice_paid.content'))
+            ->action(trans('notifications.invoice_paid.action'), 'https://go.leadspotapp.com/account')
+            ->line(trans('notifications.invoice_paid.thank_you'));
     }
 
     /**

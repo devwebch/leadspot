@@ -13,4 +13,11 @@ return [
         'action'        => "Mon tableau de bord",
         'thank_you'     => "Merci d'utiliser notre application !"
     ],
+    'invoice_paid' => [
+        'subject'       => "Let's get you started",
+        'greetings'     => 'Bonjour :firstname',
+        'content'       => "Merci pour votre souscription, votre paiement a bien été reçu.",
+        'action'        => "Voir mes factures",
+        'thank_you'     => "Merci d'utiliser notre application !"
+    ],
 ];
