@@ -246,6 +246,7 @@ class LeadServiceController extends Controller
             // decode json response
             $json_object    = json_decode($res->getBody());
             $emails_raw     = $json_object->data->emails;
+            $results        = 0;
 
             // loop through emails
             foreach ($emails_raw as $email) {
@@ -260,13 +261,17 @@ class LeadServiceController extends Controller
                     $contact->type          = $email->type;
                     $contact->confidence    = $email->confidence;
                     $contact->save();
+
+                    $results++;
                 }
             }
 
-            $usage->increaseUseByType('contacts');
+            if ( $results > 0 ) {
+                $usage->increaseUseByType('contacts');
 
-            if ( $user_parent ) {
-                $usage_parent->increaseUseByType('contacts');
+                if ( $user_parent ) {
+                    $usage_parent->increaseUseByType('contacts');
+                }
             }
         }
 
