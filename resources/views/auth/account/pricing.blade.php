@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pricing')
+@section('title', trans('pricing.general.pricing'))
 
 @section('styles')
     <style>

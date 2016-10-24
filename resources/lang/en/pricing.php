@@ -1,6 +1,7 @@
 <?php
 return [
     'general'   => [
+        'pricing'       => 'Pricing',
         'recommended'   => 'Recommended',
         'subscribe'     => 'Subscribe',
         'unlimited'     => 'Unlimited',

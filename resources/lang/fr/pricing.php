@@ -1,6 +1,7 @@
 <?php
 return [
     'general'   => [
+        'pricing'       => 'Prix',
         'recommended'   => 'Recommandé',
         'subscribe'     => 'Souscrire',
         'unlimited'     => 'Illimité',
