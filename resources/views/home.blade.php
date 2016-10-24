@@ -78,6 +78,23 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+                <!-- newsItem -->
+                <div class="panel no-border p-l-25 p-r-25 p-b-25">
+                    <div class="p-b-10">
+                        <div class="item-header clearfix">
+                            <div class="inline">
+                                <p class="no-margin"><strong>LeadSpot team</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="no-margin">
+                    <div class="p-t-10">
+                        <p>LeadSpot V 1.0 is online.</p>
+                        <div class="hint-text">24.10.2016</div>
+                    </div>
+                </div>
+                <!-- /newItem -->
+                <!-- newsItem -->
                 <div class="panel no-border p-l-25 p-r-25 p-b-25">
                     <div class="p-b-10">
                         <div class="item-header clearfix">
@@ -92,6 +109,7 @@
                         <div class="hint-text">12.09.2016</div>
                     </div>
                 </div>
+                <!-- /newItem -->
             </div>
         </div>
         <div class="col-md-3">
