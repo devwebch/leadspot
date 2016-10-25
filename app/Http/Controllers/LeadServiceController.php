@@ -207,6 +207,12 @@ class LeadServiceController extends Controller
     public function getLeadEmails(Lead $lead, Request $request)
     {
         $website        = $lead->url;
+
+        // if no website, exit
+        if ( !$website ) {
+            return;
+        }
+
         $website        = parse_url($website)['host'];
         $domain         = preg_replace('/www\./', '', $website);
         $user           = $request->user();
@@ -225,11 +231,6 @@ class LeadServiceController extends Controller
         // if quotas are full, go back
         if ( $quotas->contacts->used >= $quotas->contacts->limit ) {
             return back();
-        }
-
-        // if no website, exit
-        if ( !$website ) {
-            return;
         }
 
         // check if lead has contacts
