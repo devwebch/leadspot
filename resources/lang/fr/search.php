@@ -1,6 +1,7 @@
 <?php
 return [
     'general'   => [
+        'search_new_leads'          => 'Recherche de prospects',
         'yes'                       => 'Oui',
         'no'                        => 'Non',
         'search_location'           => 'Rechercher emplacement',

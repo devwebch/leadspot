@@ -30,19 +30,17 @@
         <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
             <img src="{{asset('img/logo-leadspot.png')}}" alt="LeadSpot" data-src="{{asset('img/logo-leadspot.png')}}" data-src-retina="{{asset('img/logo-leadspot.png')}}" width="200">
             <p class="p-t-10">{{trans('login.form_intro')}}</p>
+
+            <div class="panel panel-default m-t-40">
+                <div class="panel-body">
+                    <strong>{{trans('login.have_account')}}</strong><br>
+                    <a href="/register">{{trans('login.create_account')}}</a>
+                </div>
+            </div>
+
             <!-- START Login Form -->
             @yield('content')
             <!--END Login Form-->
-            <div class="pull-bottom sm-pull-bottom">
-                <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
-                    <div class="col-sm-12 no-padding m-t-10">
-                        <strong>{{trans('login.have_account')}}</strong>
-                        <p>
-                            <a href="/register">{{trans('login.create_account')}}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- END Login Right Container-->

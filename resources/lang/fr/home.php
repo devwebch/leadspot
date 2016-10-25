@@ -4,7 +4,8 @@ return [
     'welcome'           => 'Bonjour :firstname !',
     'introduction'      => 'Voici votre tableau de bord, vous pouvez ici gérer vos prospects et accéder aux dernières nouvelles de LeadSpot.',
     'your_leads'        => 'Vos prospects',
-    'no_leads'          => "Vous n'avez pas de prospects",
+    'no_leads'          => "Vous n'avez pas de prospects pour le moment",
+    'start_searching'   => 'Commencer à chercher',
     'news'              => 'Nouvelles de LeadSpot',
     'go_pro_title'      => 'Devenir pro',
     'go_pro_label'      => 'Mettre mon compte à niveau',
@@ -16,4 +17,5 @@ return [
     'opinion_action'    => 'Contacter LeadSpot',
     'limit_search'      => 'Recherches',
     'limit_contacts'    => 'Contacts',
+    'start_tour'        => 'Visite guidée',
 ];

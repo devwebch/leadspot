@@ -4,7 +4,8 @@ return [
     'welcome'           => 'Hello there :firstname!',
     'introduction'      => 'This is your dashboard, here you can manage your leads and access the latest news regarding LeadSpot.',
     'your_leads'        => 'Your leads',
-    'no_leads'          => 'You do not have any leads',
+    'no_leads'          => 'You do not have any leads at the moment',
+    'start_searching'   => 'Start searching',
     'news'              => 'News from LeadSpot',
     'go_pro_title'      => 'Go pro',
     'go_pro_label'      => 'Upgrade my account',
@@ -16,4 +17,5 @@ return [
     'opinion_action'    => 'Contact LeadSpot',
     'limit_search'      => 'Search',
     'limit_contacts'    => 'Contacts',
+    'start_tour'        => 'Start tour',
 ];

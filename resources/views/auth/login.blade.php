@@ -25,14 +25,14 @@
             @endif
         </div>
 
-        <div class="form-group">
+        <div class="form-group m-t-20">
             <div class="checkbox check-info">
                 <input type="checkbox" checked="checked" value="1" id="checkbox1">
                 <label for="checkbox1">{{trans('login.signed_in')}}</label>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group m-t-20">
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-btn fa-sign-in"></i> {{trans('login.login')}}
             </button>

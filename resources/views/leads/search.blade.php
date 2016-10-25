@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Search new leads')
+@section('title', trans('search.general.search_new_leads'))
 
 @section('breadcrumb')
     <li><a href="/leads/search" class="active">{{trans('breadcrumbs.search_leads')}}</a></li>
@@ -172,6 +172,10 @@
                     <div class="wbf-business-details">
                         {{csrf_field()}}
 
+                        <div class="wbf-business-details__add-to-list" v-show="status.loaded">
+                            <button class="btn btn-success btn-lg btn-block btn-add-to-list">{{trans('search.general.save_lead')}}</button>
+                        </div>
+
                         <div class="wbf-business-details__title" v-show="status.loaded">
                             <h3>@{{ details.name }}</h3>
                             <p v-if="details.formatted_address">@{{ details.formatted_address }}</p>
@@ -226,7 +230,7 @@
                         </div>
 
                         <div class="wbf-business-details__indicators" v-show="status.loaded && details.website">
-                            <h4>Obsolescence indicators</h4>
+                            <h4>{{trans('search.general.obsolescence_indicators')}}</h4>
                             <table class="table table-condensed">
                                 <thead>
                                     <tr>
@@ -300,7 +304,7 @@
                         </div>
 
                         <div class="wbf-business-details__add-to-list" v-show="status.loaded">
-                            <button class="btn btn-complete btn-lg btn-block btn-add-to-list">{{trans('search.general.save_lead')}}</button>
+                            <button class="btn btn-success btn-lg btn-block btn-add-to-list">{{trans('search.general.save_lead')}}</button>
                         </div>
                     </div>
 

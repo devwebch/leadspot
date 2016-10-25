@@ -65,7 +65,8 @@
                         </tbody>
                     </table>
                     @else
-                    <p class="text-center p-b-20"><a href="/leads/search">{{trans('home.no_leads')}}</a>.</p>
+                        <p class="text-center m-b-10"><a href="/leads/search?tour=1">{{trans('home.no_leads')}}</a>.</p>
+                        <p class="text-center p-b-30"><a href="/leads/search?tour=1" class="btn btn-success">{{trans('home.start_searching')}}</a></p>
                     @endif
                 </div>
             </div>
@@ -115,7 +116,7 @@
         <div class="col-md-3">
             @if( $leads->count() == 0 )
                 <div class="m-b-20">
-                    <a href="/?tour=1" class="btn btn-success btn-lg btn-block hidden-xs"><i class="fa fa-rocket"></i> Start tour</a>
+                    <a href="/?tour=1" class="btn btn-success btn-lg btn-block hidden-xs"><i class="fa fa-rocket"></i> {{trans('home.start_tour')}}</a>
                 </div>
             @endif
 

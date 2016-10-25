@@ -34,17 +34,12 @@ tour_intro.addStep('intro_2', {
 tour_intro.addStep('intro_3', {
     title: tourI18n.intro_3_title,
     text: tourI18n.intro_3_text,
-    attachTo: '.panel-leads top'
-});
-tour_intro.addStep('intro_4', {
-    title: tourI18n.intro_4_title,
-    text: tourI18n.intro_4_text,
-    attachTo: '.panel-contact left',
+    attachTo: '.panel-leads top',
     buttons: {
         text: tourI18n.intro_4_btn_label,
         action: function () {
             tour_intro.next;
-            window.location = '/leads/search?tour=1';
+            window.location = '/';
         }
     }
 });
