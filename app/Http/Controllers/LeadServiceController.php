@@ -153,6 +153,7 @@ class LeadServiceController extends Controller
 
     public function getPlacesSample(Request $request)
     {
+        // request data
         $location_lat   = '46.521491';
         $location_lng   = '6.630802';
         $location       = $location_lat . ',' . $location_lng;
@@ -161,14 +162,18 @@ class LeadServiceController extends Controller
         $name           = 'cruise';
         $places = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' . $location . '&radius=' . $radius . '&types=' . $types . '&key=' . $this->PAGESPEED_API_KEY;
 
+        // new Guzzle request
         $client = new Client([
             'headers' => ['Referer' => 'leadspot.lan']
         ]);
         $res    = $client->request('GET', $places, ['verify' => false]);
+
+        // output
         $output = json_decode($res->getBody());
         $places_list = $output->results;
         $places = [];
 
+        // extract places
         $count  = 0;
         $max    = 3;
         foreach ($places_list as $place) {

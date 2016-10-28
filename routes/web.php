@@ -16,7 +16,7 @@ Auth::routes();
 // Standard pages
 Route::get('/', 'Controller@home');
 Route::get('/home', function (){ return redirect('/'); });
-//Route::get('/sandbox', 'Controller@sandbox');
+Route::get('/sandbox', 'Controller@sandbox');
 Route::get('/contact', function () { return view('contact'); })->middleware('auth');
 Route::post('/contact/send', 'Controller@contactSend');
 Route::get('/help', function () { return view('help'); })->middleware('auth');

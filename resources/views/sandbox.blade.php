@@ -36,10 +36,6 @@
                     <strong>Sandbox</strong>
                     <p>User: {{$user->id}}</p>
 
-                    @foreach( $categories as $key => $value)
-                        {{$key}} - {{$value}}<br>
-                    @endforeach
-
                     <div>
                         {{ csrf_field() }}
                         <button class="incrementBtn btn btn-default">Increment</button>

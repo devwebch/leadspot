@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lead;
+use App\Mail\LeadSample;
 use App\Notifications\InvoicePaid;
 use App\Notifications\NewMessage;
 use App\Notifications\Welcome;
@@ -79,14 +80,35 @@ class Controller extends BaseController
 
         $children   = $user->children();
         $parent     = $user->parent();
-        $categories = trans('search.categories');
-        asort($categories);
+
+        $fake_leads = (object)[
+            [
+                'name'      => 'Lead 1',
+                'address'   => 'Chemin des Primevères 2',
+                'website'   => 'http://www.site1.com',
+                'scores'    => ['speed' => 98, 'usability' => 55]
+            ],
+            [
+                'name'      => 'Lead 2',
+                'address'   => 'Chemin des Primevères 2',
+                'website'   => 'http://www.site2.com',
+                'scores'    => ['speed' => 45, 'usability' => 75]
+            ],
+            [
+                'name'      => 'Lead 3',
+                'address'   => 'Chemin des Primevères 2',
+                'website'   => 'http://www.site3.com',
+                'scores'    => ['speed' => 37, 'usability' => 84]
+            ],
+        ];
+
+
+        Mail::to('simon.rapin@gmail.com')->send(new LeadSample($fake_leads));
 
         return view('sandbox', [
             'user'              => $user,
             'children'          => $children,
-            'parent'            => $parent,
-            'categories'        => $categories
+            'parent'            => $parent
         ]);
     }
 
