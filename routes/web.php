@@ -43,6 +43,7 @@ Route::group(['prefix' => 'leads', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'service', 'middleware' => 'auth'], function () {
     Route::post('/leads/save', 'LeadServiceController@save');
     Route::post('/leads/getcms', 'LeadServiceController@getCMS');
+    Route::get('/leads/sample', 'LeadServiceController@getPlacesSample');
     Route::post('/subscription/usageGranted', 'SubscriptionServiceController@checkSubscriptionUsage');
     Route::post('/subscription/new/{plan}', 'SubscriptionServiceController@addSubscription');
     Route::get('/subscription/cancel', 'SubscriptionServiceController@removeSubscription');

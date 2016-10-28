@@ -153,8 +153,8 @@ class LeadServiceController extends Controller
 
     public function getPlacesSample(Request $request)
     {
-        $location_lat   = '-33.8670';
-        $location_lng   = '151.1957';
+        $location_lat   = '46.521491';
+        $location_lng   = '6.630802';
         $location       = $location_lat . ',' . $location_lng;
         $radius         = '500';
         $types          = 'establishment';
@@ -175,7 +175,6 @@ class LeadServiceController extends Controller
             if ( $count < $max ) {
                 $place_ID = $place->place_id;
                 $places[] = $this->getPlaceDetails($place_ID);
-                //$places[] = $place_ID;
             }
             $count++;
         }
@@ -185,8 +184,6 @@ class LeadServiceController extends Controller
 
     public function getPlaceDetails($place_ID)
     {
-        // TODO: get place ID from input
-        //$place_ID   = 'ChIJ__8_hziuEmsR27ucFXECfOg';
         $places = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $place_ID . '&key=' . $this->MAPS_API_KEY;
 
         $client = new Client([
@@ -195,7 +192,36 @@ class LeadServiceController extends Controller
         $res    = $client->request('GET', $places, ['verify' => false]);
         $output = json_decode($res->getBody());
 
-        return $output->result;
+        $place_website  = isset($output->result->website) ? $output->result->website : false;
+        $scores         = ($place_website) ? $this->getPlaceInsights($place_website) : false;
+        //$scores         = false;
+
+        $place  = [
+            'name'      => $output->result->name,
+            'address'   => $output->result->formatted_address,
+            'website'   => $place_website,
+            'scores'    => $scores
+        ];
+
+        return $place;
+    }
+
+    public function getPlaceInsights($url)
+    {
+        $pagespeed = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=' . urlencode($url).'&strategy=mobile';
+
+        $client = new Client([
+            'headers' => ['Referer' => 'leadspot.lan']
+        ]);
+        $res    = $client->request('GET', $pagespeed, ['verify' => false]);
+        $output = json_decode($res->getBody());
+
+        $scores = [
+            'speed'     => $output->ruleGroups->SPEED->score,
+            'usability' => $output->ruleGroups->USABILITY->score
+        ];
+
+        return $scores;
     }
 
     /**
