@@ -24,7 +24,7 @@ class CreateLeadsTable extends Migration
             $table->string('cms', 20)->nullable();
             $table->text('notes')->nullable();
             $table->float('lat', 10, 8)->nullable();
-            $table->float('lng', 10, 8)->nullable();
+            $table->float('lng', 11, 8)->nullable();
             $table->tinyInteger('rating');
             $table->tinyInteger('status');
             $table->timestamps();
