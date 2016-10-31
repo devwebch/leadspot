@@ -16,6 +16,12 @@ return [
             1   => 'lead.status.processing',
             2   => 'lead.status.accepted',
             3   => 'lead.status.denied'
+        ],
+        'classes'   => [
+            0   => '',
+            1   => 'label-warning',
+            2   => 'label-success',
+            3   => 'label-danger'
         ]
     ],
     'cms'   => [
