@@ -116,7 +116,10 @@
                 </div>
                 <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
                     <li class="p-r-15 inline">
-                        <a href="/help"><i class="pg-italic"></i> {{trans('menu.user.help')}}</a>
+                        <a href="/help"><i class="pg-italic"></i> {{trans('menu.user.contact')}}</a>
+                    </li>
+                    <li class="p-r-15 inline">
+                        <a href="/contact"><i class="pg-mail"></i> {{trans('menu.user.contact')}}</a>
                     </li>
                     @if( Auth::user()->id == 1 )
                         <li class="p-r-15 inline">

@@ -14,8 +14,6 @@ if (Auth::check()) {
     $logged_in  = true;
     $user_first_name    = Auth::user()->first_name;
     $user_last_name     = Auth::user()->last_name;
-} else {
-
 }
 ?>
 
@@ -28,8 +26,8 @@ if (Auth::check()) {
     </div>
     <div class="dropdown pull-right">
         <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+        aria-expanded="false">
+            <span class="thumbnail-wrapper d32 circular inline m-t-5">
                 <i class="fa fa-user" style="font-size: 20px;"></i>
             </span>
         </button>
