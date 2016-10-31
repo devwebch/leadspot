@@ -33,16 +33,37 @@ class LeadController extends Controller
      */
     public function searchLead(Request $request)
     {
+        // get the authenticated user
+        $user        = $request->user();
+        $parent      = $user->parent();
+
+        $lead_author = $user->id;
+        if ( $parent ) { $lead_author = $parent->id; }
+
         // get the tour param
         $tour = $request->input('tour');
+
+        // get user leads
+        $leads = Lead::where('user_id', $lead_author)
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        // retrieve lead status
+        $status = config('constants.lead.status');
+
+        $status_classes = config('constants.lead.classes');
 
         // get search categories
         $categories = trans('search.categories');
         asort($categories);
 
         return view('leads.search', [
-            'tour'          => $tour,
-            'categories'    => $categories
+            'tour'              => $tour,
+            'categories'        => $categories,
+            'leads'             => $leads,
+            'status'            => $status,
+            'status_classes'    => $status_classes,
         ]);
     }
 
@@ -69,12 +90,7 @@ class LeadController extends Controller
 
         $leadService = new LeadServiceController();
 
-        $status_classes = [
-            0   => '',
-            1   => 'label-warning',
-            2   => 'label-success',
-            3   => 'label-danger'
-        ];
+        $status_classes = config('constants.lead.classes');
 
         $stored_contacts    = Contact::where('lead_id', $lead->id)->count();
         $available_contacts = $stored_contacts;
@@ -111,12 +127,7 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
-        $status_classes = [
-            0   => '',
-            1   => 'label-warning',
-            2   => 'label-success',
-            3   => 'label-danger'
-        ];
+        $status_classes = config('constants.lead.classes');
 
         // retrieve all entries
         $leads  = Lead::where('user_id', $user->id)
@@ -142,12 +153,7 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
-        $status_classes = [
-            0   => '',
-            1   => 'text-warning',
-            2   => 'text-success',
-            3   => 'text-danger'
-        ];
+        $status_classes = config('constants.lead.classes');
 
         return view('leads.form', [
             'lead'              => $lead,
@@ -176,12 +182,7 @@ class LeadController extends Controller
         // retrieve lead status
         $status = config('constants.lead.status');
 
-        $status_classes = [
-            0   => '',
-            1   => 'text-warning',
-            2   => 'text-success',
-            3   => 'text-danger'
-        ];
+        $status_classes = config('constants.lead.classes');
 
         // if the user ID of the lead matches the logged in user
         if ( $user->id == $lead->user_id ) {
