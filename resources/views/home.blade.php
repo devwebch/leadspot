@@ -146,7 +146,7 @@
                                 <p class="hint-text fade small pull-left">{{($usage->search->used / $usage->search->limit) * 100}}% used</p>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="progress progress-small m-b-20 m-t-10">
+                            <div class="progress m-b-20 m-t-10">
                                 <div class="progress-bar progress-bar-danger" style="width:{{($usage->search->used / $usage->search->limit) * 100}}%"></div>
                             </div>
                             <div class="pull-left">
@@ -157,7 +157,7 @@
                                 <p class="hint-text fade small pull-left">{{($usage->contacts->used / $usage->contacts->limit) * 100}}% used</p>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="progress progress-small m-b-20 m-t-10">
+                            <div class="progress m-b-20 m-t-10">
                                 <div class="progress-bar progress-bar-success" style="width:{{($usage->contacts->used / $usage->contacts->limit) * 100}}%"></div>
                             </div>
                         </div>
