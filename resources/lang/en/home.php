@@ -18,4 +18,5 @@ return [
     'limit_search'      => 'Search',
     'limit_contacts'    => 'Contacts',
     'start_tour'        => 'Start tour',
+    'used'              => 'used',
 ];

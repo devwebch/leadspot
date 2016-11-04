@@ -18,4 +18,5 @@ return [
     'limit_search'      => 'Recherches',
     'limit_contacts'    => 'Contacts',
     'start_tour'        => 'Visite guidée',
+    'used'              => 'utilisé',
 ];

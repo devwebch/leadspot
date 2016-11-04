@@ -143,7 +143,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="m-t-15">
-                                <p class="hint-text fade small pull-left">{{($usage->search->used / $usage->search->limit) * 100}}% used</p>
+                                <p class="hint-text fade small pull-left">{{($usage->search->used / $usage->search->limit) * 100}}% {{trans('home.used')}} ({{$usage->search->used}} / {{$usage->search->limit}})</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="progress m-b-20 m-t-10">
@@ -154,7 +154,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <div class="m-t-15">
-                                <p class="hint-text fade small pull-left">{{($usage->contacts->used / $usage->contacts->limit) * 100}}% used</p>
+                                <p class="hint-text fade small pull-left">{{($usage->contacts->used / $usage->contacts->limit) * 100}}% {{trans('home.used')}} ({{$usage->contacts->used}} / {{$usage->contacts->limit}})</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="progress m-b-20 m-t-10">
