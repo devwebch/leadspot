@@ -120,19 +120,8 @@
                 </div>
             @endif
 
-            @if ( Auth::user()->subscribed('main') )
             <div class="m-b-20">
-                <div class="panel widget panel-gopro text-center" style="background-color: #b94a67;">
-                    <div class="panel-body">
-                        <h2 class="semi-bold"><a href="/account/pricing" class="text-white">{{trans('home.go_pro_title')}}</a></h2>
-                        <p class=""><a href="/account/pricing" class="btn btn-info-light">{{trans('home.go_pro_label')}}</a></p>
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            <div class="m-b-20">
-                <div class="panel bg-master-dark widget panel-account text-center">
+                <div class="panel bg-info widget panel-account text-center">
                     <div class="panel-body">
                         <h2 class="semi-bold"><a href="/account" class="text-white">{{trans('home.my_account')}}</a></h2>
                         <p class=""><a href="/account" class="btn btn-info">{{trans('home.manage_options')}}</a></p>
@@ -141,30 +130,42 @@
             </div>
 
             <div class="m-b-20">
-                <div class="panel bg-complete-dark widget panel-limit text-center">
-                    <div class="panel-body">
-                        <h2 class="semi-bold text-white">{{trans('home.monthly_limit')}}</h2>
-
-                        <div class="row">
-                            <div class="col-xs-6 text-white">
-                                <strong>{{trans('home.limit_search')}}</strong><br>
-                                {{$usage->search->used}} / {{$usage->search->limit}}
-                            </div>
-                            <div class="col-xs-6 text-white">
-                                <strong>{{trans('home.limit_contacts')}}</strong><br>
-                                {{$usage->contacts->used}} / {{$usage->contacts->limit}}
-                            </div>
+                <div class=" panel no-border  no-margin widget-loader-circle todolist-widget">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <span class="font-montserrat fs-11 all-caps">{{trans('home.monthly_limit')}}</span>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="m-b-20">
-                <div class="panel bg-info-light widget panel-contact text-center">
                     <div class="panel-body">
-                        <a href="/account"><h3 class="text-white semi-bold">{{trans('home.opinion_title')}}</h3></a>
-                        <p class="text-white">{{trans('home.opinion_desc')}}</p>
-                        <p><a href="/contact" class="btn btn-default">{{trans('home.opinion_action')}}</a></p>
+                        <div class="p-t-25">
+                            <div class="pull-left">
+                                <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">{{trans('home.limit_search')}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="m-t-15">
+                                <p class="hint-text fade small pull-left">{{($usage->search->used / $usage->search->limit) * 100}}% used</p>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="progress m-b-20 m-t-10">
+                                <div class="progress-bar progress-bar-danger" style="width:{{($usage->search->used / $usage->search->limit) * 100}}%"></div>
+                            </div>
+                            <div class="pull-left">
+                                <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">{{trans('home.limit_contacts')}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="m-t-15">
+                                <p class="hint-text fade small pull-left">{{($usage->contacts->used / $usage->contacts->limit) * 100}}% used</p>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="progress m-b-20 m-t-10">
+                                <div class="progress-bar progress-bar-success" style="width:{{($usage->contacts->used / $usage->contacts->limit) * 100}}%"></div>
+                            </div>
+                        </div>
+                        @if ( Auth::user()->subscribed('main') )
+                        <div class="m-t-40">
+                            <a href="/account/pricing" class="btn btn-danger btn-block">{{trans('home.go_pro_label')}}</a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

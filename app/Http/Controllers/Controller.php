@@ -46,12 +46,7 @@ class Controller extends BaseController
         // retrieve lead status
         $status = config('constants.lead.status');
 
-        $status_classes = [
-            0 => '',
-            1 => 'label-warning',
-            2 => 'label-success',
-            3 => 'label-danger'
-        ];
+        $status_classes = config('constants.lead.classes');
 
         $leads = Lead::where('user_id', $lead_author)
             ->orderBy('created_at', 'desc')

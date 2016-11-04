@@ -129,7 +129,7 @@
                         ?>
                         <tr>
                             <td><a href="mailto:{{$contact->email}}" style="word-break: break-all; white-space: normal;">{{$contact->email}}</a></td>
-                            <td>{{config('constants.contact.type.' . $contact->type)}}</td>
+                            <td>{{trans('lead.contact_type.' . $contact->type)}}</td>
                             <td><span class="label {{$confidence_class}}">{{$contact->confidence}}%</span></td>
                         </tr>
                     @endforeach

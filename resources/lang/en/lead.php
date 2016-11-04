@@ -42,5 +42,9 @@ return [
         'processing'    => 'Processing',
         'accepted'      => 'Accepted',
         'denied'        => 'Denied',
+    ],
+    'contact_type'  => [
+        'generic'   => 'Generic',
+        'personal'  => 'Personal',
     ]
 ];

@@ -10,6 +10,7 @@ return [
         'account'       => 'Mon compte',
         'help'          => 'Aide',
         'contact'       => 'Contact',
+        'pricing'       => 'Prix',
         'logout'        => 'Déconnexion'
     ]
 ];
