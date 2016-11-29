@@ -146,8 +146,26 @@
                     </form>
                 </div>
             </div>
-            <div class="panel panel-map">
-                <div id="map" style="height: 500px"></div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="panel panel-map">
+                        <div id="map" style="height: 500px"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel">
+                        <table class="table table-condensed table-hover">
+                            <tbody>
+                            <tr v-for="place in places">
+                                <td class="col-xs-10">@{{ place.name }}</td>
+                                <td class="col-xs-2">
+                                    <a href="/leads/add/0"><i class="fa fa-arrow-circle-right"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="widget-11-2 panel panel-leads no-border panel-condensed no-margin widget-loader-circle">
                 <div class="padding-25">

@@ -7,10 +7,12 @@ appstate.loading          = false;
 appstate.loaded           = false;
 
 var place                 = {};
+var places                = [];
 var currentPlace          = {};
 
 var analyzeModuleData   = {
     status: appstate,
+    places: places,
     details: currentPlace,
     currentLocation: {lat:null, lng: null},
     geolocating: false,
@@ -247,7 +249,7 @@ var analyzeModule = new Vue({
         // Create the PlaceService and send the request.
         // Handle the callback with an anonymous function.
         service = new google.maps.places.PlacesService(map);
-        service.radarSearch(request, function(results, status) {
+        service.nearbySearch(request, function(results, status) {
             $('.wbf-search-form .btn .fa').addClass('hidden'); // hide loading icon
 
             // no results
@@ -256,6 +258,8 @@ var analyzeModule = new Vue({
             }
             // yup there's results
             if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+                console.log(results);
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];
                     addPlaceMarker(place);
@@ -292,8 +296,12 @@ var analyzeModule = new Vue({
             }
         });
 
+        console.log('add marker');
+
         // add the marker for future reinitialisation
         markers.push(marker);
+
+        places.push({'name': placeData.name});
 
         // marker click handler
         marker.addListener('click', function () {

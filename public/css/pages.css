@@ -13694,6 +13694,7 @@ Main components
   }
   .panel .panel-body {
     padding: 15px;
+    padding-top: 0;
   }
   .error-page {
     padding: 15px;
