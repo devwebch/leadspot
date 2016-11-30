@@ -141,29 +141,27 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-2">
+                                <label class="invisible">Submit</label>
+                                <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
                     </form>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="panel panel-map">
                         <div id="map" style="height: 500px"></div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="panel">
-                        <table class="table table-condensed table-hover">
-                            <tbody>
-                            <tr v-for="place in places">
-                                <td class="col-xs-10">@{{ place.name }}</td>
-                                <td class="col-xs-2">
-                                    <a href="/leads/add/0"><i class="fa fa-arrow-circle-right"></i></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="panel places-list auto-overflow" style="position: absolute; top: 50px; left: 10px; width: 290px; height: 81%;">
+                            <table class="table table-condensed table-hover no-margin">
+                                <tbody>
+                                <tr v-for="place in places">
+                                    <td class="col-xs-12"><a href="#" class="btn-block">@{{ place.name }}</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

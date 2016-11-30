@@ -166,7 +166,7 @@ var analyzeModule = new Vue({
                 }
             }).fail(function (jqXHR, textStatus, error) {
                 Raven.captureMessage('Unable to save lead.', {level: 'error'});
-            });;
+            });
         });
 
         // retrieve permissions
@@ -310,6 +310,7 @@ var analyzeModule = new Vue({
             infoWindow.close();
             infoWindow  = new google.maps.InfoWindow();
 
+            // retrieve details
             service.getDetails(placeData, function(result, status){
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     return;
