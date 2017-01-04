@@ -153,48 +153,58 @@
                 <div class="col-md-12">
                     <div class="panel panel-map">
                         <div id="map" style="height: 500px"></div>
-                        <div class="panel places-list auto-overflow" style="position: absolute; top: 50px; left: 10px; width: 290px; height: 81%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-leads no-margin">
+                        <div class="panel-heading">
+                            <div class="panel-title"><i class="pg-map"></i> {{trans('home.your_leads')}}</div>
+                        </div>
+                        <div class="auto-overflow" style="height: 300px;">
+                            @if(count($leads))
+                                <table class="table table-condensed table-hover no-margin">
+                                    <tbody>
+                                    @foreach($leads as $lead)
+                                        <tr>
+                                            <td class="col-lg-3 fs-18">{{date('d.m.Y', strtotime($lead->created_at))}}</td>
+                                            <td class="fs-12 col-lg-6">
+                                                <a href="/leads/view/{{$lead->id}}">{{$lead->name}}</a>
+                                            </td>
+                                            <td class="text-right col-lg-3">
+                                                <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-center m-b-10"><a href="/leads/search?tour=1">{{trans('home.no_leads')}}</a>.</p>
+                                <p class="text-center p-b-30"><a href="/leads/search?tour=1" class="btn btn-success">{{trans('home.start_searching')}}</a></p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel places-list hidden-xs" style="">
+                        <div class="panel-heading">
+                            <div class="panel-title"><i class="pg-map"></i> Places (@{{ places.length }})</div>
+                        </div>
+                        <div class="auto-overflow" style="height: 300px;">
                             <table class="table table-condensed table-hover no-margin">
                                 <tbody>
                                 <tr v-for="place in places">
-                                    <td class="col-xs-12"><a href="#" class="btn-block">@{{ place.name }}</a></td>
+                                    <td class="col-xs-12"><a href="#" data-index="@{{$index}}" class="btn-block">@{{ place.name }}</a></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div><!-- /.places-list -->
                 </div>
             </div>
-            <div class="widget-11-2 panel panel-leads no-border panel-condensed no-margin widget-loader-circle">
-                <div class="padding-25">
-                    <div class="pull-left">
-                        <h3 class="no-margin">{{trans('home.your_leads')}}</h3>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="widget-table">
-                    @if(count($leads))
-                        <table class="table table-condensed table-hover">
-                            <tbody>
-                            @foreach($leads as $lead)
-                                <tr>
-                                    <td class="col-lg-2 fs-18">{{date('d.m.Y', strtotime($lead->created_at))}}</td>
-                                    <td class="fs-12 col-lg-6">
-                                        <a href="/leads/view/{{$lead->id}}">{{$lead->name}}</a>
-                                    </td>
-                                    <td class="text-right col-lg-3">
-                                        <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <p class="text-center m-b-10"><a href="/leads/search?tour=1">{{trans('home.no_leads')}}</a>.</p>
-                        <p class="text-center p-b-30"><a href="/leads/search?tour=1" class="btn btn-success">{{trans('home.start_searching')}}</a></p>
-                    @endif
-                </div>
-            </div>
+
         </div>
         <div class="col-md-3">
             <div class="panel panel-place-details">
@@ -362,6 +372,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 

@@ -169,6 +169,12 @@ var analyzeModule = new Vue({
             });
         });
 
+        $('.places-list').on('click', 'a', function (e) {
+            e.preventDefault();
+            var index = $(this).attr('data-index');
+            google.maps.event.trigger(markers[index], 'click');
+        });
+
         // retrieve permissions
         $.ajax({
             type: 'POST',
@@ -259,7 +265,6 @@ var analyzeModule = new Vue({
             // yup there's results
             if (status == google.maps.places.PlacesServiceStatus.OK) {
 
-                console.log(results);
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];
                     addPlaceMarker(place);
@@ -296,12 +301,11 @@ var analyzeModule = new Vue({
             }
         });
 
-        console.log('add marker');
-
         // add the marker for future reinitialisation
         markers.push(marker);
 
         places.push({'name': placeData.name});
+        analyzeModuleData.places.push({'name': placeData.name});
 
         // marker click handler
         marker.addListener('click', function () {
@@ -315,6 +319,8 @@ var analyzeModule = new Vue({
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     return;
                 }
+
+                map.setCenter(result.geometry.location);
 
                 place.place_id                   = result.place_id;
                 place.name                       = result.name;
@@ -620,6 +626,9 @@ var analyzeModule = new Vue({
      */
     function clearPlaces()
     {
+        places = [];
+        analyzeModuleData.places = [];
+
         // reset the markers
         if (markers.length) {
             markers.forEach(function (marker) { marker.setMap(null); });
