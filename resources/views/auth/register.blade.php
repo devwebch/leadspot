@@ -41,7 +41,7 @@
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} form-group-default">
             <label for="email" class="control-label">{{trans('register.email')}}</label>
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $_GET['email']) }}">
             @if ($errors->has('email'))
                 <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
