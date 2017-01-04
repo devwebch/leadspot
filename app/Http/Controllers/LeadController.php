@@ -324,11 +324,13 @@ class LeadController extends Controller
         ]);
 
         // generate PDF
+        $report_name = 'report_' . snake_case($lead->name);
+
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('report');
+        $dompdf->stream($report_name);
 
         // return view (for testing purposes)
         return view('leads.report', [
