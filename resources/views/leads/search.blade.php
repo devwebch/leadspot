@@ -80,14 +80,17 @@
                 </div>
                 <div class="panel-body">
                     <form class="wbf-location-form form-inline">
-                        <div class="form-group">
+
+                        <div class="input-group">
                             <label for="wbfInputAddress" class="sr-only">{{trans('search.general.address')}}</label>
-                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="{{trans('search.general.address')}}" style="width: 300px"><br>
+                            <input type="text" name="wbfInputAddress" id="wbfInputAddress" class="form-control" placeholder="{{trans('search.general.address')}}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="wbfInputGeolocation" type="button"><i class="fa fa-crosshairs"></i></button>
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-default" id="wbfInputGeolocation" type="button"><i class="fa fa-crosshairs"></i></button>
-                        </div>
+
                         <button type="submit" class="btn btn-warning">{{trans('search.general.search_address')}}</button>
+
                     </form>
                     <div class="m-t-10" v-show="currentLocation">
                         <i class="fa fa-street-view"></i> <a href="#" class="set-default-location hint-text">{!! trans('search.general.set_location_default') !!}</a>
@@ -142,7 +145,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <label class="invisible">Submit</label>
+                                <label class="sr-only">Submit</label>
                                 <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
                             </div>
                         </div>
