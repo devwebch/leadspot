@@ -39,9 +39,13 @@
             </div>
         </div>
 
+        <?php
+        $lead_email = isset($_GET['email']) ? $_GET['email'] : '';
+        ?>
+
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} form-group-default">
             <label for="email" class="control-label">{{trans('register.email')}}</label>
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $_GET['email']) }}">
+            <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $lead_email) }}">
             @if ($errors->has('email'))
                 <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
