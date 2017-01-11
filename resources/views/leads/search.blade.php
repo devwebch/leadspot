@@ -145,23 +145,41 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <label class="sr-only">Submit</label>
-                                <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
+                                <div class="form-group">
+                                    <label class="invisible">Submit</label>
+                                    <button type="submit" class="btn btn-success">{{trans('search.general.search')}} <i class="fa fa-refresh fa-spin hidden"></i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="panel panel-map">
                         <div id="map" style="height: 500px"></div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="panel places-list hidden-xs" style="">
+                        <div class="panel-heading">
+                            <div class="panel-title"><i class="pg-map"></i> Places (@{{ places.length }})</div>
+                        </div>
+                        <div class="auto-overflow" style="height: 452px;">
+                            <table class="table table-condensed table-hover no-margin">
+                                <tbody>
+                                <tr v-for="place in places">
+                                    <td class="col-xs-12"><a href="#" data-index="@{{$index}}" class="btn-block">@{{ place.name }}</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.places-list -->
+                </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="panel panel-leads no-margin">
                         <div class="panel-heading">
                             <div class="panel-title"><i class="pg-map"></i> {{trans('home.your_leads')}}</div>
@@ -190,24 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="panel places-list hidden-xs" style="">
-                        <div class="panel-heading">
-                            <div class="panel-title"><i class="pg-map"></i> Places (@{{ places.length }})</div>
-                        </div>
-                        <div class="auto-overflow" style="height: 300px;">
-                            <table class="table table-condensed table-hover no-margin">
-                                <tbody>
-                                <tr v-for="place in places">
-                                    <td class="col-xs-12"><a href="#" data-index="@{{$index}}" class="btn-block">@{{ place.name }}</a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!-- /.places-list -->
-                </div>
             </div>
-
         </div>
         <div class="col-md-3">
             <div class="panel panel-place-details">

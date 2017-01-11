@@ -278,7 +278,7 @@ var analyzeModule = new Vue({
     /**
      * Add a marker on the Map using a place object
      * Handles the display of the InfoWindow for each marker
-     * @param place
+     * @param placeData
      */
     function addPlaceMarker(placeData)
     {
@@ -312,7 +312,7 @@ var analyzeModule = new Vue({
 
             // close any existing window and open a new one
             infoWindow.close();
-            infoWindow  = new google.maps.InfoWindow();
+            infoWindow  = new google.maps.InfoWindow({maxWidth: 350});
 
             // retrieve details
             service.getDetails(placeData, function(result, status){
@@ -320,7 +320,7 @@ var analyzeModule = new Vue({
                     return;
                 }
 
-                map.setCenter(result.geometry.location);
+                map.panTo(result.geometry.location);
 
                 place.place_id                   = result.place_id;
                 place.name                       = result.name;
@@ -511,7 +511,7 @@ var analyzeModule = new Vue({
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Location found.');
-                map.setCenter(pos);
+                map.panTo(pos);
                 addSearchMarker(pos);
                 analyzeModuleData.geolocating = false;
             }, function() {
@@ -545,7 +545,7 @@ var analyzeModule = new Vue({
     function setSearchLocation(location)
     {
         request.location = location;
-        map.setCenter(location);
+        map.panTo(location);
         analyzeModuleData.currentLocation.lat = location.lat();
         analyzeModuleData.currentLocation.lng = location.lng();
         showRadius(location, request.radius);
@@ -566,7 +566,7 @@ var analyzeModule = new Vue({
                     var location            = results[0].geometry.location;
                     var formatted_address   = results[0].formatted_address;
 
-                    map.setCenter(location);
+                    map.panTo(location);
                     request.location = location;
                     addSearchMarker(location);
 
