@@ -121,7 +121,7 @@
                     <li class="p-r-15 inline">
                         <a href="/contact"><i class="pg-mail"></i> {{trans('menu.user.contact')}}</a>
                     </li>
-                    @if ( Auth::user()->subscribed('main') )
+                    @if ( Auth::user()->subscribed('main') == false )
                         <li class="p-r-15 inline">
                             <a href="/account/pricing"><i class="fa fa-rocket"></i> {{trans('menu.user.pricing')}}</a>
                         </li>

@@ -161,7 +161,7 @@
                                 <div class="progress-bar progress-bar-success" style="width:{{($usage->contacts->used / $usage->contacts->limit) * 100}}%"></div>
                             </div>
                         </div>
-                        @if ( Auth::user()->subscribed('main') )
+                        @if ( Auth::user()->subscribed('main') == false )
                         <div class="m-t-40">
                             <a href="/account/pricing" class="btn btn-danger btn-block">{{trans('home.go_pro_label')}}</a>
                         </div>
