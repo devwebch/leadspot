@@ -30,9 +30,11 @@
                         <li class="active">
                             <a data-toggle="tab" href="#tabInfos">{{trans('account.your_informations')}}</a>
                         </li>
+                        @if ( Auth::user()->subscribed('main') )
                         <li class="">
                             <a data-toggle="tab" href="#tabInvoices">{{trans('account.invoices')}}</a>
                         </li>
+                        @endif
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabInfos">
@@ -57,7 +59,11 @@
                                     <h3>{{trans('account.monthly_usage')}}</h3>
                                     <strong>{{trans('account.search')}} </strong> {{$usage->search->used}} / {{$usage->search->limit}}<br>
                                     <strong>{{trans('account.contacts')}} </strong> {{$usage->contacts->used}} / {{$usage->contacts->limit}}
-
+                                    @if ( Auth::user()->subscribed('main') == false )
+                                        <div class="m-t-20 m-b-20">
+                                            <a href="/account/pricing" class="btn btn-danger btn-lg">{{trans('home.go_pro_label')}}</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

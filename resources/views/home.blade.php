@@ -119,6 +119,11 @@
                     <a href="/?tour=1" class="btn btn-success btn-lg btn-block hidden-xs"><i class="fa fa-rocket"></i> {{trans('home.start_tour')}}</a>
                 </div>
             @endif
+            @if ( Auth::user()->subscribed('main') == false )
+                <div class="m-b-20">
+                    <a href="/account/pricing" class="btn btn-danger btn-lg btn-block">{{trans('home.go_pro_label')}}</a>
+                </div>
+            @endif
 
             <div class="m-b-20">
                 <div class="panel bg-info widget panel-account text-center">
@@ -163,7 +168,7 @@
                         </div>
                         @if ( Auth::user()->subscribed('main') == false )
                         <div class="m-t-40">
-                            <a href="/account/pricing" class="btn btn-danger btn-block">{{trans('home.go_pro_label')}}</a>
+                            <a href="/account/pricing" class="btn btn-danger btn-lg btn-block">{{trans('home.go_pro_label')}}</a>
                         </div>
                         @endif
                     </div>
