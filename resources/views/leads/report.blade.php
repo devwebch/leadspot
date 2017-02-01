@@ -125,7 +125,7 @@
                                             <strong><?php echo $indicators_labels[$key]; ?></strong>
                                         </td>
                                         <td align="right">
-                                            <?php echo ($indicator == 0) ? 'Yes' : 'No'; ?>
+                                            <?php echo ($indicator == 0) ? trans('app.yes') : trans('app.no'); ?>
                                         </td>
                                     </tr>
                                     <?php $count++; ?>
