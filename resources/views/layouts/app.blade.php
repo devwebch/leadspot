@@ -171,10 +171,10 @@
         <div class="container-fluid container-fixed-lg footer">
             <div class="copyright sm-text-center">
                 <p class="small no-margin pull-left sm-pull-reset">
-                    <span class="hint-text">Copyright © 2016</span>
+                    <span class="hint-text">Copyright © {{date('Y')}}</span>
                     <span class="font-montserrat">LeadSpot</span>.
                     <span class="hint-text">{{trans('app.copyright')}}</span>
-                    <span class="sm-block"><a href="https://leadspotapp.com/terms-and-conditions" target="_blank" class="m-l-10 m-r-10">{{trans('app.terms_conditions')}}</a> <span class="hidden">|</span> <a href="#" class="hidden m-l-10">Privacy Policy</a>
+                    <span class="sm-block"><a href="https://leadspotapp.com/en/terms-and-conditions" target="_blank" class="m-l-10 m-r-10">{{trans('app.terms_conditions')}}</a> <span class="hidden">|</span> <a href="#" class="hidden m-l-10">Privacy Policy</a>
                         </span>
                 </p>
                 <p class="small no-margin pull-right sm-pull-reset p-l-20">

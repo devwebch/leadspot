@@ -92,13 +92,10 @@
                     @endif
                     <hr>
                     <h4>{{trans('lead.notes')}}</h4>
-                    @if($lead->notes)
-                        {{$lead->notes}}
-                    @else
-                        <a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit_add_notes')}}</a>
-                    @endif
+                    {{$lead->notes}}
+                    <div class="m-t-10"><a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit_add_notes')}}</a></div>
                     <hr>
-                    @if (Auth::user()->permissions()->report)
+                    @if (Auth::user()->permissions()->report || 1==1)
                     <h4>{{trans('lead.report')}}</h4>
                     <ul class="list-unstyled">
                     @forelse($lead->reports()->get() as $report)

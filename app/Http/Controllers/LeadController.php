@@ -99,6 +99,9 @@ class LeadController extends Controller
             $available_contacts = $leadService->checkLeadEmails($lead);
         }
 
+        // retrieve lead report
+        $report     = $lead->reports()->first();
+
         return view('leads.view', [
             'lead'                  => $lead,
             'status'                => $status,

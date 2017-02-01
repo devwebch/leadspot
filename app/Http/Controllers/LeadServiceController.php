@@ -317,15 +317,15 @@ class LeadServiceController extends Controller
      */
     public function checkLeadEmails(Lead $lead)
     {
+        // if no website, exit
+        if ( !$lead->url ) {
+            return;
+        }
+
         $website    = $lead->url;
         $website    = parse_url($website)['host'];
         $domain     = preg_replace('/www\./', '', $website);
         $count      = 0;
-
-        // if no website, exit
-        if ( !$website ) {
-            return;
-        }
 
         $client = new Client();
         $res    = $client->request('GET', 'https://api.hunter.io/v2/email-count?domain=' . $domain, ['verify' => false]);
