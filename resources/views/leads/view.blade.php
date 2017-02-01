@@ -57,13 +57,8 @@
         <div class="panel-heading">
             <div class="panel-title">{{trans('lead.details')}}</div>
             <div class="btn-group pull-right m-b-10">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit')}}</a></li>
-                    <li><a href="/leads/delete/{{$lead->id}}" class="delete">{{trans('lead.delete')}}</a></li>
-                </ul>
+                <a class="btn btn-default" href="/leads/edit/{{$lead->id}}">{{trans('lead.edit')}}</a>
+                <a class="btn btn-danger delete" href="/leads/delete/{{$lead->id}}" class="delete">{{trans('lead.delete')}}</a>
             </div>
         </div>
         <div class="panel-body">
@@ -81,31 +76,71 @@
                 <div class="col-md-4">
                     <h4>{{trans('lead.details')}}</h4>
                     <p>{{trans('lead.status_label')}} <span class="label {{$status_classes[$lead->status]}}">{{trans($status[$lead->status])}}</span></p>
+
                     @if($lead->url)
                         <p>{{trans('lead.website_label')}} <a href="{{$lead->url}}">{{$lead->url}}</a></p>
                     @endif
+
                     @if($lead->cms)
                         <p>{{trans('lead.cms_label')}} {{config('constants.cms.' . $lead->cms)}}</p>
                     @endif
+
                     @if($lead->phone_number)
                         <p>{{trans('lead.phone_label')}} {{$lead->phone_number}}</p>
                     @endif
+
                     <hr>
                     <h4>{{trans('lead.notes')}}</h4>
                     {{$lead->notes}}
                     <div class="m-t-10"><a href="/leads/edit/{{$lead->id}}">{{trans('lead.edit_add_notes')}}</a></div>
                     <hr>
-                    @if (Auth::user()->permissions()->report || 1==1)
+
+                    @if($lead->url)
+
                     <h4>{{trans('lead.report')}}</h4>
-                    <ul class="list-unstyled">
-                    @forelse($lead->reports()->get() as $report)
-                        <li><a href="/leads/report/{{$lead->id}}" target="_blank">{{trans('lead.download_report')}} ({{date('d.m.Y', strtotime($report->created_at))}})</a></li>
-                    @empty
-                        <li>{{trans('lead.no_reports')}}</li>
-                    @endforelse
-                    </ul>
+                    @if (Auth::user()->permissions()->report)
+
+                        <ul class="list-unstyled">
+                            @forelse($lead->reports()->get() as $report)
+                            <li><a href="/leads/report/{{$lead->id}}" target="_blank">{{trans('lead.download_report')}} ({{date('d.m.Y', strtotime($report->created_at))}})</a></li>
+                            @empty
+                            <li>{{trans('lead.no_reports')}}</li>
+                            @endforelse
+                        </ul>
+
+                    @endif
+
+                    <h5>{{trans('report.obsolescence_indicators')}}</h5>
+
+                    <table class="table table-condensed">
+                        <?php $count = 0; ?>
+                        @foreach($indicators as $key => $indicator)
+                            <tr class="<?php echo ($count%2 == 0) ? 'bg-gray-alt' : 'bg-gray'; ?>">
+                                <td>
+                                    <strong><?php echo $indicators_labels[$key]; ?></strong>
+                                </td>
+                                <td align="right">
+                                    <?php echo ($indicator == 0) ? trans('app.yes') : trans('app.no'); ?>
+                                </td>
+                            </tr>
+                            <?php $count++; ?>
+                        @endforeach
+                    </table>
+
+                    <h5>{{trans('report.pagespeed_scores')}}</h5>
+                    <table class="table table-condensed">
+                        <tr>
+                            <td><strong>{{trans('report.speed')}}</strong></td>
+                            <td align="right">{{$scores->speed}} / 100</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{trans('report.usability')}}</strong></td>
+                            <td align="right">{{$scores->usability}} / 100</td>
+                        </tr>
+                    </table>
                     <hr>
                     @endif
+
                     <h4>{{trans('lead.contacts')}}</h4>
                     @if ($stored_contacts)
                     <table class="table">

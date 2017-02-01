@@ -100,7 +100,22 @@ class LeadController extends Controller
         }
 
         // retrieve lead report
-        $report     = $lead->reports()->first();
+        $report         = $lead->reports()->first();
+        // get report's data
+        $scores         = !empty($report->scores) ? json_decode($report->scores) : '';
+        $stats          = !empty($report->stats) ? json_decode($report->stats) : '';
+        $indicators     = !empty($report->indicators) ? json_decode($report->indicators) : '';
+        $website        = !empty($report->website) ? json_decode($report->website) : '';
+
+        $indicators_labels = [
+            'viewport'          => trans('report.indicators.viewport'),
+            'gzip'              => trans('report.indicators.gzip'),
+            'minifyCss'         => trans('report.indicators.minifyCss'),
+            'minifyJs'          => trans('report.indicators.minifyJs'),
+            'minifyHTML'        => trans('report.indicators.minifyHTML'),
+            'optimizeImages'    => trans('report.indicators.optimizeImages'),
+            'fontSize'          => trans('report.indicators.fontSize'),
+        ];
 
         return view('leads.view', [
             'lead'                  => $lead,
@@ -108,6 +123,10 @@ class LeadController extends Controller
             'status_classes'        => $status_classes,
             'stored_contacts'       => $stored_contacts,
             'available_contacts'    => $available_contacts,
+            'scores'                => $scores,
+            'stats'                 => $stats,
+            'indicators'            => $indicators,
+            'indicators_labels'     => $indicators_labels,
         ]);
     }
 
