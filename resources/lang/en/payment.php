@@ -28,6 +28,7 @@ return [
         'dec'   => 'Dec (12)',
     ],
     'cvc_code'                  => 'CVC Code',
+    'coupon'                    => 'Coupon',
     'verify_infos'              => 'Verify my informations',
     'pay_now'                   => 'Pay now'
 ];

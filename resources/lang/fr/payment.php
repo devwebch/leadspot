@@ -6,7 +6,7 @@ return [
     'monthly_subscription'      => 'Souscription mensuelle',
     'total_label'               => 'Total :',
     'month'                     => 'mois',
-    'invoices_msg'              => 'Les factures sont générées après chaque versement effectué avec succès et son disponibles dans votre compte personnel.',
+    'invoices_msg'              => 'Les factures sont générées après chaque versement effectué avec succès et sont disponibles dans votre compte personnel.',
     'pay_conditions_msg'        => 'En pressant le bouton "Payer maintenant" vous acceptez de payer le montant ci-dessus et acceptez les <a href="https://leadspotapp.com/terms-and-conditions" target="_blank">Conditions générales</a>',
     'credit_card'               => 'Carte de crédit',
     'card_holder'               => 'Détenteur de la carte',
@@ -28,6 +28,7 @@ return [
         'dec'   => 'Déc (12)',
     ],
     'cvc_code'                  => 'Code CVC',
+    'coupon'                    => 'Coupon',
     'verify_infos'              => 'Vérifier mes informations',
     'pay_now'                   => 'Payer maintenant'
 ];

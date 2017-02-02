@@ -62,8 +62,15 @@ class SubscriptionServiceController extends Controller
         // retrieve the card token
         $stripeToken = $request->input('token');
 
+        // retrieve the coupon
+        $stripeCoupon = $request->input('inputCoupon');
+
         // create new subscription
-        $user->newSubscription('main', $subscription_type)->create($stripeToken);
+        if ($stripeCoupon) {
+            $user->newSubscription('main', $subscription_type)->create($stripeToken);
+        } else {
+            $user->newSubscription('main', $subscription_type)->withCoupon($stripeCoupon)->create($stripeToken);
+        }
 
         // retrieve user's subscription usage
         $usage  = $user->subscriptionUsage()->first();

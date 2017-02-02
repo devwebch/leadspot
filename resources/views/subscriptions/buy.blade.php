@@ -158,10 +158,16 @@
                                 <?php endfor; ?>
                             </select>
                         </div>
-                        <div class="col-md-2 col-md-offset-4">
+                        <div class="col-md-2">
                             <div class="form-group required">
                                 <label>{{trans('payment.cvc_code')}}</label>
                                 <input type="text" class="form-control" name="inputCvc" placeholder="000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{trans('payment.coupon')}}</label>
+                                <input type="text" class="form-control" name="inputCoupon" placeholder="">
                             </div>
                         </div>
                     </div>
