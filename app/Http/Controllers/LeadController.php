@@ -351,6 +351,7 @@ class LeadController extends Controller
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
+        $dompdf->set_option('enable_remote', true);
         $dompdf->render();
         $dompdf->stream($report_name);
 

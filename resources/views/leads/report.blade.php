@@ -12,7 +12,7 @@
             font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
-        h1 { font-size: 26px; }
+        h1 { font-size: 26px; margin: 0 0 10px; }
         h2 { font-size: 22px; }
         h3 { font-size: 18px; }
         h4 { font-size: 16px; }
@@ -86,8 +86,17 @@
                     <img src="img/logo-leadspot.png" alt="LeadSpot" width="150">
                 </div>
 
-                <h1>{{$lead->name}}</h1>
-                <h4>{{$lead->address}}</h4>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <td width="50%">
+                            <h1>{{$lead->name}}</h1>
+                            <h4>{{$lead->address}}</h4>
+                        </td>
+                        <td style="text-align: right" width="50%">
+                            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{$lead->lat}},{{$lead->lng}}&markers=color:red%7C{{$lead->lat}},{{$lead->lng}}&size=330x200&zoom=15&format=png8&key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA" alt="">
+                        </td>
+                    </tr>
+                </table>
 
                 <table class="table" style="margin-top: 20px;" cellspacing="0">
                     <tbody>
@@ -113,7 +122,7 @@
                             <td>{{$lead->phone_number}}</td>
                         </tr>
                         <tr>
-                            <td width="50%" class="no-padding" style="padding-top: 40px;">
+                            <td width="50%" class="no-padding" style="padding-top: 20px;">
                                 <table class="table" width="98%" cellspacing="0">
                                     <tr class="bg-green">
                                         <td colspan="2">{{trans('report.obsolescence_indicators')}}</td>
@@ -132,7 +141,7 @@
                                     @endforeach
                                 </table>
                             </td>
-                            <td width="50%" class="no-padding" style="padding-top: 40px;">
+                            <td width="50%" class="no-padding" style="padding-top: 20px;">
                                 <table class="table" width="100%" cellspacing="0">
                                     <tr class="bg-green">
                                         <td colspan="2">{{trans('report.pagespeed_scores')}}</td>
@@ -148,7 +157,7 @@
                                 </table>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display: none;">
                             <td colspan="2" class="no-padding" style="padding-top: 40px;">
                                 <table class="table bg-gray" width="100%" cellspacing="0">
                                     <tr class="bg-blue">
