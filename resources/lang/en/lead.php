@@ -38,10 +38,10 @@ return [
     'fetch_contacts'    => 'Fetch contacts',
     'no_contacts_infos' => 'No contacts informations were found for this website.',
     'status'    => [
-        'neutral'       => 'Neutral',
-        'processing'    => 'Processing',
+        'new'           => 'New',
+        'progress'      => 'In progress',
         'accepted'      => 'Accepted',
-        'denied'        => 'Denied',
+        'unqualified'   => 'Unqualified',
     ],
     'contact_type'  => [
         'generic'   => 'Generic',

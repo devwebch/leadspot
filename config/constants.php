@@ -12,10 +12,10 @@ return [
 	],
     'lead' => [
         'status' => [
-            0   => 'lead.status.neutral',
-            1   => 'lead.status.processing',
+            0   => 'lead.status.new',
+            1   => 'lead.status.progress',
             2   => 'lead.status.accepted',
-            3   => 'lead.status.denied'
+            3   => 'lead.status.unqualified'
         ],
         'classes'   => [
             0   => '',
