@@ -7,7 +7,7 @@ return [
     'total_label'               => 'Total :',
     'month'                     => 'mois',
     'invoices_msg'              => 'Les factures sont générées après chaque versement effectué avec succès et sont disponibles dans votre compte personnel.',
-    'pay_conditions_msg'        => 'En pressant le bouton "Payer maintenant" vous acceptez de payer le montant ci-dessus et acceptez les <a href="https://leadspotapp.com/terms-and-conditions" target="_blank">Conditions générales</a>',
+    'pay_conditions_msg'        => 'En pressant le bouton "Payer maintenant" vous acceptez de payer le montant ci-dessus et acceptez les <a href="https://leadspotapp.com/en/terms-and-conditions" target="_blank">Conditions générales</a>',
     'credit_card'               => 'Carte de crédit',
     'card_holder'               => 'Détenteur de la carte',
     'card_holder_label'         => 'Nom affiché sur la carte',

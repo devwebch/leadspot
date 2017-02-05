@@ -7,7 +7,7 @@ return [
     'total_label'               => 'Total:',
     'month'                     => 'month',
     'invoices_msg'              => 'Invoices are issued after each successful payment and are available in your personal account.',
-    'pay_conditions_msg'        => 'By pressing "Pay Now" you agree to pay the amount displayed above and to the <a href="https://leadspotapp.com/terms-and-conditions" target="_blank">Terms &amp; Conditions</a>',
+    'pay_conditions_msg'        => 'By pressing "Pay Now" you agree to pay the amount displayed above and to the <a href="https://leadspotapp.com/en/terms-and-conditions" target="_blank">Terms &amp; Conditions</a>',
     'credit_card'               => 'Credit Card',
     'card_holder'               => 'Card holder\'s name',
     'card_holder_label'         => 'Name on the card',
