@@ -93,7 +93,7 @@
                             <h4>{{$lead->address}}</h4>
                         </td>
                         <td style="text-align: right" width="50%">
-                            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{$lead->lat}},{{$lead->lng}}&markers=color:red%7C{{$lead->lat}},{{$lead->lng}}&size=330x200&zoom=15&format=png8&key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA" alt="">
+                            <img style="display: none;" src="storage/map.jpg" alt="jggz" width="100" height="100">
                         </td>
                     </tr>
                 </table>

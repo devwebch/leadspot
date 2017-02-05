@@ -12,8 +12,11 @@ use App\Contact;
 use App\Lead;
 use App\User;
 use App\Library\DetectCMS\DetectCMS;
+use Dompdf\Options;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use League\Flysystem\Config;
 use Dompdf\Dompdf;
@@ -334,6 +337,11 @@ class LeadController extends Controller
             'fontSize'          => trans('report.indicators.fontSize'),
         ];
 
+        /*$path ='https://maps.googleapis.com/maps/api/staticmap?center='.$lead->lat.','.$lead->lng.'&markers=color:red%7C'.$lead->lat.','.$lead->lng.'&size=330x200&zoom=15&format=jpg&key=AIzaSyAmuoso1k61TZCOqUdPi3E7VIl2HA2UBmA';
+        $file = file_get_contents($path);
+
+        Storage::disk('public')->put('test.jpg', $file, 'public');*/
+
         // store view
         $view           = view('leads.report', [
             'lead'                  => $lead,
@@ -342,18 +350,24 @@ class LeadController extends Controller
             'stats'                 => $stats,
             'indicators'            => $indicators,
             'indicators_labels'     => $indicators_labels,
-            'website'               => $website,
+            'website'               => $website
         ]);
 
         // generate PDF
         $report_name = 'report_' . snake_case($lead->name);
 
+        $pdfOptions = new Options();
+        //$pdfOptions->setIsRemoteEnabled('true');
+        $pdfOptions->setIsHtml5ParserEnabled('true');
+
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setPaper('A4', 'portrait');
-        $dompdf->set_option('enable_remote', true);
+        $dompdf->setOptions($pdfOptions);
         $dompdf->render();
         $dompdf->stream($report_name);
+
+        //Storage::delete('test.png');
 
         // return view (for testing purposes)
         return view('leads.report', [
@@ -363,7 +377,7 @@ class LeadController extends Controller
             'stats'         => $stats,
             'indicators'    => $indicators,
             'indicators_labels'     => $indicators_labels,
-            'website'       => $website,
+            'website'       => $website
         ]);
     }
 }
