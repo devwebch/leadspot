@@ -284,7 +284,7 @@ class LeadServiceController extends Controller
             foreach ($emails_raw as $email) {
 
                 // check confidence
-                if ( $email->confidence >= 60 ) {
+                if ( $email->confidence >= 30 ) {
 
                     // create Contact Model
                     $contact = new Contact();
