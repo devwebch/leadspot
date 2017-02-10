@@ -343,8 +343,9 @@ class LeadController extends Controller
         Storage::disk('public')->put('test.jpg', $file, 'public');*/
 
         // store view
-        $view           = view('leads.report', [
+        $view           = view('leads.reportnew', [
             'lead'                  => $lead,
+            'user'                  => $user,
             'report'                => $report,
             'scores'                => $scores,
             'stats'                 => $stats,

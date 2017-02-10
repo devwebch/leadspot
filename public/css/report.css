@@ -1,0 +1,294 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.no-margin {margin: 0;}
+.no-padding {padding: 0;}
+.no-padding-top { padding-top: 0; }
+.no-padding-right { padding-right: 0; }
+.no-padding-bottom { padding-bottom: 0; }
+.no-padding-left { padding-left: 0; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.table {
+    width: 100%;
+}
+
+.table-black {
+    background: #222222;
+    color: #fff;
+}
+.table-gray {
+    background: #eaeaea;
+    color: #333333;
+}
+.table-red {
+    background: #b02b34;
+    color: #fff;
+}
+.table-green {
+    background: #45892f;
+    color: #fff;
+}
+
+.header {
+    background: #eee;
+}
+
+.client {
+
+    }
+    .client .title {
+
+    }
+    .client .address {
+        margin: 0;
+    }
+
+.contact {
+    background: #f1eeee;
+    padding: 20px;
+    }
+    .contact .title {
+        font-weight: bold;
+        margin: 0 0 10px;
+    }
+    .contact p {
+        line-height: 13px;
+        margin: 0 0 5px;
+    }
+
+.score {
+    padding: 40px 20px;
+    background: #eeeeee;
+    text-align: center;
+    }
+    .score .icn {
+        margin: 0 0 20px;
+    }
+    .score .label {
+        color: #ffffff;
+        margin: 0 0 10px;
+        line-height: 1em;
+    }
+    .score .pct {
+        color: #ffffff;
+        font-size: 40px;
+        line-height: 1em;
+        margin: 0;
+    }
+.score--green { background: #8BC34A; }
+.score--turquoise { background: #009688; }
+
+
+body {
+    font-size: 13px;
+    font-weight: 200;
+    color: #222222;
+    font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 200;
+    margin: 0;
+    line-height: 1em;
+}
+
+table tr td {
+    padding: 10px;
+    vertical-align: text-top;
+}
+table tr th {
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
