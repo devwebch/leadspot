@@ -21,7 +21,7 @@ return [
 	'free' => [
 	    'price' => 0,
         'limit' => [
-            'search'    => 60,
+            'search'    => 30,
             'contacts'  => 10,
             'teamsize'  => 0
         ]

@@ -35,7 +35,7 @@
                 <div class="pricing-details bg-white p-t-30 p-b-30 p-l-40 p-r-40 md-p-l-20 md-p-r-20">
                     <ul class="no-style">
                         <li class="text-black fs-16 normal m-b-25">{!! trans('pricing.quotas.one_user')!!}</li>
-                        <li class="text-black fs-16 normal m-b-25">{!! trans('pricing.quotas.company_searches', ['num' => "60"])!!}</li>
+                        <li class="text-black fs-16 normal m-b-25">{!! trans('pricing.quotas.company_searches', ['num' => "30"])!!}</li>
                         <li class="text-black fs-16 normal m-b-25">{!! trans('pricing.quotas.email_lookups', ['num' => "10"])!!}</li>
                     </ul>
                 </div>
