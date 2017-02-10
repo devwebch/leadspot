@@ -34,7 +34,7 @@
         </td>
         <td valign="top">
             <div class="contact">
-                <h3 class="title">Votre contact</h3>
+                <h3 class="title">{{trans('report.your_contact')}}</h3>
                 <p><strong>{{$user->first_name}} {{$user->last_name}}</strong></p>
                 @if($user->company)
                     <p>{{$user->company}}</p>

@@ -1,5 +1,6 @@
 <?php
 return [
+    'your_contact'              => 'Votre contact',
     'general_data'              => 'Données générales',
     'date'                      => 'Date',
     'website'                   => 'Site web',
