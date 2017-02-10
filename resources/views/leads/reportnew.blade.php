@@ -52,18 +52,14 @@
                 <tr>
                     <td class="no-padding-top no-padding-left" width="50%" valign="top">
                         <div class="score score--green">
-                            <div class="icn">
-                                <img src="img/icons/timer.png" height="50" width="50"/>
-                            </div>
+                            <div class="icn" style="display: none;"><img src="img/icons/timer.png" height="50" width="50"/></div>
                             <h2 class="label">{{trans('report.speed')}}</h2>
                             <h3 class="pct">{{$scores->speed}}%</h3>
                         </div>
                     </td>
                     <td class="no-padding-top no-padding-right" valign="top">
                         <div class="score score--turquoise">
-                            <div class="icn">
-                                <img src="img/icons/iPhone.png" height="50" width="50"/>
-                            </div>
+                            <div class="icn" style="display: none;"><img src="img/icons/iPhone.png" height="50" width="50"/></div>
                             <h2 class="label">{{trans('report.usability')}}</h2>
                             <h3 class="pct">{{$scores->usability}}%</h3>
                         </div>
@@ -112,9 +108,9 @@
                     <td><strong>{{trans('report.website')}}</strong><br>{{$lead->url}}</td>
                 </tr>
                 @if($website->cms)
-                <tr>
-                    <td><strong>{{trans('report.cms')}}</strong><br>{{$website->cms}}</td>
-                </tr>
+                    <tr>
+                        <td><strong>{{trans('report.cms')}}</strong><br>{{$website->cms}}</td>
+                    </tr>
                 @endif
                 <tr>
                     <td><strong>{{trans('report.phone')}}</strong><br>{{$lead->phone_number}}</td>
