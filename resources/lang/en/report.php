@@ -13,11 +13,11 @@ return [
     'notes'                     => 'Notes',
     'glossary'                  => 'Glossary',
     'indicators'     => [
-        'viewport'          => 'Viewport',
+        'viewport'          => 'Suited for mobile devices',
         'gzip'              => 'GZIP compression',
-        'minifyCss'         => 'Minified CSS',
-        'minifyJs'          => 'Minified JS',
-        'minifyHTML'        => 'Minified HTML',
+        'minifyCss'         => 'Optimized CSS',
+        'minifyJs'          => 'Optimized JS',
+        'minifyHTML'        => 'Optimized HTML',
         'optimizeImages'    => 'Optimized images',
         'fontSize'          => 'Font size adapted to screen size'
     ],
