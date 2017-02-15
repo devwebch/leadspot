@@ -27,7 +27,7 @@ return [
         'minifyCss'         => 'Concaténation en un seul fichier de toutes vos feuilles de style CSS.',
         'minifyJs'          => 'Concaténation en un seul fichier de tous vos scripts Javascript.',
         'minifyHTML'        => 'Version minifiée de votre code HTML.',
-        'optimizeImages'    => 'Les images de votre sites peuvent être optimisées et ainsi bénéficier d\'une réduction de poids sans perte de qualité.',
+        'optimizeImages'    => 'Les images de votre site peuvent être optimisées et ainsi bénéficier d\'une réduction de poids sans perte de qualité.',
         'fontSize'          => 'La taille de votre police doit pouvoir être adaptée à la résolution de l\'écran.'
     ]
 ];
